@@ -1,0 +1,69 @@
+<div  fxLayoutAlign="center center" fxLayout="column">
+  <h1>Contact Us</h1>
+  <div class="contact" style="background-image: url(assets/contact-background.png);">
+    <div div fxLayout="row wrap" fxLayoutAlign="space-around center" class="contact-contain">
+      <div  fxFlex="40" fxFlex.lt-md="90" fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" class="contact-card">
+            <div class="material-icons icons-contact">
+              location_on
+            </div>
+            <div>
+                <h4>Address</h4>
+                <ul>
+                  <li><p>3 Ismail Qabany st., off Tayaran st. Nasr City, Cairo.</p></li>
+                  <li><p>Mahmod Rashoan st., Assuit.</p></li>
+                </ul>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" class="contact-card">
+            <div class="material-icons icons-contact">
+                email
+            </div>
+            <div>
+                <h4>Email</h4>
+                <p>&nbsp;&nbsp; Info@Informatique-edu.com</p>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" class="contact-card">
+            <div class="material-icons icons-contact">
+              call
+            </div>
+            <div>
+                <h4>Phone</h4>
+                <p>&nbsp;&nbsp; (202)24027637</p>
+            </div>
+          </div>
+      </div>
+      <div fxFlex="40" fxFlex.lt-md="90" fxLayout="column" >
+        <form fxLayout="column" action="https://formsubmit.co/zinabadelhashem@gmail.com" method="POST">
+          <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
+            <mat-label class="input-contact">Name</mat-label>
+            <input type="text" name="name" placeholder="Your Name" matInput required>
+          </mat-form-field>
+          <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
+            <mat-label class="input-contact">Email</mat-label>
+            <input type="email" name="email" placeholder="Your Email" matInput required>
+          </mat-form-field>
+          <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
+            <mat-label class="input-contact">Message</mat-label>
+            <textarea type="text" name="message" placeholder="Your Message" matInput required></textarea>
+          </mat-form-field>
+          <button type="submit" mat-raised-button class="send">Send Message</button>
+        </form>
+      </div>
+    </div>
+    <div fxLayoutAlign="center center" fxLayoutGap="15px">
+      <img src="assets/facebook.png" alt="error facebook" class="img-social">
+      <a href="https://www.linkedin.com/company/informatique/" target="_blank">
+        <img src="assets/linkedin.png" alt="error linkedin" class="img-social">
+      </a>
+      <img src="assets/whatsapp.png" alt="error whats" class="img-social">
+      <a href="https://github.com/Informatique-Dev" target="_blank">
+        <img src="assets/github.png" alt="error github" class="img-social">
+      </a>
+      <a href="www.informatique-eg.com" target="_blank">
+        <img src="assets/website.png" alt="error github" class="img-social">
+      </a>
+    </div>
+  </div>
+</div>
