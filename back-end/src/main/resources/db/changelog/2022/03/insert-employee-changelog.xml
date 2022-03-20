@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="1647792818475-1" author="Admin">
+        <insert tableName="employee">
+            <column name="id" valueSequenceNext="hibernate_sequence"/>
+            <column name="name" value="emp1"/>
+            <column name="email" value="1@asd.com"/>
+            <column name="salary" valueNumeric="1000"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="id" valueSequenceNext="hibernate_sequence"/>
+            <column name="name" value="emp2"/>
+            <column name="email" value="2@asd.com"/>
+            <column name="salary" valueNumeric="2000"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="1647792938378-1" author="Admin">
+        <insert tableName="department">
+            <column name="id" valueSequenceNext="hibernate_sequence"/>
+            <column name="name" value="dep1"/>
+            <column name="city_name" value="a"/>
+            <column name="manager_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="department">
+            <column name="id" valueSequenceNext="hibernate_sequence"/>
+            <column name="name" value="dep2"/>
+            <column name="city_name" value="s"/>
+            <column name="manager_id" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
