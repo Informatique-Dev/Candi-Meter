@@ -119,8 +119,7 @@ CONSTRAINT INTERVIEW_R01 FOREIGN KEY (employee_id) REFERENCES CANDI_METER.EMPLOY
 constraint INTERVIEW_R05 FOREIGN KEY (application_id) references candi_meter.application(id),
 constraint INTERVIEW_R06 foreign key (topics_id) references candi_meter.topics (id)
 );
-alter table CANDI_METER.INTERVIEW
-drop column evaluation;
+
 
 CREATE TABLE CANDI_METER.FOLLOW_UP
 (
