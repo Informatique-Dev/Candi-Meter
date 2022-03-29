@@ -51,11 +51,11 @@ values ('OOP','object orinted programming',1,1,2,1);
 insert into candi_meter.topics (topic_name,describtion,topic_level_id,employee_id,position_id,topic_question_id)
 values ('DB','database',1,1,2,2);
 
-INSERT INTO candi_meter.interview (interview_date, employee_id, application_id, topics_id)
-VALUES('2022-2-15', 1, 1, 1);
+INSERT INTO candi_meter.interview (interview_date,evaluation, employee_id, application_id, topics_id)
+VALUES('2022-2-15', 90,1, 1, 1);
 
-INSERT INTO candi_meter.interview (interview_date, employee_id, application_id, topics_id)
-VALUES('2022-2-15', 1, 1,2);
+INSERT INTO candi_meter.interview (interview_date,evaluation, employee_id, application_id, topics_id)
+VALUES('2022-2-15',90, 1, 1,2);
 
 insert into candi_meter.topic_rate (topics_id,rate,interview_id)
 values (1,40,1);
