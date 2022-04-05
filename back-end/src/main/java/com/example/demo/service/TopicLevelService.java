@@ -15,8 +15,8 @@ public class TopicLevelService {
     public List<TopicLevel> getAllTopicLevel(){
         return (List<TopicLevel>) topicLevelRepository.findAll();
     }
-    public Optional<TopicLevel> getTopicLevelById(long id){
-        return topicLevelRepository.findById(id);
+    public TopicLevel getTopicLevelById(long id){
+        return topicLevelRepository.findById(id).orElseThrow(null);
     }
     public void addTopicLevel(TopicLevel topicLevel){
         topicLevelRepository.save(topicLevel);

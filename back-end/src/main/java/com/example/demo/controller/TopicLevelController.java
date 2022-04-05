@@ -23,9 +23,9 @@ public class TopicLevelController {
         return topicLevelMapper.mapToDto(topicLevelService.getAllTopicLevel());
     }
     @GetMapping("/id")
-    public Optional<TopicLevelDto> getTopicLevelById(@RequestParam long id){
+    public TopicLevelDto getTopicLevelById(@RequestParam long id){
 
-        return Optional.ofNullable(topicLevelMapper.mapToDto(topicLevelService.getTopicLevelById(id)));
+        return (topicLevelMapper.mapToDto((topicLevelService.getTopicLevelById(id))));
     }
     @PostMapping("/topiclevel")
     public String addTopicLevel(@RequestBody TopicLevelDto topicLevelDto){
@@ -35,9 +35,8 @@ public class TopicLevelController {
     }
     @PutMapping("/topiclevel")
     public String updateTopicLevel(@RequestBody TopicLevelDto topicLevelDto){
-        Optional<TopicLevel> topicLevel=topicLevelService.getTopicLevelById(topicLevelDto.getTopicLevelId());
-        TopicLevel mappedTopicLevel=topicLevelMapper.mapToUpdate(topicLevelDto,topicLevel);
-        topicLevelService.updateTopicLevel(mappedTopicLevel);
+        TopicLevel topicLevel=topicLevelMapper.mapToEntity(topicLevelDto);
+        topicLevelService.updateTopicLevel(topicLevel);
         return "Updated Successfully";
     }
     @DeleteMapping("/delete")
