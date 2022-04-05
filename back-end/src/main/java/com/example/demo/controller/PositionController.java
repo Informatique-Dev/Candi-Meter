@@ -32,9 +32,8 @@ public class PositionController {
     }
     @PutMapping("/update")
     public String updatePosition(@RequestBody PositionDto positionDto){
-        Position position=positionService.getPositionById(positionDto.getPositionId());
-        Position mappedPosition=positionMapper.mapToUpdate(positionDto,position);
-        positionService.updatePosition(mappedPosition);
+        Position position=positionMapper.mapToEntity(positionDto);
+        positionService.updatePosition(position);
         return "Updated successfully";
     }
     @DeleteMapping("/delete")
