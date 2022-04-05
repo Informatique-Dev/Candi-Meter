@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.Position;
 import com.example.demo.repository.PositionRepository;
+import com.example.demo.rest.dto.PositionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class PositionService {
     }
 
     public void addPosition(Position position) {
-        positionRepository.save(position);
+         positionRepository.save(position);
     }
 
     public void updatePosition(Position position) {
