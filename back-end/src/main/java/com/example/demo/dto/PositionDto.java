@@ -3,22 +3,31 @@ package com.example.demo.dto;
 import javax.persistence.Column;
 
 public class PositionDto {
-    private Long positionId;
-    private String positionName;
+    private Long id;
+    private String name;
+    private String describtion;
 
-    public Long getPositionId() {
-        return positionId;
+    public String getDescribtion() {
+        return describtion;
     }
 
-    public void setPositionId(Long positionId) {
-        this.positionId = positionId;
+    public void setDescribtion(String describtion) {
+        this.describtion = describtion;
     }
 
-    public String getPositionName() {
-        return positionName;
+    public Long getId() {
+        return id;
     }
 
-    public void setPositionName(String positionName) {
-        this.positionName = positionName;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
