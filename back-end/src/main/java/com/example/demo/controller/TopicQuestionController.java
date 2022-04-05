@@ -20,7 +20,7 @@ public class TopicQuestionController {
     }
     @GetMapping("/id")
     public Optional<TopicQuestion> getAllTopicQuestionsById(@RequestParam long id){
-        return topicQuestionService.getTopicQuestionById(id);
+        return Optional.ofNullable(topicQuestionService.getTopicQuestionById(id));
     }
     @PostMapping("/topicquestion")
     public String addTopicQuestion(@RequestBody TopicQuestion topicQuestion){

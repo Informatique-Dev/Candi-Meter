@@ -15,8 +15,8 @@ public class TopicQuestionService {
     public List<TopicQuestion> getAllTopicQuestion(){
         return (List<TopicQuestion>) topicQuestionRepository.findAll();
     }
-    public Optional<TopicQuestion> getTopicQuestionById(long id){
-        return topicQuestionRepository.findById(id);
+    public TopicQuestion getTopicQuestionById(long id){
+        return topicQuestionRepository.findById(id).orElseThrow(null);
     }
     public void addTopicQuestion(TopicQuestion topicQuestion){
         topicQuestionRepository.save(topicQuestion);

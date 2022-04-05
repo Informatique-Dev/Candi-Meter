@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import com.example.demo.model.TopicLevel;
+
 import javax.persistence.Column;
 
 public class TopicLevelDto {
@@ -7,6 +9,7 @@ public class TopicLevelDto {
     private String topicLevelDescribtion;
     private PositionDto position;
     private Long positionId;
+
 
     public Long getTopicLevelId() {
         return topicLevelId;
