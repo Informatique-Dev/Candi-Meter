@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.TopicsDto;
+import com.example.demo.mapper.TopicsMapper;
 import com.example.demo.model.Topics;
 import com.example.demo.service.TopicsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,21 +14,24 @@ import java.util.List;
 public class TopicsController {
     @Autowired
     TopicsService topicsService;
+    TopicsMapper topicsMapper;
     @GetMapping("/topics")
-    public List<Topics> getAllTopics(){
-        return topicsService.getAllTopics();
+    public List<TopicsDto> getAllTopics(){
+        return topicsMapper.mapToDto(topicsService.getAllTopics());
     }
     @GetMapping("/id")
-    public Topics getAllTopicsById(@RequestParam long id){
-        return topicsService.getAllTopicsById(id);
+    public TopicsDto getAllTopicsById(@RequestParam long id){
+        return topicsMapper.mapToDto(topicsService.getAllTopicsById(id));
     }
     @PostMapping("/topics")
-    public String addTopics(@RequestBody Topics topics){
+    public String addTopics(@RequestBody TopicsDto topicsDto){
+        Topics topics=topicsMapper.mapToEntity(topicsDto);
         topicsService.addTopics(topics);
         return "Added Successfully";
     }
     @PutMapping("/update")
-    public String updateTopics(@RequestBody Topics topics){
+    public String updateTopics(@RequestBody TopicsDto topicsDto){
+        Topics topics=topicsMapper.mapToEntity(topicsDto);
         topicsService.updateTopics(topics);
         return "Updated Successfully";
     }

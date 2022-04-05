@@ -16,10 +16,10 @@ public class TopicsDto {
     private String name;
     private String description;
 
-    private TopicLevel topicLevel;
-    private Long topicLevelId;
+   // private TopicLevel topicLevel;
+    //private Long topicLevelId;
 
     private Position position;
-    private Long positionId
-    private List<TopicQuestionDto> topicQuestions;
+    private Long positionId;
+    private List<TopicQuestionDto> topicQuestionsDto;
 }
