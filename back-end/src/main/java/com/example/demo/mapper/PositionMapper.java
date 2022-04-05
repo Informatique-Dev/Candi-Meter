@@ -11,19 +11,14 @@ import java.util.List;
 @Mapper
 public interface PositionMapper {
     //Entity to Dto
-    @Mapping(source = "id",target = "positionId")
-    @Mapping(source = "name",target = "positionName")
+
     PositionDto mapToDto(Position position);
     List<PositionDto> mapToDto(List<Position> position);
 
 
     //Dto to Entity
-    @Mapping(source = "positionId",target = "id")
-    @Mapping(source = "positionName",target = "name")
+
     Position mapToEntity(PositionDto positionDto);
 
-    //map update
-    @Mapping(source = "positionId",target = "id")
-    @Mapping(source = "positionName",target = "name")
-    Position mapToUpdate(PositionDto positionDto, @MappingTarget Position position);
+
 }
