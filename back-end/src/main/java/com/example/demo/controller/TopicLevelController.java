@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.TopicLevelDto;
+import com.example.demo.mapper.TopicLevelMapper;
+import com.example.demo.model.Position;
 import com.example.demo.model.TopicLevel;
 import com.example.demo.service.TopicLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +16,28 @@ import java.util.Optional;
 public class TopicLevelController {
     @Autowired
     TopicLevelService topicLevelService;
+    TopicLevelMapper topicLevelMapper;
     @GetMapping("/topiclevel")
-    public List<TopicLevel> getAllTopicLevel(){
-        return topicLevelService.getAllTopicLevel();
+    public List<TopicLevelDto> getAllTopicLevel(){
+
+        return topicLevelMapper.mapToDto(topicLevelService.getAllTopicLevel());
     }
     @GetMapping("/id")
-    public Optional<TopicLevel> getTopicLevelById(@RequestParam long id){
-        return topicLevelService.getTopicLevelById(id);
+    public Optional<TopicLevelDto> getTopicLevelById(@RequestParam long id){
+
+        return Optional.ofNullable(topicLevelMapper.mapToDto(topicLevelService.getTopicLevelById(id)));
     }
     @PostMapping("/topiclevel")
-    public String addTopicLevel(@RequestBody TopicLevel topicLevel){
+    public String addTopicLevel(@RequestBody TopicLevelDto topicLevelDto){
+        TopicLevel topicLevel=topicLevelMapper.mapToEntity(topicLevelDto);
         topicLevelService.addTopicLevel(topicLevel);
         return "Saved Successfully";
     }
     @PutMapping("/topiclevel")
-    public String updateTopicLevel(@RequestBody TopicLevel topicLevel){
-        topicLevelService.updateTopicLevel(topicLevel);
+    public String updateTopicLevel(@RequestBody TopicLevelDto topicLevelDto){
+        Optional<TopicLevel> topicLevel=topicLevelService.getTopicLevelById(topicLevelDto.getTopicLevelId());
+        TopicLevel mappedTopicLevel=topicLevelMapper.mapToUpdate(topicLevelDto,topicLevel);
+        topicLevelService.updateTopicLevel(mappedTopicLevel);
         return "Updated Successfully";
     }
     @DeleteMapping("/delete")
