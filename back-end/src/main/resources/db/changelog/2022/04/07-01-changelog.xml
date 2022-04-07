@@ -5,10 +5,10 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-    <changeSet id="1649336742048-7" author="Noor (generated)">
-        <createTable tableName="candidate">
+    <changeSet id="1649340032888-1" author="Noor (generated)">
+        <createTable tableName="position">
             <column autoIncrement="true" name="id" type="INT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_candidate"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_position"/>
             </column>
             <column name="version" type="INT"/>
             <column name="created_by" type="VARCHAR(255)"/>
@@ -16,151 +16,33 @@
             <column name="created_date" type="DATETIME"/>
             <column name="modified_date" type="DATETIME"/>
             <column name="name" type="VARCHAR(255)"/>
-            <column name="phone" type="VARCHAR(255)"/>
-            <column name="e_mail" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="1649336742048-8" author="Noor (generated)">
-        <createTable tableName="company">
-            <column autoIncrement="true" name="id" type="INT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_company"/>
-            </column>
-            <column name="version" type="INT"/>
-            <column name="created_by" type="VARCHAR(255)"/>
-            <column name="modified_by" type="VARCHAR(255)"/>
-            <column name="created_date" type="DATETIME"/>
-            <column name="modified_date" type="DATETIME"/>
-            <column name="name" type="VARCHAR(255)"/>
-            <column name="description" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="1649336742048-9" author="Noor (generated)">
-        <createTable tableName="vacancy">
-            <column autoIncrement="true" name="id" type="INT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_vacancy"/>
-            </column>
-            <column name="version" type="INT"/>
-            <column name="created_by" type="VARCHAR(255)"/>
-            <column name="modified_by" type="VARCHAR(255)"/>
-            <column name="created_date" type="DATETIME"/>
-            <column name="modified_date" type="DATETIME"/>
-            <column name="count" type="INT"/>
-            <column name="expire_date" type="DATETIME"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="1649336742048-10" author="Noor (generated)">
-        <addColumn tableName="position">
+            <column name="describtion" type="VARCHAR(255)"/>
             <column name="company_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1649340032888-2" author="Noor (generated)">
+        <createTable tableName="topic_level">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_topic_level"/>
+            </column>
+            <column name="version" type="INT"/>
             <column name="created_by" type="VARCHAR(255)"/>
-            <column name="created_date" type="DATETIME"/>
             <column name="modified_by" type="VARCHAR(255)"/>
-            <column name="modified_date" type="DATETIME"/>
-            <column name="version" type="INT"/>
-        </addColumn>
-    </changeSet>
-    <changeSet id="1649336742048-11" author="Noor (generated)">
-        <addColumn tableName="position">
-            <column name="created_by" type="VARCHAR(255)"/>
-        </addColumn>
-    </changeSet>
-    <changeSet id="1649336742048-12" author="Noor (generated)">
-        <addColumn tableName="topic_level">
-            <column name="created_by" type="VARCHAR(255)"/>
             <column name="created_date" type="DATETIME"/>
-            <column name="modified_by" type="VARCHAR(255)"/>
             <column name="modified_date" type="DATETIME"/>
-            <column name="version" type="INT"/>
-        </addColumn>
+            <column name="describtion" type="VARCHAR(255)"/>
+            <column name="position_id" type="INT"/>
+        </createTable>
     </changeSet>
-    <changeSet id="1649336742048-13" author="Noor (generated)">
-        <addColumn tableName="position">
-            <column name="created_date" type="DATETIME"/>
-        </addColumn>
-    </changeSet>
-    <changeSet id="1649336742048-14" author="Noor (generated)">
-        <addColumn tableName="topic_level">
-            <column name="created_date" type="DATETIME"/>
-        </addColumn>
-    </changeSet>
-    <changeSet id="1649336742048-15" author="Noor (generated)">
-        <addColumn tableName="position">
-            <column name="modified_by" type="VARCHAR(255)"/>
-        </addColumn>
-    </changeSet>
-    <changeSet id="1649336742048-16" author="Noor (generated)">
-        <addColumn tableName="topic_level">
-            <column name="modified_by" type="VARCHAR(255)"/>
-        </addColumn>
-    </changeSet>
-    <changeSet id="1649336742048-17" author="Noor (generated)">
-        <addColumn tableName="position">
-            <column name="modified_date" type="DATETIME"/>
-        </addColumn>
-    </changeSet>
-    <changeSet id="1649336742048-18" author="Noor (generated)">
-        <addColumn tableName="topic_level">
-            <column name="modified_date" type="DATETIME"/>
-        </addColumn>
-    </changeSet>
-    <changeSet id="1649336742048-19" author="Noor (generated)">
-        <addColumn tableName="position">
-            <column name="version" type="INT"/>
-        </addColumn>
-    </changeSet>
-    <changeSet id="1649336742048-20" author="Noor (generated)">
-        <addColumn tableName="topic_level">
-            <column name="version" type="INT"/>
-        </addColumn>
-    </changeSet>
-    <changeSet id="1649336742048-21" author="Noor (generated)">
+    <changeSet id="1649340032888-5" author="Noor (generated)">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="position"
                                  constraintName="FK_POSITION_ON_COMPANY" referencedColumnNames="id"
                                  referencedTableName="company"/>
     </changeSet>
-    <changeSet id="1649336742048-22" author="Noor (generated)">
-        <dropForeignKeyConstraint baseTableName="topic_question" constraintName="fk_topic_question_on_topics"/>
-    </changeSet>
-    <changeSet id="1649336742048-23" author="Noor (generated)">
-        <dropForeignKeyConstraint baseTableName="topics" constraintName="fk_topics_on_position"/>
-    </changeSet>
-    <changeSet id="1649336742048-24" author="Noor (generated)">
-        <dropForeignKeyConstraint baseTableName="topics" constraintName="fk_topics_on_topic_level"/>
-    </changeSet>
-    <changeSet id="1649336742048-25" author="Noor (generated)">
-        <dropTable cascadeConstraints="true" tableName="topic_question"/>
-    </changeSet>
-    <changeSet id="1649336742048-26" author="Noor (generated)">
-        <dropTable cascadeConstraints="true" tableName="topics"/>
-    </changeSet>
-    <changeSet id="1649336742048-1" author="Noor (generated)">
-        <dropColumn columnName="id" tableName="position"/>
-    </changeSet>
-    <changeSet id="1649336742048-2" author="Noor (generated)">
-        <addColumn tableName="position">
-            <column autoIncrement="true" incrementBy="1" name="id" startWith="1" type="INT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_position" validateNullable="true"/>
-            </column>
-        </addColumn>
-    </changeSet>
-    <changeSet id="1649336742048-3" author="Noor (generated)">
-        <dropColumn columnName="id" tableName="topic_level"/>
-
-        <dropColumn columnName="position_id" tableName="topic_level"/>
-    </changeSet>
-    <changeSet id="1649336742048-4" author="Noor (generated)">
-        <addColumn tableName="topic_level">
-            <column autoIncrement="true" incrementBy="1" name="id" startWith="1" type="INT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_topic_level"
-                             validateNullable="true"/>
-            </column>
-        </addColumn>
-    </changeSet>
-    <changeSet id="1649336742048-6" author="Noor (generated)">
-        <addColumn tableName="topic_level">
-            <column name="position_id" type="INT">
-                <constraints foreignKeyName="FK_TOPIC_LEVEL_ON_POSITION" references="position(id)"/>
-            </column>
-        </addColumn>
+    <changeSet id="1649340032888-6" author="Noor (generated)">
+        <addForeignKeyConstraint baseColumnNames="position_id" baseTableName="topic_level"
+                                 constraintName="FK_TOPIC_LEVEL_ON_POSITION" referencedColumnNames="id"
+                                 referencedTableName="position"/>
     </changeSet>
 
 </databaseChangeLog>
