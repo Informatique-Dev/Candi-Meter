@@ -1,46 +1,52 @@
 package com.example.demo.rest.controller;
 
-import com.example.demo.model.Position;
+
 import com.example.demo.rest.dto.PositionDto;
-import com.example.demo.rest.mapper.PositionMapper;
-import com.example.demo.service.PositionService;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.rest.handler.PositionHandler;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/position")
+@AllArgsConstructor
+@Tag(name = "position", description = "REST API for position")
 public class PositionController {
-    @Autowired
-    PositionService positionService;
-    PositionMapper positionMapper;
+    private PositionHandler positionHandler;
 
-    @GetMapping("/position")
-    public List<PositionDto> getAllPosition(){
+    @GetMapping
+    @Operation(summary = "get All position ")
+    public ResponseEntity getAll(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                 @RequestParam(value = "size", defaultValue = "10") Integer size) {
+        return positionHandler.getAll(page, size);
+    }
 
-        return positionMapper.toDto(positionService.getAllPosition());
+    @GetMapping("/{id}")
+    @Operation(summary = "Get position By Id")
+    public ResponseEntity<?> getById(@PathVariable(value = "id") Integer id) {
+        return positionHandler.getById(id);
     }
-    @GetMapping("/id")
-    public PositionDto getPositionById(@RequestParam long id){
 
-        return positionMapper.toDto(positionService.getPositionById(id));
+    @PostMapping
+    @Operation(summary = "Add New position")
+    public ResponseEntity save(@RequestBody PositionDto dto) {
+        return positionHandler.save(dto);
     }
-    @PostMapping("/position")
-    public String addPosition(@RequestBody PositionDto positionDto){
-        Position position=positionMapper.toEntity(positionDto);
 
-        positionService.addPosition(position);
-        return "Saved successfully";
+    @PutMapping("/{id}")
+    @Operation(summary = "Update A position")
+    public ResponseEntity update(@PathVariable Integer id, @RequestBody PositionDto dto) {
+        return positionHandler.update(id, dto);
     }
-    @PutMapping("/update")
-    public String updatePosition(@RequestBody PositionDto positionDto){
-        Position position=positionMapper.toEntity(positionDto);
-        positionService.updatePosition(position);
-        return "Updated successfully";
-    }
-    @DeleteMapping("/delete")
-    public String deletePositionById(@RequestParam long id){
-        positionService.deletePositionById(id);
-        return "Deleted Successfully ";
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete A position")
+    public ResponseEntity delete(@PathVariable Integer id) {
+        return positionHandler.delete(id);
     }
 }

@@ -1,36 +1,42 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Position;
+
+import com.example.demo.entity.Position;
+
 import com.example.demo.repository.PositionRepository;
-import com.example.demo.rest.dto.PositionDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PositionService {
     @Autowired
     PositionRepository positionRepository;
 
-    public List<Position> getAllPosition() {
-        return (List<Position>) positionRepository.findAll();
+    public Page<Position> getAll(Integer page, Integer size) {
+        return positionRepository.findAll(PageRequest.of(page, size));
     }
 
-    public Position getPositionById(long id) {
-        return (Position) positionRepository.findAllById(Collections.singleton(id));
+    public Position getReferenceById(Integer id) {
+        return positionRepository.getById(id);
     }
 
-    public void addPosition(Position position) {
-         positionRepository.save(position);
+    public Position save(Position position) {
+        return positionRepository.save(position);
     }
 
-    public void updatePosition(Position position) {
+    public void update(Position position) {
         positionRepository.save(position);
     }
 
-    public void deletePositionById(long id) {
-        positionRepository.deleteById(id);
+    public void delete(Position position) {
+        positionRepository.delete(position);
+    }
+
+    public Optional<Position> getById(Integer id) {
+        return positionRepository.findById(id);
     }
 }

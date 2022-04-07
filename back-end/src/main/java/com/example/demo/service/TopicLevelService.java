@@ -1,33 +1,41 @@
 package com.example.demo.service;
 
-import com.example.demo.model.TopicLevel;
+
+import com.example.demo.entity.TopicLevel;
 import com.example.demo.repository.TopicLevelRepository;
-import com.example.demo.rest.dto.TopicLevelDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+
+import java.util.Optional;
 
 @Service
 public class TopicLevelService {
     @Autowired
     TopicLevelRepository topicLevelRepository;
-    public List<TopicLevel> getAllTopicLevel(){
-        return (List<TopicLevel>) topicLevelRepository.findAll();
+    public Page<TopicLevel> getAll(Integer page, Integer size) {
+        return topicLevelRepository.findAll(PageRequest.of(page, size));
     }
-    public TopicLevel getTopicLevelById(long id){
-        return topicLevelRepository.findById(id).orElseThrow(null);
+
+    public TopicLevel getReferenceById(Integer id) {
+        return topicLevelRepository.getById(id);
     }
-    public void addTopicLevel(TopicLevel topicLevel){
+
+    public TopicLevel save(TopicLevel topicLevel) {
+        return topicLevelRepository.save(topicLevel);
+    }
+
+    public void update(TopicLevel topicLevel) {
         topicLevelRepository.save(topicLevel);
-
-    }
-    public void updateTopicLevel(TopicLevel topicLevel){
-        topicLevelRepository.save(topicLevel);
-
-    }
-    public void deleteTopicLevel(long id){
-        topicLevelRepository.deleteById(id);
     }
 
+    public void delete(TopicLevel topicLevel) {
+        topicLevelRepository.delete(topicLevel);
+    }
+
+    public Optional<TopicLevel> getById(Integer id) {
+        return topicLevelRepository.findById(id);
+    }
 }
