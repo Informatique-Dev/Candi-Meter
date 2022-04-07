@@ -8,11 +8,7 @@ import java.time.LocalDateTime;
 public class VacancyDto extends RestDto {
 
 
-    private Integer vacancies;
-
-    private String postBy;
-
-    private LocalDateTime postDate;
+    private Integer count;
 
     private LocalDateTime expireDate;
 

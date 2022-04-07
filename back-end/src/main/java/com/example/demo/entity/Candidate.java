@@ -19,7 +19,7 @@ public class Candidate extends JPAEntity {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "E-mail")
+    @Column(name = "E_mail")
     private String email;
 
     /*

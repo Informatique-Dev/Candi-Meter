@@ -16,16 +16,8 @@ import java.time.LocalDateTime;
 @ToString(of = "id", callSuper = false)
 public class Vacancy extends JPAEntity {
 
-    @Column(name = "vacancies")
-    private Integer vacancies;
-
-    @Column(name = "post_by", updatable = false)
-    @CreatedBy
-    private String postBy;
-
-    @Column(name = "post_date", updatable = false)
-    @CreatedDate
-    private LocalDateTime postDate;
+    @Column(name = "count")
+    private Integer count;
 
     @Column(name = "expire_date", updatable = false)
     private LocalDateTime expireDate;
