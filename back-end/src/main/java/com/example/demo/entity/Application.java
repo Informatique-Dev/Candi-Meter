@@ -13,22 +13,22 @@ import javax.persistence.ManyToOne;
 public class Application extends JPAEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "OFFICE_ID")
+    @JoinColumn(name = "VACANCY_ID")
     private Vacancy vacancy;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "OFFICE_ID")
+    @JoinColumn(name = "CANDIDATE_ID")
     private Candidate candidate;
 
     /*
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "OFFICE_ID")
+    @JoinColumn(name = "QUESTION_ID")
     private Question question;
     */
 
     /*
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "OFFICE_ID")
+    @JoinColumn(name = "DOCUMENT_ID")
     private Document document;
     */
 }

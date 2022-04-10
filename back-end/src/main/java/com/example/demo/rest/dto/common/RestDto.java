@@ -10,5 +10,4 @@ import lombok.ToString;
 public class RestDto {
 
     private Integer id;
-    private Integer version;
 }
