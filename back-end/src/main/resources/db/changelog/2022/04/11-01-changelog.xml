@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1649661315976-1" author="Noor (generated)">
+        <createTable tableName="topic_question">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_topic_question"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="modified_date" type="DATETIME"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="answer" type="VARCHAR(255)"/>
+            <column name="hint" type="VARCHAR(255)"/>
+            <column name="topics_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1649661315976-2" author="Noor (generated)">
+        <createTable tableName="topics">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_topics"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="modified_date" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="position_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1649661315976-3" author="Noor (generated)">
+        <createTable tableName="topics_topic_levels">
+            <column name="topic_levels_id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_topics_topic_levels"/>
+            </column>
+            <column name="topics_id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_topics_topic_levels"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1649661315976-4" author="Noor (generated)">
+        <addForeignKeyConstraint baseColumnNames="position_id" baseTableName="topics"
+                                 constraintName="FK_TOPICS_ON_POSITION" referencedColumnNames="id"
+                                 referencedTableName="position"/>
+    </changeSet>
+    <changeSet id="1649661315976-5" author="Noor (generated)">
+        <addForeignKeyConstraint baseColumnNames="topics_id" baseTableName="topic_question"
+                                 constraintName="FK_TOPIC_QUESTION_ON_TOPICS" referencedColumnNames="id"
+                                 referencedTableName="topics"/>
+    </changeSet>
+    <changeSet id="1649661315976-6" author="Noor (generated)">
+        <addForeignKeyConstraint baseColumnNames="topic_levels_id" baseTableName="topics_topic_levels"
+                                 constraintName="fk_toptoplev_on_topic_level" referencedColumnNames="id"
+                                 referencedTableName="topic_level"/>
+    </changeSet>
+    <changeSet id="1649661315976-7" author="Noor (generated)">
+        <addForeignKeyConstraint baseColumnNames="topics_id" baseTableName="topics_topic_levels"
+                                 constraintName="fk_toptoplev_on_topics" referencedColumnNames="id"
+                                 referencedTableName="topics"/>
+    </changeSet>
+
+</databaseChangeLog>
