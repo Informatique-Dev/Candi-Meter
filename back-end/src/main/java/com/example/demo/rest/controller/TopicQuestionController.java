@@ -1,44 +1,50 @@
 package com.example.demo.rest.controller;
 
 
-import com.example.demo.model.TopicQuestion;
 import com.example.demo.rest.dto.TopicQuestionDto;
-import com.example.demo.rest.mapper.TopicQuestionMapper;
-import com.example.demo.service.TopicQuestionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.rest.handler.TopicQuestionHandler;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/topicquestion")
+@AllArgsConstructor
+@Tag(name = "topicquestion", description = "REST API for topicquestion")
 public class TopicQuestionController {
-    @Autowired
-    TopicQuestionService topicQuestionService;
-    TopicQuestionMapper topicQuestionMapper;
-    @GetMapping("/topicquestion")
-    public List<TopicQuestionDto> getAllTopicQuestion(){
-        return topicQuestionMapper.toDto(topicQuestionService.getAllTopicQuestion());
+
+    private TopicQuestionHandler topicQuestionHandler;
+
+    @GetMapping
+    @Operation(summary = "get All topicquestion ")
+    public ResponseEntity getAll(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                 @RequestParam(value = "size", defaultValue = "10") Integer size) {
+        return topicQuestionHandler.getAll(page, size);
     }
-    @GetMapping("/id")
-    public TopicQuestionDto getAllTopicQuestionsById(@RequestParam long id){
-        return (topicQuestionMapper.toDto(topicQuestionService.getTopicQuestionById(id)));
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Get topicquestion By Id")
+    public ResponseEntity<?> getById(@PathVariable(value = "id") Integer id) {
+        return topicQuestionHandler.getById(id);
     }
-    @PostMapping("/topicquestion")
-    public String addTopicQuestion(@RequestBody TopicQuestionDto topicQuestionDto){
-        TopicQuestion topicQuestion=topicQuestionMapper.toEntity(topicQuestionDto);
-        topicQuestionService.addTopicQuestion(topicQuestion);
-        return "Added Successfully";
+
+    @PostMapping
+    @Operation(summary = "Add New topicquestion")
+    public ResponseEntity save(@RequestBody TopicQuestionDto dto) {
+        return topicQuestionHandler.save(dto);
     }
-    @PutMapping("/update")
-    public String updateTopicQuestion(@RequestBody TopicQuestionDto topicQuestionDto){
-        TopicQuestion topicQuestion=topicQuestionMapper.toEntity(topicQuestionDto);
-        topicQuestionService.updateTopicQuestion(topicQuestion);
-        return "Updated Successfully";
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Update A topicquestion")
+    public ResponseEntity update(@PathVariable Integer id, @RequestBody TopicQuestionDto dto) {
+        return topicQuestionHandler.update(id, dto);
     }
-    @DeleteMapping("/delete")
-    public String deleteTopicQuestion(@RequestParam long id){
-        topicQuestionService.deleteTopicQuestion(id);
-        return "Deleted Successfully";
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete A topicquestion")
+    public ResponseEntity delete(@PathVariable Integer id) {
+        return topicQuestionHandler.delete(id);
     }
 }

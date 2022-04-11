@@ -1,44 +1,51 @@
 package com.example.demo.rest.controller;
 
 
-import com.example.demo.model.Topics;
 import com.example.demo.rest.dto.TopicsDto;
-import com.example.demo.rest.mapper.TopicsMapper;
-import com.example.demo.service.TopicsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.rest.handler.TopicsHandler;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/topics")
+@AllArgsConstructor
+@Tag(name = "topics", description = "REST API for topics")
 public class TopicsController {
-    @Autowired
-    TopicsService topicsService;
-    TopicsMapper topicsMapper;
-    @GetMapping("/topics")
-    public List<TopicsDto> getAllTopics(){
-        return topicsMapper.toDto(topicsService.getAllTopics());
+
+    private TopicsHandler topicsHandler;
+
+    @GetMapping
+    @Operation(summary = "get All topics ")
+    public ResponseEntity getAll(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                 @RequestParam(value = "size", defaultValue = "10") Integer size) {
+        return topicsHandler.getAll(page, size);
     }
-    @GetMapping("/id")
-    public TopicsDto getAllTopicsById(@RequestParam long id){
-        return topicsMapper.toDto(topicsService.getAllTopicsById(id));
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Get topic By Id")
+    public ResponseEntity<?> getById(@PathVariable(value = "id") Integer id) {
+        return topicsHandler.getById(id);
     }
-    @PostMapping("/topics")
-    public String addTopics(@RequestBody TopicsDto topicsDto){
-        Topics topics=topicsMapper.toEntity(topicsDto);
-        topicsService.addTopics(topics);
-        return "Added Successfully";
+
+    @PostMapping
+    @Operation(summary = "Add New topic")
+    public ResponseEntity save(@RequestBody TopicsDto dto) {
+        return topicsHandler.save(dto);
     }
-    @PutMapping("/update")
-    public String updateTopics(@RequestBody TopicsDto topicsDto){
-        Topics topics=topicsMapper.toEntity(topicsDto);
-        topicsService.updateTopics(topics);
-        return "Updated Successfully";
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Update A topic")
+    public ResponseEntity update(@PathVariable Integer id, @RequestBody TopicsDto dto) {
+        return topicsHandler.update(id, dto);
     }
-    @DeleteMapping("/delete")
-    public String deleteTopics(@RequestParam long id){
-        topicsService.deleteTopics(id);
-        return "Deleted Successfully";
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete A topic")
+    public ResponseEntity delete(@PathVariable Integer id) {
+        return topicsHandler.delete(id);
     }
 }
