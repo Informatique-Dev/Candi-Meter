@@ -22,11 +22,10 @@ public class Candidate extends JPAEntity {
     @Column(name = "E_mail")
     private String email;
 
-    /*
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "DOCUMENT_ID")
-    private Document document;
-    */
+
+    @Column
+    private Integer documentId;
+
 
 
 }

@@ -4,6 +4,8 @@ package com.example.demo.rest.dto;
 import com.example.demo.rest.dto.common.RestDto;
 import lombok.Data;
 
+import javax.persistence.Column;
+
 @Data
 public class ApplicationDto extends RestDto {
 
@@ -11,7 +13,6 @@ public class ApplicationDto extends RestDto {
 
     private CandidateDto candidate;
 
-    // private QuestionDto question;
+     private QuestionDto question;
 
-    // private DocumentDto document;
-}
+    private Integer documentId;}
