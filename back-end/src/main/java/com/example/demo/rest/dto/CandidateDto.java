@@ -3,6 +3,8 @@ package com.example.demo.rest.dto;
 import com.example.demo.rest.dto.common.RestDto;
 import lombok.Data;
 
+import javax.persistence.Column;
+
 @Data
 public class CandidateDto extends RestDto {
 
@@ -13,5 +15,4 @@ public class CandidateDto extends RestDto {
 
     private String email;
 
-    // private DocumentDto document;
-}
+    private Integer documentId;}
