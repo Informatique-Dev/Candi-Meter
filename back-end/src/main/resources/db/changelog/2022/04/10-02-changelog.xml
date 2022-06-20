@@ -24,5 +24,8 @@
                                  constraintName="FK_EMPLOYEE_ON_COMPANY" referencedColumnNames="id"
                                  referencedTableName="company"/>
     </changeSet>
+    <changeSet id="1649757934431-1" author="20100 (generated)">
+        <dropForeignKeyConstraint baseTableName="candidate" constraintName="fkhdj467aq4bpuoadacrmba28y7"/>
+    </changeSet>
 
 </databaseChangeLog>

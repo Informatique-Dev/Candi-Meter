@@ -5,10 +5,17 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
     <changeSet id="1649755696071-1" author="Noor (generated)">
         <createTable tableName="application">
             <column autoIncrement="true" name="id" type="INT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_application"/>
+
+    <changeSet id="1649777128498-1" author="20100 (generated)">
+        <createTable tableName="accept">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_accept"/>
+
             </column>
             <column name="version" type="INT"/>
             <column name="created_by" type="VARCHAR(255)"/>
@@ -114,4 +121,11 @@
                                  referencedTableName="topics"/>
     </changeSet>
 
+        </createTable>
+    </changeSet>
+    <changeSet id="1649777128498-2" author="20100 (generated)">
+        <addForeignKeyConstraint baseColumnNames="vacancy_id" baseTableName="accept"
+                                 constraintName="FK_ACCEPT_ON_VACANCY" referencedColumnNames="id"
+                                 referencedTableName="vacancy"/>
+    </changeSet>
 </databaseChangeLog>
