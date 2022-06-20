@@ -6,6 +6,8 @@ import { SharedModule } from 'src/shared/shared-module/shared.module';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { SideBarListComponent } from './components/side-bar-list/side-bar-list.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { SideBarListComponent } from './components/side-bar-list/side-bar-list.c
     FooterComponent,
     MainComponent,
     SideBarListComponent,
+    HomePageComponent,
+    ContactUsComponent,
     ],
   imports: [
     CommonModule,
