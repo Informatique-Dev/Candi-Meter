@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
+import { PagesModule } from './Pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     AuthModule,
     CoreModule,
+    PagesModule,
     BrowserAnimationsModule
   ],
   providers: [],
