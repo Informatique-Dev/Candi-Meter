@@ -11,12 +11,15 @@ export class CandidatesComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
   candidateForm : FormGroup;
   ngOnInit(): void {
+    this.candiForm();
+  }
+  candiForm(){
     this.candidateForm = this.fb.group({
-    'name':['',Validators.required],
-    'phone':['',Validators.required],
-    'email':['',Validators.required],
-    'cv':['',Validators.required]
-    })
+      'name':['',Validators.required],
+      'phone':['',Validators.required],
+      'email':['',Validators.required],
+      'cv':['',Validators.required]
+      })
   }
   onSubmit(){
 
