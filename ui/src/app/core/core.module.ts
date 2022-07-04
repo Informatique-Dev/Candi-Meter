@@ -6,7 +6,6 @@ import { SharedModule } from 'src/shared/shared-module/shared.module';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { SideBarListComponent } from './components/side-bar-list/side-bar-list.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +13,6 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     FooterComponent,
     MainComponent,
     SideBarListComponent,
-    HomePageComponent,
     ],
   imports: [
     CommonModule,
