@@ -6,10 +6,11 @@ import { AuthModule } from './auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { PagesModule } from './Pages/pages.module';
+import { PageNotFoundComponent } from './Pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -17,7 +18,7 @@ import { PagesModule } from './Pages/pages.module';
     AuthModule,
     CoreModule,
     PagesModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
