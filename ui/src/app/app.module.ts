@@ -14,9 +14,9 @@ import { PagesModule } from './Pages/pages.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    PagesModule,
     AuthModule,
     CoreModule,
-    PagesModule,
     BrowserAnimationsModule
   ],
   providers: [],
