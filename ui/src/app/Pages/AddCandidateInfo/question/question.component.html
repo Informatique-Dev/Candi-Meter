@@ -1,0 +1,55 @@
+<div class="cand-Layt">
+    <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <legend>Candidate Question</legend>
+            <div class="all-Inpt">
+                <div fxLayoutAlign="center center">
+                    <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
+                        <mat-label>Question</mat-label>
+                        <textarea formControlName="description" type="text" matInput placeholder="enter your Question"></textarea>
+                        <mat-error *ngIf="questionForm.controls['description'].hasError('description') && !questionForm.controls['description'].hasError('required')">
+                            Please enter a Question
+                        </mat-error>
+                        <mat-error *ngIf="questionForm.controls['description'].hasError('required')">
+                            Question is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div fxLayoutAlign="center center">
+                    <button type="submit" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40">Add Question</button>
+                </div>
+            </div>
+
+        </fieldset>
+
+    </form>
+    <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="showbtn">
+        <button type="submit" mat-raised-button color="primary" fxFlex="50">Show<mat-icon>{{visibileIcon}}</mat-icon></button>
+    </div>
+</div>
+
+
+
+<div *ngIf="isVisible then data"></div>
+
+<ng-template #data>
+    <div fxLayoutAlign="center center">
+        <table mat-table class="mat-elevation-z8 demo-table">
+            <ng-container matColumnDef="Question">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell></td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell></td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</ng-template>
