@@ -25,31 +25,31 @@
         </fieldset>
 
     </form>
-    <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="showbtn">
-        <button type="submit" mat-raised-button color="primary" fxFlex="50">Show<mat-icon>{{visibileIcon}}</mat-icon></button>
-    </div>
-</div>
+    <br>
 
 
+    <hr />
+    <br>
 
-<div *ngIf="isVisible then data"></div>
+    <fieldset>
 
-<ng-template #data>
-    <div fxLayoutAlign="center center">
-        <table mat-table class="mat-elevation-z8 demo-table">
-            <ng-container matColumnDef="Question">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell></td>
-            </ng-container>
+        <h1 fxLayoutAlign="center center">All Questions
+        </h1>
+        <div fxLayoutAlign="center center">
+            <table mat-table class="mat-elevation-z8 demo-table">
+                <ng-container matColumnDef="Question">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell></td>
+                </ng-container>
 
-            <ng-container matColumnDef="description">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell></td>
-            </ng-container>
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell></td>
+                </ng-container>
 
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-    </div>
-</ng-template>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </fieldset>

@@ -10,8 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class QuestionComponent implements OnInit {
   questionForm!:FormGroup;
-  isVisible:boolean = false;
-  visibileIcon:string='visibility_off'
+  displayedColumns: string[] = ['Question', 'description']
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -26,11 +26,7 @@ export class QuestionComponent implements OnInit {
   onSubmit(){
 
   }
-  changeVisibility(){
-    this.isVisible = !this.isVisible
-    this.visibileIcon=this.isVisible?'visibility':'visibility_off'
-  }
-  displayedColumns: string[] = ['Question', 'description']
+
 }
 
 
