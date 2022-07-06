@@ -22,6 +22,9 @@ public class Interview extends JPAEntity {
     @Column(name = "evaluation")
     private String evaluation;
 
+    @Column
+    private Boolean status;
+
     @ManyToMany
     @JoinTable(name = "interview_topicses",
             joinColumns = @JoinColumn(name = "interview_id"),

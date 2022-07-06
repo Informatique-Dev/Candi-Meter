@@ -4,8 +4,15 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
- <include file="db/changelog/2022/07/03-01-changelog.xml"/>
- <include file="db/changelog/2022/07/06-01-changelog.xml"/>
+
+    <changeSet id="1657118508733-1" author="DELL">
+        <dropTable tableName="accept"/>
+    </changeSet>
+
+    <changeSet id="1657118659240-1" author="DELL">
+        <addColumn tableName="interview">
+            <column name="status" type="BOOLEAN"/>
+        </addColumn>
+    </changeSet>
 
 </databaseChangeLog>
-
