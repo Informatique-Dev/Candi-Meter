@@ -20,11 +20,11 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
         </div>
-        <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="showbtn">
+        <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="show-btn">
             <button type="submit" mat-raised-button color="primary" fxFlex="50"><mat-icon>add</mat-icon></button>
         </div>
-        <br>
     </fieldset>
+    <br>
 
 
     <div *ngIf="isVisible then add"></div>
@@ -39,13 +39,13 @@
                 <div class="all-Inpt">
                     <div fxLayoutAlign="center center">
                         <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-                            <mat-label>Question</mat-label>
+                            <mat-label>Company Name</mat-label>
                             <input formControlName="name" type="text" matInput placeholder="enter your Company Name">
                             <mat-error *ngIf="companyForm.controls['name'].hasError('name') && !companyForm.controls['name'].hasError('required')">
                                 Please enter a Company Name
                             </mat-error>
                             <mat-error *ngIf="companyForm.controls['name'].hasError('required')">
-                                Question is <strong>required</strong>
+                                Company Name is <strong>required</strong>
                             </mat-error>
                         </mat-form-field>
                     </div>
@@ -54,10 +54,10 @@
                             <mat-label>Company description</mat-label>
                             <textarea formControlName="description" type="text" matInput placeholder="enter your Question"></textarea>
                             <mat-error *ngIf="companyForm.controls['description'].hasError('description') && !companyForm.controls['description'].hasError('required')">
-                                Please enter a Question
+                                Please enter a description of company
                             </mat-error>
                             <mat-error *ngIf="companyForm.controls['description'].hasError('required')">
-                                Question is <strong>required</strong>
+                                description of company is <strong>required</strong>
                             </mat-error>
                         </mat-form-field>
                     </div>
