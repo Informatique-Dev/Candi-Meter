@@ -6,11 +6,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RouterModule, Routes } from '@angular/router';
 import { QuestionComponent } from './AddCandidateInfo/question/question.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CompanyComponent } from './company/company.component';
 
 
 const routes: Routes = [
     {path:"contact", component: ContactUsComponent},
     {path:"question", component:QuestionComponent},
+    {path:"company", component:CompanyComponent},
+
 
 ]
 @NgModule({
@@ -18,6 +21,7 @@ const routes: Routes = [
     ContactUsComponent,
     PageNotFoundComponent,
     QuestionComponent,
+    CompanyComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

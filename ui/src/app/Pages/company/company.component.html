@@ -1,0 +1,75 @@
+<div class="cand-Layt">
+    <fieldset>
+
+        <h1 fxLayoutAlign="center center">All Companies
+        </h1>
+        <div fxLayoutAlign="center center">
+            <table mat-table class="mat-elevation-z8 demo-table">
+                <ng-container matColumnDef="Question">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell></td>
+                </ng-container>
+
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell></td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="showbtn">
+            <button type="submit" mat-raised-button color="primary" fxFlex="50"><mat-icon>add</mat-icon></button>
+        </div>
+        <br>
+    </fieldset>
+
+
+    <div *ngIf="isVisible then add"></div>
+    <ng-template #add>
+        <br>
+        <hr />
+        <br>
+        <br>
+        <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+            <fieldset>
+                <legend>Company Info</legend>
+                <div class="all-Inpt">
+                    <div fxLayoutAlign="center center">
+                        <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
+                            <mat-label>Question</mat-label>
+                            <input formControlName="name" type="text" matInput placeholder="enter your Company Name">
+                            <mat-error *ngIf="companyForm.controls['name'].hasError('name') && !companyForm.controls['name'].hasError('required')">
+                                Please enter a Company Name
+                            </mat-error>
+                            <mat-error *ngIf="companyForm.controls['name'].hasError('required')">
+                                Question is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayoutAlign="center center">
+                        <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
+                            <mat-label>Company description</mat-label>
+                            <textarea formControlName="description" type="text" matInput placeholder="enter your Question"></textarea>
+                            <mat-error *ngIf="companyForm.controls['description'].hasError('description') && !companyForm.controls['description'].hasError('required')">
+                                Please enter a Question
+                            </mat-error>
+                            <mat-error *ngIf="companyForm.controls['description'].hasError('required')">
+                                Question is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+
+                    <div fxLayoutAlign="center center">
+                        <button type="submit" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40">Add Company</button>
+                    </div>
+                </div>
+
+            </fieldset>
+
+        </form>
+    </ng-template>
+</div>
