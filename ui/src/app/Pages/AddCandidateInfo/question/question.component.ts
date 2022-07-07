@@ -10,7 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class QuestionComponent implements OnInit {
   questionForm!:FormGroup;
-  displayedColumns: string[] = ['Question', 'description']
+  displayedColumns: string[] = ['Question', 'description'];
+  isVisible:boolean = false;
+
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -26,7 +28,9 @@ export class QuestionComponent implements OnInit {
   onSubmit(){
 
   }
-
+  changeVisibility(){
+    this.isVisible = !this.isVisible
+  }
 }
 
 
