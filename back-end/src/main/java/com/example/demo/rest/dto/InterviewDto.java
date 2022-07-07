@@ -7,4 +7,5 @@ import java.sql.Date;
 public class InterviewDto extends RestDto {
     private Date date;
     private String evaluation;
+    private Boolean status;
 }

@@ -22,7 +22,7 @@ public class Interview extends JPAEntity {
     @Column(name = "evaluation")
     private String evaluation;
 
-    @Column
+    @Column(name = "status")
     private Boolean status;
 
     @ManyToMany
