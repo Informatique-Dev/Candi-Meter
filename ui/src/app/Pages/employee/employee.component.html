@@ -1,0 +1,78 @@
+<div class="cand-Layt">
+    <fieldset>
+
+        <h1 fxLayoutAlign="center center">All Employees
+        </h1>
+        <div fxLayoutAlign="center center">
+            <table mat-table class="mat-elevation-z8 demo-table">
+                <ng-container matColumnDef="Question">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell></td>
+                </ng-container>
+
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell></td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="show-btn">
+            <button type="submit" mat-raised-button color="primary" fxFlex="50"><mat-icon>add</mat-icon></button>
+        </div>
+    </fieldset>
+    <br>
+
+
+    <div *ngIf="isVisible then add"></div>
+    <ng-template #add>
+        <br>
+        <hr />
+        <br>
+        <br>
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+            <fieldset>
+                <legend>Employee Info</legend>
+                <div class="all-Inpt">
+                    <div fxLayoutAlign="center center">
+                        <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
+                            <mat-label>Employee Name</mat-label>
+                            <input formControlName="name" type="text" matInput placeholder="enter your Employee Name">
+                            <mat-error *ngIf="employeeForm.controls['name'].hasError('name') && !employeeForm.controls['name'].hasError('required')">
+                                Please enter a Employee Name
+                            </mat-error>
+                            <mat-error *ngIf="employeeForm.controls['name'].hasError('required')">
+                                Employee Name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+
+
+                    <div fxLayoutAlign="center center">
+                        <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
+                            <mat-label>Choose Company</mat-label>
+                            <mat-select #mode value="side" formControlName="company_id">
+                                <mat-option value="side">Side</mat-option>
+                                <mat-option value="over">Over</mat-option>
+                                <mat-option value="push">Push</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+
+
+
+                    <div fxLayoutAlign="center center">
+                        <button type="submit" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40">Add Employee</button>
+                    </div>
+                </div>
+
+            </fieldset>
+
+        </form>
+    </ng-template>
+</div>
