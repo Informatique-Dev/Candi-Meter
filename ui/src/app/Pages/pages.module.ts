@@ -7,12 +7,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { QuestionComponent } from './AddCandidateInfo/question/question.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompanyComponent } from './company/company.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 
 const routes: Routes = [
     {path:"contact", component: ContactUsComponent},
     {path:"question", component:QuestionComponent},
     {path:"company", component:CompanyComponent},
+    {path:"employee", component:EmployeeComponent},
+
 
 
 ]
@@ -22,6 +25,7 @@ const routes: Routes = [
     PageNotFoundComponent,
     QuestionComponent,
     CompanyComponent,
+    EmployeeComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
