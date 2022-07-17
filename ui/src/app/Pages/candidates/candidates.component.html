@@ -1,0 +1,66 @@
+<div class="candLayt">
+
+    <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <legend>Candidate info</legend>
+            <div class="allInpt">
+                <div fxLayoutAlign="center center">
+                    <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="70">
+                        <mat-label>Name</mat-label>
+                        <input formControlName="name" type="text" matInput placeholder="enter your name" fxFlex="60">
+                        <mat-error *ngIf="candidateForm.controls['name'].hasError('name') && !candidateForm.controls['name'].hasError('required')">
+                            Please enter a name
+                        </mat-error>
+                        <mat-error *ngIf="candidateForm.controls['name'].hasError('required')">
+                            name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayoutAlign="center center">
+                    <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
+                        <mat-label>Phone Number</mat-label>
+                        <input formControlName="phone" type="tel" matInput placeholder="enter your phone">
+                        <mat-error *ngIf="candidateForm.controls['phone'].hasError('phone') && !candidateForm.controls['phone'].hasError('required')">
+                            Please enter a valid phone Number
+                        </mat-error>
+                        <mat-error *ngIf="candidateForm.controls['phone'].hasError('required')">
+                            phone Number is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayoutAlign="center center">
+                    <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
+                        <mat-label>Email</mat-label>
+                        <input formControlName="email" type="email" matInput placeholder="Ex. p@Informatique.com">
+                        <mat-error *ngIf="candidateForm.controls['email'].hasError('email') && !candidateForm.controls['email'].hasError('required')">
+                            Please enter a valid email address
+                        </mat-error>
+                        <mat-error *ngIf="candidateForm.controls['email'].hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayoutAlign="center center">
+                    <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
+                        <mat-label>Upload CV</mat-label>
+                        <input formControlName="cv" type="text" matInput placeholder="upload cv as drive link ">
+                        <mat-error *ngIf="candidateForm.controls['cv'].hasError('cv') && !candidateForm.controls['cv'].hasError('required')">
+                            Please enter a valid
+                        </mat-error>
+                        <mat-error *ngIf="candidateForm.controls['email'].hasError('required')">
+                            cv is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayoutAlign="center center">
+                    <button type="submit" mat-raised-button type="submit" color="primary" fxFlex="30">Add Candidate</button>
+                </div>
+            </div>
+
+        </fieldset>
+
+    </form>
+</div>
