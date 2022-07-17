@@ -12,9 +12,4 @@ import java.time.LocalDateTime;
 public class RestDto {
 
     private Integer id;
-    private Integer version;
-    private String createdBy;
-    private String updatedBy;
-    private LocalDateTime createdDate;
-    private LocalDateTime updateDate;
 }
