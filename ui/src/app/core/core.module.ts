@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { SideBarListComponent } from './components/side-bar-list/side-bar-list.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     SharedModule,
     RouterModule
  ],
-  providers: []
+  providers: [
+
+  ]
 })
 export class CoreModule {
 

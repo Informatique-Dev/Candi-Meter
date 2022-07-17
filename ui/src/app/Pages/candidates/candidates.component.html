@@ -44,23 +44,24 @@
                 </div>
 
                 <div fxLayoutAlign="center center">
-                    <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
+                    <input type="file" (change)="uploadFileEvt($event)" hidden id="upload">
+                    <!-- <i class="h1 text-muted dripicons-cloud-upload" *ngIf="!picture.value"></i> -->
+                    <input type="file" alt="sign" [value]="picture.value" #picture formControlName="picture" />
+                </div>
+                <!-- <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
                         <mat-label>Upload CV</mat-label>
-                        <input formControlName="cv" type="text" matInput placeholder="upload cv as drive link ">
                         <mat-error *ngIf="candidateForm.controls['cv'].hasError('cv') && !candidateForm.controls['cv'].hasError('required')">
                             Please enter a valid
                         </mat-error>
                         <mat-error *ngIf="candidateForm.controls['email'].hasError('required')">
                             cv is <strong>required</strong>
                         </mat-error>
+
                     </mat-form-field>
-                </div>
+                </div> -->
                 <div fxLayoutAlign="center center">
-                    <button type="submit" mat-raised-button type="submit" color="primary" fxFlex="30">Add Candidate</button>
+                    <button type="submit" mat-raised-button type="submit" color="primary" fxFlex.lt-lg="80%" fxFlex="30">Add Candidate</button>
                 </div>
             </div>
 
         </fieldset>
-
-    </form>
-</div>

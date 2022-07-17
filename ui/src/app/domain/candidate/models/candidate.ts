@@ -1,0 +1,9 @@
+export interface Candidate {
+  id: number;
+  name: string;
+  phone: number;
+  email: string;
+  documentId: number;
+  picture:string;
+
+}
