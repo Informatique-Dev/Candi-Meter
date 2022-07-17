@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CompanyComponent } from './company/company.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CandidatesComponent } from './candidates/candidates.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,8 @@ const routes: Routes = [
     {path:"question", component:QuestionComponent},
     {path:"company", component:CompanyComponent},
     {path:"employee", component:EmployeeComponent},
+    {path:"candidate", component:CandidatesComponent},
+
 
 
 
@@ -26,6 +29,7 @@ const routes: Routes = [
     QuestionComponent,
     CompanyComponent,
     EmployeeComponent,
+    CandidatesComponent
   ],
   imports: [
     RouterModule.forChild(routes),
