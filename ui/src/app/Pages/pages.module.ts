@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CompanyComponent } from './company/company.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { CandidatesComponent } from './candidates/candidates.component';
+import { CandidatesComponent } from './AddCandidateInfo/candidates/candidates.component';
 
 
 const routes: Routes = [
