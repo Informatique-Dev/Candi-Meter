@@ -44,9 +44,16 @@
                 </div>
 
                 <div fxLayoutAlign="center center">
-                    <input type="file" (change)="uploadFileEvt($event)" hidden id="upload">
-                    <!-- <i class="h1 text-muted dripicons-cloud-upload" *ngIf="!picture.value"></i> -->
-                    <input type="file" alt="sign" [value]="picture.value" #picture formControlName="picture" />
+                    <input type="file" (change)="uploadFileEvt($event)" hidden id="upload" formArrayName="picture">
+                </div>
+                <div class="upload-file" >
+                <label  for="upload">
+                  <h1><mat-icon mat-mini-fab color="primary" >attach_file</mat-icon>choose file</h1>
+                  <!-- <img *ngIf="picture.value" alt="sign" [src]="picture.value" style="width: 150px; height:150px"/> -->
+                </label>
+                <div >
+                  <div><img [src]="dataimage" width="300px"></div>
+                </div>
                 </div>
                 <!-- <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
                         <mat-label>Upload CV</mat-label>

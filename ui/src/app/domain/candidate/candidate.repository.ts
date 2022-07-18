@@ -31,9 +31,22 @@ export class CandidateRepository extends ResourceService<Candidate> {
         );
 
 };
+// addAttachmentfile(file: string, id: number): Observable<any> {
+//   console.log('file', file,id);
 
-
-
+//   return this.httpClient.post(`${this.url}document/${id}`, { content: btoa(file) }).pipe(
+//     catchError(err => {
+//       throw new Error(err.message);
+//     })
+//   );
+// }
+addAttachmentfi(file: string, id: number): Observable<any> {
+  return this.httpClient.post(`${this.url}${id}/document`, { content: btoa(file) }).pipe(
+    catchError(err => {
+      throw new Error(err.message);
+    })
+  );
+}
     fromServerModel(json: never): Candidate {
           return json;
     };
@@ -42,12 +55,14 @@ export class CandidateRepository extends ResourceService<Candidate> {
        return{
          name: entity.name,
          phone: entity.phone,
+         email:entity.email
        };
       }else{
        return {
         id: entity.id,
         name: entity.name,
         phone: entity.phone,
+        email:entity.email,
         documentId: entity.documentId,
        };
       }
