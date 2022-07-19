@@ -22,10 +22,10 @@ public class Vacancy extends JPAEntity {
     @Column(name = "expire_date", updatable = false)
     private LocalDateTime expireDate;
 
-    /*
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "POSITION_ID")
+    @JoinColumn(name = "position_id")
     private Position position;
-    */
+
 
 }

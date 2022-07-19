@@ -12,5 +12,5 @@ public class VacancyDto extends RestDto {
 
     private LocalDateTime expireDate;
 
-    // private PositionDto position;
+    private PositionDto position;
 }
