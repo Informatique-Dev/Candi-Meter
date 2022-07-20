@@ -135,11 +135,13 @@ export class CandidatesComponent implements OnInit {
   }
   fetchData(candidate: Candidate): void {
     this.resetTheForm();
-    this.candidateForm.controls['id'].patchValue(candidate.id),
-      this.candidateForm.controls['name'].patchValue(candidate.name),
-      this.candidateForm.controls['email'].patchValue(candidate.email);
-    this.candidateForm.controls['phone'].patchValue(candidate.phone);
-    this.candidateForm.controls['documentId'].patchValue(candidate.documentId);
+    this.candidateForm.patchValue({
+      id:candidate.id,
+      name:candidate.name,
+      email:candidate.email,
+      phone:candidate.phone,
+      documentId:candidate.documentId
+    });
   }
   deleteCandidate(candidate: Candidate) {
     this.candidateRepository.delete(candidate.id).subscribe((result) => {
