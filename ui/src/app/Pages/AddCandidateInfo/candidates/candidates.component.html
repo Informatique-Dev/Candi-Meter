@@ -11,7 +11,7 @@
           <th mat-header-cell *matHeaderCellDef>Name</th>
           <td mat-cell *matCellDef="let element">{{ element.name }}</td>
         </ng-container>
-        <ng-container matColumnDef="email" >
+        <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef>Email</th>
           <td mat-cell *matCellDef="let allCandidates">
             {{ allCandidates.email }}
@@ -31,7 +31,7 @@
         </ng-container>
         <ng-container matColumnDef="update">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element" class="update-icon"  (click)="changeVisibility();fetchData(element)">
+          <td mat-cell *matCellDef="let element" class="update-icon" (click)="changeVisibility();fetchData(element)">
             <mat-icon>edit</mat-icon>
           </td>
         </ng-container>
@@ -64,12 +64,12 @@
       <fieldset>
         <legend>Candidate info</legend>
         <div class="all-Inpt">
-          <div fxLayoutAlign="center center" >
-            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="70" (click)="appearrest($event)">
+          <div fxLayoutAlign="center center">
+            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="70" (click)="appearrest()">
               <mat-label>Name</mat-label>
-              <input formControlName="name" type="text" matInput placeholder="enter your name" fxFlex="60"  />
-              <mat-error *ngIf="candidateForm.controls['name'].hasError('name') &&
-                !candidateForm.controls['name'].hasError('required')">
+              <input formControlName="name" type="text" matInput placeholder="enter your name" fxFlex="60" />
+              <mat-error
+                *ngIf="candidateForm.controls['name'].hasError('name') && !candidateForm.controls['name'].hasError('required')">
                 Please enter a name
               </mat-error>
               <mat-error *ngIf="candidateForm.controls['name'].hasError('required')">
@@ -82,8 +82,8 @@
             <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
               <mat-label>Phone Number</mat-label>
               <input formControlName="phone" type="tel" matInput placeholder="enter your phone" />
-              <mat-error *ngIf="candidateForm.controls['phone'].hasError('phone') &&
-                !candidateForm.controls['phone'].hasError('required')">
+              <mat-error
+                *ngIf="candidateForm.controls['phone'].hasError('phone') &&!candidateForm.controls['phone'].hasError('required')">
                 Please enter a valid phone Number
               </mat-error>
               <mat-error *ngIf="candidateForm.controls['phone'].hasError('required')">
@@ -96,8 +96,8 @@
             <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
               <mat-label>Email</mat-label>
               <input formControlName="email" type="email" matInput placeholder="Ex. p@Informatique.com" />
-              <mat-error *ngIf="candidateForm.controls['email'].hasError('email') &&
-                !candidateForm.controls['email'].hasError('required')">
+              <mat-error
+                *ngIf="candidateForm.controls['email'].hasError('email') &&!candidateForm.controls['email'].hasError('required')">
                 Please enter a valid email address
               </mat-error>
               <mat-error *ngIf="candidateForm.controls['email'].hasError('required')">
@@ -128,15 +128,14 @@
 
             <div *ngIf="isAppear; then appear"></div>
             <ng-template #appear>
-            <button type="submit" (click)='resetTheForm()'  mat-raised-button type="submit" color="primary" class="restIcon" fxFlex.lt-lg="80%" fxFlex="2"
-            [disabled]="submit">
-             <mat-icon>restart_alt</mat-icon>
-          </button>
-        </ng-template>
+              <button type="submit" (click)='resetTheForm()' mat-raised-button type="submit" color="primary"
+                class="restIcon" fxFlex.lt-lg="2%" fxFlex="2" [disabled]="submit">
+                <mat-icon>restart_alt</mat-icon>
+              </button>
+            </ng-template>
           </div>
         </div>
       </fieldset>
     </form>
   </ng-template>
 </div>
-

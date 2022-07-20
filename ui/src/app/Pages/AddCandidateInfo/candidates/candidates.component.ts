@@ -41,6 +41,7 @@ export class CandidatesComponent implements OnInit {
     private candidateRepository: CandidateRepository
   ) {}
   ngOnInit(): void {
+    this.candidForm();
     this.getAllCandidates();
   }
   candidForm() {
