@@ -36,11 +36,14 @@ export class CandidatesComponent implements OnInit {
   totalRows: number = 0;
   allCandidates: Candidate[] = [];
   submit: boolean = false;
+  submitted: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private candidateRepository: CandidateRepository
   ) {}
   ngOnInit(): void {
+    this.candidateDetails ={id:0, name:'',phone:'',email:'',documentId:0,picture:''}
+
     this.candidForm();
     this.getAllCandidates();
   }
@@ -63,8 +66,8 @@ export class CandidatesComponent implements OnInit {
     this.candidateDetails.picture = this.candidateForm.value.picture;
   }
   addCandidate() {
-    this.addCandidate();
-    if (this.candidateForm.valid) {
+    this.saveCandidate();
+
       this.candidateRepository
         .addCandidate(this.candidateDetails)
         .subscribe((res) => {
@@ -76,12 +79,15 @@ export class CandidatesComponent implements OnInit {
               .subscribe((res) => {});
           }
         });
-    }
+
   }
   onSubmit() {
+    if (this.candidateForm.valid) {
+      this.submitted= true;
     this.candidateForm.controls['id'].value
       ? this.UpdateCandidate()
       : this.addCandidate();
+    }
   }
   uploadFileEvt(imgFile: any): void {
     if (imgFile.target.files && imgFile.target.files[0]) {
