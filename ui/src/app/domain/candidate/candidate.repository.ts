@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { SettingsService } from 'src/app/core/services/config/settings.service';
 import { Candidate } from "./models/candidate";
 import { ResourceService } from 'src/app/core/services/config/resource.service';
-import { HttpClient } from '@angular/common/http';
-import { catchError, Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { catchError, map, Observable } from 'rxjs';
+import { Response } from './models/response';
 
 
 
@@ -21,7 +22,17 @@ export class CandidateRepository extends ResourceService<Candidate> {
    getResourceUrl(): string{
     return 'candidate';
    };
-
+   getListByCandidate(p: {} = {}): Observable<Response<Candidate>> {
+    const params = new HttpParams({ fromObject: p });
+    return this.httpClient
+      .get<Response<Candidate>>(`${this.url}candidate?${params.toString()}`)
+      .pipe(
+        map(list => list),
+        catchError(err => {
+          throw new Error(err.message);
+        })
+      );
+  }
 
   addCandidate(resource: Candidate):Observable<{id :number}> {
         return this.httpClient.post<{id :number}>(`${this.url}candidate`,this.toServerModel(resource)).pipe(

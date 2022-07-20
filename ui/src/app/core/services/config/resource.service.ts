@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
+import { Response } from 'src/app/domain/candidate/models/response';
 import { SettingsService } from './settings.service';
 
 
@@ -21,7 +22,32 @@ export abstract class ResourceService<T> {
   fromServerModel(json: any): T {
     return json;
   }
-
+  get(id: string | number): Observable<T> {
+    return this.httpClient.get<T>(`${this.APIUrl}/${id}`).pipe(
+      map(json => this.fromServerModel(json)),
+      catchError(err => {
+        throw new Error(err.message);
+      })
+    );
+  }
+  getListById(url: string, p: {} = {}): Observable<Response<any>> {
+    const params = new HttpParams({ fromObject: p });
+    return this.httpClient.get<Response<any>>(`${this.APIUrl}/${url}?${params.toString()}`).pipe(
+      map(list => list),
+      catchError(err => {
+        throw new Error(err.message);
+      })
+    );
+  }
+  getList(p: {} = { page: 0, size: 30 }): Observable<Response<T>> {
+    const params = new HttpParams({ fromObject: p });
+    return this.httpClient.get<Response<T>>(`${this.APIUrl}?${params.toString()}`).pipe(
+      map(list => list),
+      catchError(err => {
+        throw new Error(err.message);
+      })
+    );
+  }
   add(resource: T):Observable<any> {
     return this.httpClient.post(`${this.APIUrl}`,this.toServerModel(resource)).pipe(
       catchError(err=>{
@@ -36,4 +62,24 @@ export abstract class ResourceService<T> {
       })
     );
   }
+
+  update(resource:T): Observable<any> {
+    // @ts-ignore
+    return this.httpClient.put(`${this.APIUrl}/${resource.id}`, this.toServerModel(resource)).pipe(
+      catchError(err => {
+        throw new Error(err.message);
+      })
+    );
+  }
+
+  delete(id: string | number): Observable<any> {
+    return this.httpClient.delete(`${this.APIUrl}/${id}`).pipe(
+      catchError(err => {
+        throw new Error(err.message);
+      })
+    );
+  }
+
+
+
 }

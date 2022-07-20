@@ -1,74 +1,142 @@
 <div class="cand-Layt">
+  <fieldset>
+    <h1 fxLayoutAlign="center center">All Candidate</h1>
+    <div fxLayoutAlign="center center">
+      <table mat-table class="mat-elevation-z8 demo-table" fxFlex.lt-sm="80%" [dataSource]="allCandidates">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="email" >
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let allCandidates">
+            {{ allCandidates.email }}
+          </td>
+        </ng-container>
 
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef>Phone</th>
+          <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="icon" (click)="deleteCandidate(element)">
+            <mat-icon>person_remove</mat-icon>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="update">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="icon"  (click)="changeVisibility();fetchData(element)">
+            <mat-icon>edit</mat-icon>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    <div>
+      <mat-paginator class="paginator" fxFlex.lt-lg="90%" showFirstLastButtons [length]="totalRows" [pageSize]="10"
+        [pageIndex]="page" (page)="pageChanged($event)" aria-label="Select page">
+      </mat-paginator>
+    </div>
+
+    <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="show-btn">
+      <button type="submit" mat-raised-button color="primary" fxFlex="50">
+        <mat-icon>add</mat-icon>
+      </button>
+
+    </div>
+  </fieldset>
+  <br />
+
+  <div *ngIf="isVisible; then add"></div>
+  <ng-template #add>
+    <br />
+    <hr />
+    <br />
+    <br />
     <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
-        <fieldset>
-            <legend>Candidate info</legend>
-            <div class="all-Inpt">
-                <div fxLayoutAlign="center center">
-                    <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="70">
-                        <mat-label>Name</mat-label>
-                        <input formControlName="name" type="text" matInput placeholder="enter your name" fxFlex="60">
-                        <mat-error *ngIf="candidateForm.controls['name'].hasError('name') && !candidateForm.controls['name'].hasError('required')">
-                            Please enter a name
-                        </mat-error>
-                        <mat-error *ngIf="candidateForm.controls['name'].hasError('required')">
-                            name is <strong>required</strong>
-                        </mat-error>
-                    </mat-form-field>
-                </div>
+      <fieldset>
+        <legend>Candidate info</legend>
+        <div class="all-Inpt">
+          <div fxLayoutAlign="center center" >
+            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="70" (click)="appearrest($event)">
+              <mat-label>Name</mat-label>
+              <input formControlName="name" type="text" matInput placeholder="enter your name" fxFlex="60"  />
+              <mat-error *ngIf="candidateForm.controls['name'].hasError('name') &&
+                !candidateForm.controls['name'].hasError('required')">
+                Please enter a name
+              </mat-error>
+              <mat-error *ngIf="candidateForm.controls['name'].hasError('required')">
+                name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-                <div fxLayoutAlign="center center">
-                    <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
-                        <mat-label>Phone Number</mat-label>
-                        <input formControlName="phone" type="tel" matInput placeholder="enter your phone">
-                        <mat-error *ngIf="candidateForm.controls['phone'].hasError('phone') && !candidateForm.controls['phone'].hasError('required')">
-                            Please enter a valid phone Number
-                        </mat-error>
-                        <mat-error *ngIf="candidateForm.controls['phone'].hasError('required')">
-                            phone Number is <strong>required</strong>
-                        </mat-error>
-                    </mat-form-field>
-                </div>
+          <div fxLayoutAlign="center center">
+            <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
+              <mat-label>Phone Number</mat-label>
+              <input formControlName="phone" type="tel" matInput placeholder="enter your phone" />
+              <mat-error *ngIf="candidateForm.controls['phone'].hasError('phone') &&
+                !candidateForm.controls['phone'].hasError('required')">
+                Please enter a valid phone Number
+              </mat-error>
+              <mat-error *ngIf="candidateForm.controls['phone'].hasError('required')">
+                phone Number is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-                <div fxLayoutAlign="center center">
-                    <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
-                        <mat-label>Email</mat-label>
-                        <input formControlName="email" type="email" matInput placeholder="Ex. p@Informatique.com">
-                        <mat-error *ngIf="candidateForm.controls['email'].hasError('email') && !candidateForm.controls['email'].hasError('required')">
-                            Please enter a valid email address
-                        </mat-error>
-                        <mat-error *ngIf="candidateForm.controls['email'].hasError('required')">
-                            Email is <strong>required</strong>
-                        </mat-error>
-                    </mat-form-field>
-                </div>
+          <div fxLayoutAlign="center center">
+            <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
+              <mat-label>Email</mat-label>
+              <input formControlName="email" type="email" matInput placeholder="Ex. p@Informatique.com" />
+              <mat-error *ngIf="candidateForm.controls['email'].hasError('email') &&
+                !candidateForm.controls['email'].hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="candidateForm.controls['email'].hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-                <div fxLayoutAlign="center center">
-                    <input type="file" (change)="uploadFileEvt($event)" hidden id="upload" formArrayName="picture">
-                </div>
-                <div class="upload-file" >
-                <label  for="upload">
-                  <h1><mat-icon mat-mini-fab color="primary" >attach_file</mat-icon>choose file</h1>
-                  <!-- <img *ngIf="picture.value" alt="sign" [src]="picture.value" style="width: 150px; height:150px"/> -->
-                </label>
-                <div >
-                  <div><img [src]="dataimage" width="300px"></div>
-                </div>
-                </div>
-                <!-- <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
-                        <mat-label>Upload CV</mat-label>
-                        <mat-error *ngIf="candidateForm.controls['cv'].hasError('cv') && !candidateForm.controls['cv'].hasError('required')">
-                            Please enter a valid
-                        </mat-error>
-                        <mat-error *ngIf="candidateForm.controls['email'].hasError('required')">
-                            cv is <strong>required</strong>
-                        </mat-error>
-
-                    </mat-form-field>
-                </div> -->
-                <div fxLayoutAlign="center center">
-                    <button type="submit" mat-raised-button type="submit" color="primary" fxFlex.lt-lg="80%" fxFlex="30">Add Candidate</button>
-                </div>
+          <div fxLayoutAlign="center center">
+            <input type="file" (change)="uploadFileEvt($event)" hidden id="upload" formArrayName="picture" />
+          </div>
+          <div class="upload-file">
+            <label for="upload">
+              <h1>
+                <mat-icon mat-mini-fab color="primary">attach_file</mat-icon>choose
+                file
+              </h1>
+            </label>
+            <div>
+              <div><img [src]="dataimage" width="300px" /></div>
             </div>
+          </div>
+          <div fxLayoutAlign="center center">
+            <button type="submit" mat-raised-button type="submit" color="primary" fxFlex.lt-lg="80%" fxFlex="30"
+              [disabled]="submit">
+              Add Candidate
+            </button>
 
-        </fieldset>
+            <div *ngIf="isAppear; then appear"></div>
+            <ng-template #appear>
+            <button type="submit" (click)='resetTheForm()'  mat-raised-button type="submit" color="primary" class="restIcon" fxFlex.lt-lg="80%" fxFlex="2"
+            [disabled]="submit">
+             <mat-icon>restart_alt</mat-icon>
+          </button>
+        </ng-template>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </ng-template>
+</div>
+
