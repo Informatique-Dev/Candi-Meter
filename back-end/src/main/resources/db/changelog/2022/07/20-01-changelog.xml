@@ -4,10 +4,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
- <include file="db/changelog/2022/07/03-01-changelog.xml"/>
- <include file="db/changelog/2022/07/06-01-changelog.xml"/>
- <include file="db/changelog/2022/07/19-01-changelog.xml"/>
- <include file="db/changelog/2022/07/20-01-changelog.xml"/>
 
+    <changeSet id="1658319670239-1" author="ashrakat">
+        <addForeignKeyConstraint baseTableName="vacancy" baseColumnNames="position_id" referencedTableName="position"
+                                 referencedColumnNames="id" constraintName="FK_VACANCY_ON_POSITION"/>
+    </changeSet>
 </databaseChangeLog>
-
