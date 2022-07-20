@@ -91,8 +91,9 @@ export class CandidatesComponent implements OnInit {
       reader.onload = (e: any): void => {
         let image = new Image();
         image.src = e.target.result;
+        this.candidateForm.controls['picture'].setValue(e.target.result)
         // this.picture.setValue(e.target.result);
-        this.candidateDetails.picture = e.target.result;
+        // this.candidateDetails.picture = e.target.result;
         this.dataimage = e.target.result;
         this.pictureChanged = true;
       };

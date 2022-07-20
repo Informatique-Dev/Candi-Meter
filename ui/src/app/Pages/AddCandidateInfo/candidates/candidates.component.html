@@ -123,7 +123,7 @@
           <div fxLayoutAlign="center center">
             <button type="submit" mat-raised-button type="submit" color="primary" fxFlex.lt-lg="80%" fxFlex="30"
               [disabled]="submit">
-              Add Candidate
+              {{candidateForm.controls['id'].value ? 'Update Candidate':'Add Candidate'}}
             </button>
 
             <div *ngIf="isAppear; then appear"></div>
