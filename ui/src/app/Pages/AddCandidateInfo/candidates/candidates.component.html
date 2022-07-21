@@ -31,7 +31,7 @@
         </ng-container>
         <ng-container matColumnDef="update">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element" class="update-icon" (click)="changeVisibility();fetchData(element)">
+          <td mat-cell *matCellDef="let element" class="update-icon" (click)="openinputField();fetchData(element)">
             <mat-icon>edit</mat-icon>
           </td>
         </ng-container>
@@ -60,7 +60,7 @@
     <hr />
     <br />
     <br />
-    <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="candidateForm" >
       <fieldset>
         <legend>Candidate info</legend>
         <div class="all-Inpt">
@@ -121,14 +121,14 @@
             </div>
           </div>
           <div fxLayoutAlign="center center">
-            <button type="submit" mat-raised-button type="submit" color="primary" fxFlex.lt-lg="80%" fxFlex="30"
-              [disabled]="submit">
+            <button type="submit" mat-raised-button  color="primary" fxFlex.lt-lg="80%" fxFlex="30" (click)="onSubmit()"
+              [disabled]="!candidateForm.valid">
               {{candidateForm.controls['id'].value ? 'Update Candidate':'Add Candidate'}}
             </button>
 
             <div *ngIf="isAppear; then appear"></div>
             <ng-template #appear>
-              <button type="submit" (click)='resetTheForm()' mat-raised-button type="submit" color="primary"
+              <button  (click)='resetTheForm()' mat-raised-button type="submit" color="primary"
                 class="restIcon" fxFlex.lt-lg="2%" fxFlex="2" [disabled]="submit">
                 <mat-icon>restart_alt</mat-icon>
               </button>

@@ -16,7 +16,7 @@ import { Candidate } from 'src/app/domain/candidate/models/candidate';
 })
 export class CandidatesComponent implements OnInit {
   candidateForm!: FormGroup;
-  candidateDetails: Candidate;
+  candidateDetails!: Candidate;
   fileAttr: string = 'Choose File';
   pictureChanged: boolean = false;
   dataimage!: any;
@@ -40,9 +40,9 @@ export class CandidatesComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private candidateRepository: CandidateRepository
-  ) {}
+  ) { }
   ngOnInit(): void {
-    this.candidateDetails ={id:0, name:'',phone:'',email:'',documentId:0,picture:''}
+    this.candidateDetails = { id: 0, name: '', phone: '', email: '', documentId: 0, picture: '' }
 
     this.candidForm();
     this.getAllCandidates();
@@ -68,26 +68,28 @@ export class CandidatesComponent implements OnInit {
   addCandidate() {
     this.saveCandidate();
 
-      this.candidateRepository
-        .addCandidate(this.candidateDetails)
-        .subscribe((res) => {
-          if (this.pictureChanged) {
-            // this.candidateRepository.addAttachment(this.candidateForm.value.picture,res.id).subscribe(res=>{
-            // });
-            this.candidateRepository
-              .addAttachmentfi(this.candidateForm.value.picture, res.id)
-              .subscribe((res) => {});
-          }
-        });
+    this.candidateRepository
+      .addCandidate(this.candidateDetails)
+      .subscribe((res) => {
+        if (this.pictureChanged) {
+          // this.candidateRepository.addAttachment(this.candidateForm.value.picture,res.id).subscribe(res=>{
+          // });
+          this.candidateRepository
+            .addAttachmentfi(this.candidateForm.value.picture, res.id)
+            .subscribe((res) => { });
+        }
+      });
 
   }
   onSubmit() {
     if (this.candidateForm.valid) {
-      this.submitted= true;
-    this.candidateForm.controls['id'].value
-      ? this.UpdateCandidate()
-      : this.addCandidate();
+      this.submitted = true;
+      this.candidateForm.controls['id'].value
+        ? this.UpdateCandidate()
+        : this.addCandidate();
+        this.candidateForm.reset();
     }
+
   }
   uploadFileEvt(imgFile: any): void {
     if (imgFile.target.files && imgFile.target.files[0]) {
@@ -142,11 +144,11 @@ export class CandidatesComponent implements OnInit {
   fetchData(candidate: Candidate): void {
     this.resetTheForm();
     this.candidateForm.patchValue({
-      id:candidate.id,
-      name:candidate.name,
-      email:candidate.email,
-      phone:candidate.phone,
-      documentId:candidate.documentId
+      id: candidate.id,
+      name: candidate.name,
+      email: candidate.email,
+      phone: candidate.phone,
+      documentId: candidate.documentId
     });
   }
   deleteCandidate(candidate: Candidate) {
@@ -156,5 +158,9 @@ export class CandidatesComponent implements OnInit {
   }
   appearrest() {
     this.isAppear = true;
+  }
+  openinputField(){
+    this.isVisible = true;
+
   }
 }
