@@ -31,7 +31,7 @@
         </ng-container>
         <ng-container matColumnDef="update">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element" class="update-icon" (click)="openinputField();fetchData(element)">
+          <td mat-cell *matCellDef="let element" class="update-icon" (click)="openInputField();fetchData(element)">
             <mat-icon>edit</mat-icon>
           </td>
         </ng-container>
@@ -49,23 +49,21 @@
       <button type="submit" mat-raised-button color="primary" fxFlex="50">
         <mat-icon>add</mat-icon>
       </button>
-
     </div>
   </fieldset>
   <br />
 
-  <div *ngIf="isVisible; then add"></div>
-  <ng-template #add>
+  <div *ngIf="isVisible;">
     <br />
     <hr />
     <br />
     <br />
-    <form [formGroup]="candidateForm" >
+    <form [formGroup]="candidateForm">
       <fieldset>
         <legend>Candidate info</legend>
         <div class="all-Inpt">
           <div fxLayoutAlign="center center">
-            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="70" (click)="appearrest()">
+            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="70" (click)="appearRest()">
               <mat-label>Name</mat-label>
               <input formControlName="name" type="text" matInput placeholder="enter your name" fxFlex="60" />
               <mat-error
@@ -121,21 +119,22 @@
             </div>
           </div>
           <div fxLayoutAlign="center center">
-            <button type="submit" mat-raised-button  color="primary" fxFlex.lt-lg="80%" fxFlex="30" (click)="onSubmit()"
+            <button type="submit" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="30" (click)="onSubmit()"
               [disabled]="!candidateForm.valid">
               {{candidateForm.controls['id'].value ? 'Update Candidate':'Add Candidate'}}
             </button>
 
-            <div *ngIf="isAppear; then appear"></div>
-            <ng-template #appear>
-              <button  (click)='resetTheForm()' mat-raised-button type="submit" color="primary"
-                class="restIcon" fxFlex.lt-lg="2%" fxFlex="2" [disabled]="submit">
+            <div *ngIf="isAppear;">
+              <button (click)='resetTheForm()' mat-raised-button type="submit" color="primary" class="restIcon"
+                fxFlex.lt-lg="2%" fxFlex="2" [disabled]="submit">
                 <mat-icon>restart_alt</mat-icon>
               </button>
-            </ng-template>
+            </div>
+
           </div>
         </div>
       </fieldset>
     </form>
-  </ng-template>
+  </div>
+
 </div>

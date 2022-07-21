@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -56,10 +55,8 @@ export class CandidatesComponent implements OnInit {
   }
   addCandidate() {
     this.candidateRepository
-      .addCandidate(this.candidateForm.value)
-      .subscribe((res) => {
-             });
-
+      .add(this.candidateForm.value)
+      .subscribe(_ =>{});
   }
   onSubmit() {
     if (this.candidateForm.valid) {
@@ -67,7 +64,7 @@ export class CandidatesComponent implements OnInit {
       this.candidateForm.controls['id'].value
         ? this.UpdateCandidate()
         : this.addCandidate();
-        this.candidateForm.reset();
+      this.candidateForm.reset();
     }
 
   }
@@ -130,14 +127,14 @@ export class CandidatesComponent implements OnInit {
     });
   }
   deleteCandidate(candidate: Candidate) {
-    this.candidateRepository.delete(candidate.id).subscribe((result) => {
-      this.getAllCandidates();
-    });
+    this.candidateRepository.delete(candidate.id).subscribe(_ =>
+      this.getAllCandidates()
+    );
   }
-  appearrest() {
+  appearRest() {
     this.isAppear = true;
   }
-  openinputField(){
+  openInputField() {
     this.isVisible = true;
 
   }

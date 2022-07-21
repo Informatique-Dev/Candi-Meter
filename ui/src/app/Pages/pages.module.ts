@@ -16,11 +16,7 @@ const routes: Routes = [
     {path:"question", component:QuestionComponent},
     {path:"company", component:CompanyComponent},
     {path:"employee", component:EmployeeComponent},
-    {path:"candidate", component:CandidatesComponent},
-
-
-
-
+    {path:"candidate", component:CandidatesComponent}
 ]
 @NgModule({
   declarations: [
