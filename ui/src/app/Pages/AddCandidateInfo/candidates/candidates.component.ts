@@ -16,7 +16,6 @@ import { Candidate } from 'src/app/domain/candidate/models/candidate';
 })
 export class CandidatesComponent implements OnInit {
   candidateForm!: FormGroup;
-  candidateDetails!: Candidate;
   fileAttr: string = 'Choose File';
   pictureChanged: boolean = false;
   dataimage!: any;
@@ -42,8 +41,6 @@ export class CandidatesComponent implements OnInit {
     private candidateRepository: CandidateRepository
   ) { }
   ngOnInit(): void {
-    this.candidateDetails = { id: 0, name: '', phone: '', email: '', documentId: 0, picture: '' }
-
     this.candidForm();
     this.getAllCandidates();
   }
@@ -57,28 +54,11 @@ export class CandidatesComponent implements OnInit {
       picture: [''],
     });
   }
-  saveCandidate() {
-    this.candidateDetails.id = this.candidateForm.value.id;
-    this.candidateDetails.name = this.candidateForm.value.name;
-    this.candidateDetails.phone = this.candidateForm.value.phone;
-    this.candidateDetails.email = this.candidateForm.value.email;
-    this.candidateDetails.documentId = this.candidateForm.value.documentId;
-    this.candidateDetails.picture = this.candidateForm.value.picture;
-  }
   addCandidate() {
-    this.saveCandidate();
-
     this.candidateRepository
-      .addCandidate(this.candidateDetails)
+      .addCandidate(this.candidateForm.value)
       .subscribe((res) => {
-        if (this.pictureChanged) {
-          // this.candidateRepository.addAttachment(this.candidateForm.value.picture,res.id).subscribe(res=>{
-          // });
-          this.candidateRepository
-            .addAttachmentfi(this.candidateForm.value.picture, res.id)
-            .subscribe((res) => { });
-        }
-      });
+             });
 
   }
   onSubmit() {
@@ -112,7 +92,7 @@ export class CandidatesComponent implements OnInit {
   }
   getAllCandidates(): void {
     this.candidateRepository
-      .getListByCandidate({
+      .getList({
         page: this.page,
         size: this.size,
       })

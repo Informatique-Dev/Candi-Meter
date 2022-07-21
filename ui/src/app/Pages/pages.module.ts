@@ -36,8 +36,6 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterModule.forChild(routes)
-
   ]
 })
 export class PagesModule { }

@@ -22,17 +22,6 @@ export class CandidateRepository extends ResourceService<Candidate> {
    getResourceUrl(): string{
     return 'candidate';
    };
-   getListByCandidate(p: {} = {}): Observable<Response<Candidate>> {
-    const params = new HttpParams({ fromObject: p });
-    return this.httpClient
-      .get<Response<Candidate>>(`${this.url}candidate?${params.toString()}`)
-      .pipe(
-        map(list => list),
-        catchError(err => {
-          throw new Error(err.message);
-        })
-      );
-  }
 
   addCandidate(resource: Candidate):Observable<{id :number}> {
         return this.httpClient.post<{id :number}>(`${this.url}candidate`,this.toServerModel(resource)).pipe(
@@ -42,22 +31,7 @@ export class CandidateRepository extends ResourceService<Candidate> {
         );
 
 };
-// addAttachmentfile(file: string, id: number): Observable<any> {
-//   console.log('file', file,id);
 
-//   return this.httpClient.post(`${this.url}document/${id}`, { content: btoa(file) }).pipe(
-//     catchError(err => {
-//       throw new Error(err.message);
-//     })
-//   );
-// }
-addAttachmentfi(file: string, id: number): Observable<any> {
-  return this.httpClient.post(`${this.url}${id}/document`, { content: btoa(file) }).pipe(
-    catchError(err => {
-      throw new Error(err.message);
-    })
-  );
-}
     fromServerModel(json: never): Candidate {
           return json;
     };
