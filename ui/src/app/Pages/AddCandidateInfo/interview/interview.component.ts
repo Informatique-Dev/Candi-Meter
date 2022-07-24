@@ -22,7 +22,7 @@ export class InterviewComponent implements OnInit {
     this.InterviewForm=this.formBuilder.group({
       id:[''],
       evaluation:['', [Validators.required]],
-      employee_id:['', [Validators.required]]
+      employeeId:['', [Validators.required]]
     })
   }
   onSubmit(){
