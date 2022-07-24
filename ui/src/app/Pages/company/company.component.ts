@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CompanyRepository } from '../../domain/company/company.repository';
 
 @Component({
   selector: 'app-company',
@@ -8,9 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CompanyComponent implements OnInit {
   companyForm!:FormGroup;
-  displayedColumns: string[] = ['Question', 'description'];
+  displayedColumns: string[] = ['id', 'name','description'];
   isVisible:boolean = false;
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder:FormBuilder,private companyRepository:CompanyRepository) { }
 
   ngOnInit(): void {
     this.compForm();
@@ -22,7 +23,16 @@ export class CompanyComponent implements OnInit {
       description:['', [Validators.required]]
     })
   }
-  onSubmit(){
+  Save(){
+    if(this.companyForm.valid){
+    this.addCompany();
+    this.companyForm.reset();
+    }
+  }
+  addCompany(){
+    this.companyRepository.add(this.companyForm.value).subscribe(res=>{
+     console.log('add');
+    })
 
   }
   changeVisibility(){

@@ -5,13 +5,17 @@
         </h1>
         <div fxLayoutAlign="center center">
             <table mat-table class="mat-elevation-z8 demo-table">
-                <ng-container matColumnDef="Question">
+                <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef> No. </th>
                     <td mat-cell></td>
                 </ng-container>
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell></td>
+              </ng-container>
 
                 <ng-container matColumnDef="description">
-                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <th mat-header-cell *matHeaderCellDef> Description </th>
                     <td mat-cell></td>
                 </ng-container>
 
@@ -33,7 +37,7 @@
         <hr />
         <br>
         <br>
-        <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="companyForm">
             <fieldset>
                 <legend>Company Info</legend>
                 <div class="all-Inpt">
@@ -64,7 +68,7 @@
 
 
                     <div fxLayoutAlign="center center">
-                        <button type="submit" class="addbtn" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40">Add Company</button>
+                        <button type="button" (click)="Save()" class="addbtn" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40">{{companyForm.controls['id'].value ?'Update Company':'Add Company'}} </button>
                     </div>
                 </div>
 
