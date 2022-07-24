@@ -1,29 +1,45 @@
 <div class="cand-Layt">
-    <fieldset>
+    <fieldset >
 
         <h1 fxLayoutAlign="center center">All Companies
         </h1>
         <div fxLayoutAlign="center center">
-            <table mat-table class="mat-elevation-z8 demo-table">
+            <table fxFlex.lt-lg="100%" mat-table class="mat-elevation-z8 demo-table" [dataSource]="allCompanies">
                 <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef> No. </th>
-                    <td mat-cell></td>
+                    <td mat-cell *matCellDef="let i = index">{{i+1}}</td>
                 </ng-container>
                 <ng-container matColumnDef="name">
                   <th mat-header-cell *matHeaderCellDef> Name </th>
-                  <td mat-cell></td>
+                  <td mat-cell *matCellDef="let element">{{element.name}}</td>
               </ng-container>
 
-                <ng-container matColumnDef="description">
+                <ng-container matColumnDef="description" class="desc">
                     <th mat-header-cell *matHeaderCellDef> Description </th>
-                    <td mat-cell></td>
+                    <td mat-cell *matCellDef="let element" >{{element.description}}</td>
                 </ng-container>
 
+                <ng-container matColumnDef="update">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let element" class="update-icon">
+                    <mat-icon>edit</mat-icon>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="delete">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let element" class="delete-icon">
+                    <mat-icon>person_remove</mat-icon>
+                  </td>
+                </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
         </div>
+        <div >
+        <mat-paginator class="paginator"(page)="pageChange($event)" [length]="totalRows" [pageSize]="10" [pageIndex]="page" aria-label="Select page"></mat-paginator>
+        </div>
+
         <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="show-btn">
             <button type="submit" mat-raised-button color="primary" fxFlex="50"><mat-icon>add</mat-icon></button>
         </div>
@@ -31,8 +47,7 @@
     <br>
 
 
-    <div *ngIf="isVisible then add"></div>
-    <ng-template #add>
+    <div *ngIf="isVisible">
         <br>
         <hr />
         <br>
@@ -75,5 +90,6 @@
             </fieldset>
 
         </form>
-    </ng-template>
+    </div>
+
 </div>
