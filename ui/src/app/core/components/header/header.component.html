@@ -1,11 +1,13 @@
 <div class="header">
-    <mat-toolbar color="primary" fxLayout="row wrap" fxLayoutAlign="space-between center" style="height: auto; padding: 3px;">
+
+    <mat-toolbar color="primary" fxLayout="row wrap" style="height: auto; padding: 3px;">
+      <button mat-icon-button (click)="clickMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
         <a mat-button routerLink="/main/home" class="company-name">
             <img src="assets/logo.png" class="img-logo" alt="error logo">
             <span> Informatique </span>
         </a>
-        <button mat-icon-button (click)="clickMenu()">
-          <mat-icon>menu</mat-icon>
-        </button>
+
     </mat-toolbar>
 </div>
