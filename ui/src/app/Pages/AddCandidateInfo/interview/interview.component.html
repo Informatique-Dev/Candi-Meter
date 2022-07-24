@@ -7,12 +7,12 @@
       </h1>
       <div fxLayoutAlign="center center">
           <table mat-table class="mat-elevation-z8 demo-table">
-              <ng-container matColumnDef="Question">
+              <ng-container matColumnDef="evaluation">
                   <th mat-header-cell *matHeaderCellDef> No. </th>
                   <td mat-cell></td>
               </ng-container>
 
-              <ng-container matColumnDef="description">
+              <ng-container matColumnDef="employee">
                   <th mat-header-cell *matHeaderCellDef> Name </th>
                   <td mat-cell></td>
               </ng-container>
@@ -52,6 +52,18 @@
                       </mat-form-field>
                   </div>
 
+                  <div fxLayoutAlign="center center">
+                    <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
+                        <mat-label>Employee</mat-label>
+                        <textarea formControlName="employeeId" type="text" matInput placeholder="enter your employee"></textarea>
+                        <mat-error *ngIf="InterviewForm.controls['employeeId'].hasError('employeeId') && !InterviewForm.controls['employeeId'].hasError('required')">
+                            Please enter a employee
+                        </mat-error>
+                        <mat-error *ngIf="InterviewForm.controls['employeeId'].hasError('required')">
+                          employee is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
 
                   <div fxLayoutAlign="center center">
                       <button type="submit" class="add-btn" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40">Add Interview</button>

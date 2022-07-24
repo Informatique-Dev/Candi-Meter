@@ -9,7 +9,7 @@ import { EmployeeComponent } from '../../employee/employee.component';
 })
 export class InterviewComponent implements OnInit {
   InterviewForm!:FormGroup;
-  displayedColumns: string[] = ['Question', 'description'];
+  displayedColumns: string[] = ['evaluation', 'employee'];
   isVisible:boolean = false;
 
 
