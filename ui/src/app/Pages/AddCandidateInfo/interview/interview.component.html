@@ -3,7 +3,7 @@
 
   <fieldset>
 
-      <h1 fxLayoutAlign="center center">All Interview
+      <h1 fxLayoutAlign="center center">All Interviews
       </h1>
       <div fxLayoutAlign="center center">
           <table mat-table class="mat-elevation-z8 demo-table">
@@ -52,19 +52,18 @@
                       </mat-form-field>
                   </div>
 
-                  <div fxLayoutAlign="center center">
-                    <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-                        <mat-label>Employee</mat-label>
-                        <textarea formControlName="employeeId" type="text" matInput placeholder="enter your employee"></textarea>
-                        <mat-error *ngIf="InterviewForm.controls['employeeId'].hasError('employeeId') && !InterviewForm.controls['employeeId'].hasError('required')">
-                            Please enter a employee
-                        </mat-error>
-                        <mat-error *ngIf="InterviewForm.controls['employeeId'].hasError('required')">
-                          employee is <strong>required</strong>
-                        </mat-error>
-                    </mat-form-field>
-                </div>
 
+                <div fxLayoutAlign="center center">
+                  <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
+                      <mat-label>Choose employee</mat-label>
+                      <mat-select #mode value="side" formControlName="employeeId">
+                          <mat-option value="side">Side</mat-option>
+                          <mat-option value="over">Over</mat-option>
+                          <mat-option value="push">Push</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+
+              </div>
                   <div fxLayoutAlign="center center">
                       <button type="submit" class="add-btn" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40">Add Interview</button>
                   </div>
