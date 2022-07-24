@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EmployeeComponent } from '../../employee/employee.component';
 
 @Component({
   selector: 'app-interview',
@@ -20,7 +21,8 @@ export class InterviewComponent implements OnInit {
   InterviewsForm(){
     this.InterviewForm=this.formBuilder.group({
       id:[''],
-      description:['', [Validators.required]]
+      evaluation:['', [Validators.required]],
+      employee_id:['', [Validators.required]]
     })
   }
   onSubmit(){

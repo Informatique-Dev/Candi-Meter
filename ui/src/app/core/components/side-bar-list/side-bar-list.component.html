@@ -1,12 +1,15 @@
-<div fxLayout="column">
-        <a mat-button routerLink="/main/home" class="company-name">
-            <img src="assets/logo.png" class="img-logo" alt="error logo">
-        </a>
-    <a mat-button routerLink="">Home</a>
-    <a mat-button routerLink="/login">Login</a>
-    <a mat-button routerLink="">Register</a>
-    <a mat-button routerLink="/main/candidate">Candidate</a>
-    <a mat-button routerLink="/main/question">Question</a>
-    <a mat-button routerLink="/main/company">Company</a>
-    <a mat-button routerLink="/main/employee">Employee</a>
+<div fxLayout="column" fxFlex="80">
+  <a mat-button routerLink="/main/home" class="company-name">
+    <img src="assets/logo.png" class="img-logo" alt="error logo" />
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <a mat-button routerLink="/login" routerLinkActive="active">Login</a>
+  <a mat-button routerLink="/login" routerLinkActive="active">Register</a>
+  <a mat-button routerLink="/main/question" routerLinkActive="active">Question</a>
+  <a mat-button routerLink="/main/interview" routerLinkActive="active">Interview</a>
+  <a mat-button routerLink="/main/company" routerLinkActive="active">Company</a>
+  <a mat-button routerLink="/main/employee" routerLinkActive="active">Employee</a>
+
 </div>

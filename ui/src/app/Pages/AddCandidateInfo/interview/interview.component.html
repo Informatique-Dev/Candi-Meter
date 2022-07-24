@@ -29,9 +29,8 @@
 
   <br>
 
-  <div *ngIf="isVisible then add"></div>
+  <div *ngIf="isVisible;">
 
-  <ng-template #add>
       <br>
       <hr />
       <br>
@@ -42,13 +41,13 @@
               <div class="all-Inpt">
                   <div fxLayoutAlign="center center">
                       <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-                          <mat-label>description</mat-label>
-                          <textarea formControlName="description" type="text" matInput placeholder="enter your Question"></textarea>
-                          <mat-error *ngIf="InterviewForm.controls['description'].hasError('description') && !InterviewForm.controls['description'].hasError('required')">
+                          <mat-label>Evaluation</mat-label>
+                          <textarea formControlName="evaluation" type="text" matInput placeholder="enter your evaluation"></textarea>
+                          <mat-error *ngIf="InterviewForm.controls['evaluation'].hasError('evaluation') && !InterviewForm.controls['evaluation'].hasError('required')">
                               Please enter a description
                           </mat-error>
-                          <mat-error *ngIf="InterviewForm.controls['description'].hasError('required')">
-                            description is <strong>required</strong>
+                          <mat-error *ngIf="InterviewForm.controls['evaluation'].hasError('required')">
+                            evaluation is <strong>required</strong>
                           </mat-error>
                       </mat-form-field>
                   </div>
@@ -62,6 +61,8 @@
           </fieldset>
 
       </form>
-  </ng-template>
+  </div>
+
+
 
 </div>
