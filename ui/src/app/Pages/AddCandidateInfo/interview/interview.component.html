@@ -1,0 +1,67 @@
+<div class="cand-Layt">
+
+
+  <fieldset>
+
+      <h1 fxLayoutAlign="center center">All Interview
+      </h1>
+      <div fxLayoutAlign="center center">
+          <table mat-table class="mat-elevation-z8 demo-table">
+              <ng-container matColumnDef="Question">
+                  <th mat-header-cell *matHeaderCellDef> No. </th>
+                  <td mat-cell></td>
+              </ng-container>
+
+              <ng-container matColumnDef="description">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell></td>
+              </ng-container>
+
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+      </div>
+      <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="show-btn">
+          <button type="submit" mat-raised-button color="primary" fxFlex="50"><mat-icon>add</mat-icon></button>
+      </div>
+  </fieldset>
+
+  <br>
+
+  <div *ngIf="isVisible then add"></div>
+
+  <ng-template #add>
+      <br>
+      <hr />
+      <br>
+      <br>
+      <form [formGroup]="InterviewForm" (ngSubmit)="onSubmit()">
+          <fieldset>
+              <legend>Interviews</legend>
+              <div class="all-Inpt">
+                  <div fxLayoutAlign="center center">
+                      <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
+                          <mat-label>description</mat-label>
+                          <textarea formControlName="description" type="text" matInput placeholder="enter your Question"></textarea>
+                          <mat-error *ngIf="InterviewForm.controls['description'].hasError('description') && !InterviewForm.controls['description'].hasError('required')">
+                              Please enter a description
+                          </mat-error>
+                          <mat-error *ngIf="InterviewForm.controls['description'].hasError('required')">
+                            description is <strong>required</strong>
+                          </mat-error>
+                      </mat-form-field>
+                  </div>
+
+
+                  <div fxLayoutAlign="center center">
+                      <button type="submit" class="add-btn" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40">Add Interview</button>
+                  </div>
+              </div>
+
+          </fieldset>
+
+      </form>
+  </ng-template>
+
+</div>

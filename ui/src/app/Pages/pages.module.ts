@@ -9,6 +9,7 @@ import { CompanyComponent } from './company/company.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CandidatesComponent } from './AddCandidateInfo/candidates/candidates.component';
+import { InterviewComponent } from './AddCandidateInfo/interview/interview.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,12 @@ const routes: Routes = [
     {path:"question", component:QuestionComponent},
     {path:"company", component:CompanyComponent},
     {path:"employee", component:EmployeeComponent},
-    {path:"candidate", component:CandidatesComponent}
+    {path:"candidate", component:CandidatesComponent},
+    {path:"interview", component:InterviewComponent},
+
+
+
+
 ]
 @NgModule({
   declarations: [
@@ -25,7 +31,8 @@ const routes: Routes = [
     QuestionComponent,
     CompanyComponent,
     EmployeeComponent,
-    CandidatesComponent
+    CandidatesComponent,
+    InterviewComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
