@@ -4,7 +4,7 @@
         <h1 fxLayoutAlign="center center">All Companies
         </h1>
         <div fxLayoutAlign="center center">
-            <table fxFlex.lt-lg="100%" mat-table class="mat-elevation-z8 demo-table" [dataSource]="allCompanies">
+            <table fxFlex.lt-lg="100%" mat-table class="mat-elevation-z8 demo-table" [dataSource]="allCompanies ">
                 <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef> No. </th>
                     <td mat-cell *matCellDef="let i = index">{{i+1}}</td>
@@ -21,7 +21,7 @@
 
                 <ng-container matColumnDef="update">
                   <th mat-header-cell *matHeaderCellDef></th>
-                  <td mat-cell *matCellDef="let element" class="update-icon">
+                  <td mat-cell *matCellDef="let element" class="update-icon" (click)="openInputField();fetchData(element)">
                     <mat-icon>edit</mat-icon>
                   </td>
                 </ng-container>
@@ -36,14 +36,14 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
         </div>
-        <div >
-        <mat-paginator class="paginator"(page)="pageChange($event)" [length]="totalRows" [pageSize]="10" [pageIndex]="page" aria-label="Select page"></mat-paginator>
-        </div>
+        <mat-paginator class="paginator"(page)="pageChange($event)" [length]="totalItems" [pageSize]="size" [pageIndex]="page"></mat-paginator>
 
-        <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="show-btn">
+        <div  (click)="changeVisibility()" class="show-btn">
             <button type="submit" mat-raised-button color="primary" fxFlex="50"><mat-icon>add</mat-icon></button>
         </div>
     </fieldset>
+    <br>
+    <br>
     <br>
 
 
@@ -57,7 +57,7 @@
                 <legend>Company Info</legend>
                 <div class="all-Inpt">
                     <div fxLayoutAlign="center center">
-                        <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
+                        <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60" (click)="appearRest()">
                             <mat-label>Company Name</mat-label>
                             <input formControlName="name" type="text" matInput placeholder="enter your Company Name">
                             <mat-error *ngIf="companyForm.controls['name'].hasError('name') && !companyForm.controls['name'].hasError('required')">
@@ -83,8 +83,16 @@
 
 
                     <div fxLayoutAlign="center center">
-                        <button type="button" (click)="Save()" class="addbtn" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40">{{companyForm.controls['id'].value ?'Update Company':'Add Company'}} </button>
-                    </div>
+                        <button type="button" (click)="SaveData()" [disabled]="!companyForm.valid" class="addbtn" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40">{{companyForm.controls['id'].value ?'Update Company':'Add Company'}} </button>
+
+                        <div *ngIf="isAppear;">
+                          <button (click)='resetTheForm()' mat-raised-button type="submit" color="primary" class="rest-Icon"
+                            fxFlex.lt-lg="2%" fxFlex="2" [disabled]="submit">
+                            <mat-icon>restart_alt</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+
                 </div>
 
             </fieldset>
