@@ -23,8 +23,8 @@ export class CandidatesComponent implements OnInit {
     'name',
     'phone',
     'email',
-    'delete',
     'update',
+    'delete',
   ];
   isVisible: boolean = false;
   isAppear: boolean = false;

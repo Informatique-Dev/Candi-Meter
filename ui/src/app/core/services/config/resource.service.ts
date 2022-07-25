@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable } from 'rxjs';
-import { Response } from 'src/app/domain/candidate/models/response';
+import { Response } from 'src/app/core/models/response';
 import { SettingsService } from './settings.service';
 
 
