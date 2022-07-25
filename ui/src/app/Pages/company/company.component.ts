@@ -16,7 +16,7 @@ export class CompanyComponent implements OnInit {
   companyForm!: FormGroup;
   displayedColumns: string[] = ['id', 'name', 'description', 'update', 'delete'];
   isVisible: boolean = false;
-  isAppear:boolean = false;
+  isAppear: boolean = false;
   allCompanies: Company[] = [];
   size: number = 10;
   page: number = 0;
@@ -36,13 +36,13 @@ export class CompanyComponent implements OnInit {
   }
   SaveData() {
     if (this.companyForm.valid) {
-      this.companyForm.controls['id'].value? this.updateCompany() : this.addCompany();
+      this.companyForm.controls['id'].value ? this.updateCompany() : this.addCompany();
       this.companyForm.reset();
     }
 
   }
   addCompany() {
-    this.companyRepository.add(this.companyForm.value).subscribe(_ => { })
+    this.companyRepository.add(this.companyForm.value).subscribe(() => { this.getAllCompanies(); })
   }
   getAllCompanies(): void {
     this.companyRepository.getList({
@@ -58,19 +58,24 @@ export class CompanyComponent implements OnInit {
     this.page = event.pageIndex;
     this.getAllCompanies();
   }
-  fetchData(data: Company): void {
+  fetchData(companyData: Company): void {
     this.companyForm.reset();
     this.companyForm.patchValue({
-      id: data.id,
-      name: data.name,
-      description: data.description
+      id: companyData.id,
+      name: companyData.name,
+      description: companyData.description
     })
   }
   updateCompany() {
-    this.companyRepository.update(this.companyForm.value).subscribe(()=>{
+    this.companyRepository.update(this.companyForm.value).subscribe(() => {
       this.getAllCompanies();
       this.changeVisibility();
     });
+  }
+  deleteCompany(companyData: Company) {
+    this.companyRepository.delete(companyData.id).subscribe(() => {
+      this.getAllCompanies();
+    })
   }
   changeVisibility() {
     this.isVisible = !this.isVisible
