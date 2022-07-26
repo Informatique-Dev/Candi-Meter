@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.sass']
+  templateUrl: './question.component.html'
 })
 
 

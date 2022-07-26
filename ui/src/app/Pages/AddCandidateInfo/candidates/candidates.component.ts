@@ -10,8 +10,8 @@ import { Candidate } from 'src/app/domain/candidate/models/candidate';
 
 @Component({
   selector: 'app-candidates',
-  templateUrl: './candidates.component.html',
-  styleUrls: ['./candidates.component.sass'],
+  templateUrl: './candidates.component.html'
+
 })
 export class CandidatesComponent implements OnInit {
   candidateForm!: FormGroup;
@@ -23,8 +23,8 @@ export class CandidatesComponent implements OnInit {
     'name',
     'phone',
     'email',
-    'delete',
     'update',
+    'delete',
   ];
   isVisible: boolean = false;
   isAppear: boolean = false;

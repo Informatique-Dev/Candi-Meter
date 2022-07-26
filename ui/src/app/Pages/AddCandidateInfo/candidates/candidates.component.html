@@ -1,8 +1,8 @@
-<div class="cand-Layt">
+<div class="candidate-Laytout">
   <fieldset>
     <h1 fxLayoutAlign="center center">All Candidate</h1>
     <div fxLayoutAlign="center center">
-      <table mat-table class="mat-elevation-z8 demo-table" fxFlex.lt-sm="80%" [dataSource]="allCandidates">
+      <table mat-table class="mat-elevation-z8 table" fxFlex.lt-sm="80%" [dataSource]="allCandidates">
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef>No.</th>
           <td mat-cell *matCellDef="let i=index">{{ i+1}}</td>
@@ -23,25 +23,27 @@
           <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element" class="delete-icon" (click)="deleteCandidate(element)">
-            <mat-icon>person_remove</mat-icon>
-          </td>
-        </ng-container>
         <ng-container matColumnDef="update">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element" class="update-icon" (click)="openInputField();fetchData(element)">
             <mat-icon>edit</mat-icon>
           </td>
         </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="delete-icon" (click)="deleteCandidate(element)">
+            <mat-icon>person_remove</mat-icon>
+          </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </div>
     <div>
       <mat-paginator class="paginator" fxFlex.lt-lg="90%" showFirstLastButtons [length]="totalRows" [pageSize]="10"
-        [pageIndex]="page" (page)="pageChanged($event)" aria-label="Select page">
+        [pageIndex]="page" (page)="pageChanged($event)">
       </mat-paginator>
     </div>
 
@@ -52,6 +54,8 @@
     </div>
   </fieldset>
   <br />
+  <br /><br />
+
 
   <div *ngIf="isVisible;">
     <br />
