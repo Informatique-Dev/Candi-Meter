@@ -9,7 +9,6 @@ import { Injectable } from "@angular/core";
 })
 
 export class CompanyRepository extends ResourceService<Company>{
-  private readonly url = `${SettingsService.configurationEnvironment.api.baseUrl}`;
   constructor(httpClient: HttpClient) {
     super(httpClient);
   }

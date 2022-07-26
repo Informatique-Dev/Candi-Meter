@@ -1,10 +1,10 @@
-<div class="cand-Layt">
+<div class="candidate-Laytout">
     <fieldset>
 
         <h1 fxLayoutAlign="center center">All Employees
         </h1>
         <div fxLayoutAlign="center center">
-            <table mat-table class="mat-elevation-z8 demo-table">
+            <table mat-table class="mat-elevation-z8 table">
                 <ng-container matColumnDef="Question">
                     <th mat-header-cell *matHeaderCellDef> No. </th>
                     <td mat-cell></td>
@@ -27,8 +27,7 @@
     <br>
 
 
-    <div *ngIf="isVisible then add"></div>
-    <ng-template #add>
+    <div *ngIf="isVisible;">
         <br>
         <hr />
         <br>
@@ -74,5 +73,6 @@
             </fieldset>
 
         </form>
-    </ng-template>
+    </div>
+
 </div>

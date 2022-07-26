@@ -12,6 +12,7 @@ import { Candidate } from 'src/app/domain/candidate/models/candidate';
   selector: 'app-candidates',
   templateUrl: './candidates.component.html',
   styleUrls: ['./candidates.component.sass'],
+
 })
 export class CandidatesComponent implements OnInit {
   candidateForm!: FormGroup;

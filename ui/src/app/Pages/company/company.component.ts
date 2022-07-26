@@ -16,7 +16,7 @@ export class CompanyComponent implements OnInit {
   companyForm!: FormGroup;
   displayedColumns: string[] = ['id', 'name', 'description', 'update', 'delete'];
   isVisible: boolean = false;
-  isAppear: boolean = false;
+  isRestButtonAppear: boolean = false;
   allCompanies: Company[] = [];
   size: number = 10;
   page: number = 0;
@@ -60,6 +60,8 @@ export class CompanyComponent implements OnInit {
   }
   fetchData(companyData: Company): void {
     this.companyForm.reset();
+    this.isVisible = true;
+
     this.companyForm.patchValue({
       id: companyData.id,
       name: companyData.name,
@@ -80,11 +82,10 @@ export class CompanyComponent implements OnInit {
   changeVisibility() {
     this.isVisible = !this.isVisible
   }
-  openInputField() {
-    this.isVisible = true;
-
-  }
   appearRest() {
-    this.isAppear = true;
+    this.isRestButtonAppear = true;
+  }
+  resetTheForm(){
+    this.companyForm.reset();
   }
 }
