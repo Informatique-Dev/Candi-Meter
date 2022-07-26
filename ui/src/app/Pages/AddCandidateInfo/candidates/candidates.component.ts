@@ -11,7 +11,7 @@ import { Candidate } from 'src/app/domain/candidate/models/candidate';
 @Component({
   selector: 'app-candidates',
   templateUrl: './candidates.component.html',
-  styleUrls: ['./candidates.component.sass'],
+  styleUrls: [],
 
 })
 export class CandidatesComponent implements OnInit {

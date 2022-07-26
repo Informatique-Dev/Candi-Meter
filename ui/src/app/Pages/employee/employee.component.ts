@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.sass']
+  styleUrls: []
 })
 export class EmployeeComponent implements OnInit {
   employeeForm!:FormGroup;
