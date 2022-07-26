@@ -4,8 +4,7 @@ import { EmployeeComponent } from '../../employee/employee.component';
 
 @Component({
   selector: 'app-interview',
-  templateUrl: './interview.component.html',
-  styleUrls: []
+  templateUrl: './interview.component.html'
 })
 export class InterviewComponent implements OnInit {
   InterviewForm!:FormGroup;

@@ -10,7 +10,6 @@ import { CompanyRepository } from '../../domain/company/company.repository';
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
-  styleUrls: []
 })
 export class CompanyComponent implements OnInit {
   companyForm!: FormGroup;
