@@ -5,9 +5,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
+import { MessageService } from 'src/app/core/services/config/message.service';
 import { CandidateRepository } from 'src/app/domain/candidate/candidate.repository';
 import { Candidate } from 'src/app/domain/candidate/models/candidate';
-import { MessageService } from '../../../core/services/config/message.service';
 
 @Component({
   selector: 'app-candidates',
@@ -39,7 +39,7 @@ export class CandidatesComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private candidateRepository: CandidateRepository,
-    private messageService: MessageService
+    private message: MessageService
   ) { }
   ngOnInit(): void {
     this.candidForm();
@@ -59,9 +59,9 @@ export class CandidatesComponent implements OnInit {
     this.candidateRepository
       .add(this.candidateForm.value)
       .subscribe(
-      ()=>{this.messageService.successMessage('Candidate added successfully')},
+      ()=>{this.message.successMessage('Candidate added successfully')},
       (errors) => {console.log('error',errors)
-      ,this.messageService.errorMessage('error occurred')}
+      ,this.message.errorMessage('error occurred')}
       );
   }
   onSubmit() {
