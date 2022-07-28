@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/operators';
 
 import { Company } from 'src/app/domain/company/models/company';
 import { CompanyRepository } from '../../domain/company/company.repository';
+import { MessageService } from '../../core/services/config/message.service';
 
 @Component({
   selector: 'app-company',
@@ -20,7 +21,7 @@ export class CompanyComponent implements OnInit {
   size: number = 10;
   page: number = 0;
   totalItems: number = 0;
-  constructor(private formBuilder: FormBuilder, private companyRepository: CompanyRepository) { }
+  constructor(private formBuilder: FormBuilder, private companyRepository: CompanyRepository,private MessageService:MessageService) { }
 
   ngOnInit(): void {
     this.compForm();
@@ -41,7 +42,7 @@ export class CompanyComponent implements OnInit {
 
   }
   addCompany() {
-    this.companyRepository.add(this.companyForm.value).subscribe(() => { this.getAllCompanies(); })
+    this.companyRepository.add(this.companyForm.value).subscribe(() => {this.MessageService.successMessage('Company added successfully'), this.getAllCompanies(); })
   }
   getAllCompanies(): void {
     this.companyRepository.getList({
