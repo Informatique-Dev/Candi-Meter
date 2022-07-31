@@ -1,0 +1,43 @@
+<div class="about">
+    <p @side class="text-about" fxFlex="50" fxFlex.lt-md="100">
+        Informatique is an Egyptian shareholding company with main premises in Cairo and a branch in Kuwait to manage the Gulf operations. The Company has been established on 2000.
+    </p>
+</div>
+
+<div>
+    <h1 class="title-field">Our Fields</h1>
+    <div fxLayout="row wrap" @card-came-left fxLayoutAlign="center center" >
+        <div fxFlex="45" fxFlex.lt-md="90" class="card-field" *ngFor="let topic of allTopics">
+            <div fxLayout="row" fxLayout.lt-md="column" >
+                <div fxFlex="30" fxFlex.lt-md="100">
+                    <img src="assets/frontend.png" width="100%" height="auto" alt="error image front">
+                </div>
+                <div fxLayout="column" fxFlex="90" class="card-content">
+                    <h3 class="no-margin">{{topic.name}}</h3>
+                    <p class="no-margin">{{topic.description}}</p><br>
+                    <button mat-raised-button color="primary" class="card-button">interviews</button>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+<div fxLayout="row" fxLayoutAlign="space-around center" class="footer">
+    <div fxFlexAlign="baseline">
+        <h3 class="footer-titles">fields</h3>
+        <p class="footer-data">Frontend (Angular)</p>
+        <p class="footer-data">Frontend (UI)</p>
+        <p class="footer-data">Backend (Spring)</p>
+    </div>
+    <div fxFlexAlign="baseline">
+        <h3 class="footer-titles">Branches</h3>
+        <div class="footer-data">
+            <p>Cairo</p>
+            <p>Assuit</p>
+        </div>
+    </div>
+</div>
+
+<span class="material-icons icon-contact" routerLink="/main/contact">
+  contact_mail
+</span>
