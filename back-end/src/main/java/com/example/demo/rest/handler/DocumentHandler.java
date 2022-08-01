@@ -72,7 +72,7 @@ public class DocumentHandler {
             outputStream.write(document.getContent());
             outputStream.close();
         } catch (IOException e) {
-
+            throw new RuntimeException(e);
         }
 
         return ResponseEntity.ok(documentMapper.toDto(document));
