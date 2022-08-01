@@ -1,5 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Topic } from 'src/app/domain/Topics/models/topic';
+import { TopicRepository } from 'src/app/domain/Topics/topic.repository';
 
 @Component({
   selector: 'app-home-page',
@@ -20,7 +22,16 @@ import { Component } from '@angular/core';
     ])
   ]
 })
-export class HomePageComponent{
-
-  constructor() { }
+export class HomePageComponent implements OnInit{
+  allTopics:Topic[]=[];
+  constructor(private topicRepository:TopicRepository) { }
+  ngOnInit(): void {
+    this.getAllCompanies();
+  }
+  getAllCompanies(): void {
+    this.topicRepository.getList({
+    }).subscribe(result => {
+      this.allTopics = result.data;
+    })
+  }
 }

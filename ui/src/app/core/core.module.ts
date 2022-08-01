@@ -2,11 +2,11 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { SharedModule } from 'src/shared/shared-module/shared.module';
+import { SharedModule } from 'src/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { SideBarListComponent } from './components/side-bar-list/side-bar-list.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
+import { HomePageComponent } from '../Pages/home-page/home-page.component';
 @NgModule({
   declarations: [
     HeaderComponent,
