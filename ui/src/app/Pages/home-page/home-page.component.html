@@ -19,15 +19,14 @@
                 </div>
             </div>
         </div>
+      </div>
 
 </div>
 
 <div fxLayout="row" fxLayoutAlign="space-around center" class="footer">
     <div fxFlexAlign="baseline">
         <h3 class="footer-titles">fields</h3>
-        <p class="footer-data">Frontend (Angular)</p>
-        <p class="footer-data">Frontend (UI)</p>
-        <p class="footer-data">Backend (Spring)</p>
+        <p class="footer-data" *ngFor="let topic of allTopics">{{topic.name}}</p>
     </div>
     <div fxFlexAlign="baseline">
         <h3 class="footer-titles">Branches</h3>
