@@ -51,7 +51,14 @@ public class DocumentHandler {
    }
     public ResponseEntity<?> downloadDocument(Integer id, HttpServletResponse response){
         Optional<Document> result= documentService.getById(id);
-        Document document = result.get();
+        Document document =new Document();
+        try {
+            if (result.isPresent()) {
+                 document = result.get();
+            }
+        }catch (Exception e){
+           e.getMessage();
+        }
         response.setContentType("application/octet-stream");
 
         String headerKey = "Content-Disposition";
@@ -65,7 +72,7 @@ public class DocumentHandler {
             outputStream.write(document.getContent());
             outputStream.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+
         }
 
         return ResponseEntity.ok(documentMapper.toDto(document));
