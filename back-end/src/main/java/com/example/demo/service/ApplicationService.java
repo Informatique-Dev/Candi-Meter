@@ -20,7 +20,7 @@ public class ApplicationService {
     public Page<Application> getAll (Integer page , Integer size){
         return applicationRepository.findAll(PageRequest.of(page,size));
     }
-    public List<Application> getAllByVacancyId ( Integer page , Integer size ,Integer id){
+    public Page<Application> getAllByVacancyId ( Integer page , Integer size ,Integer id){
         return applicationRepository.getApplicationByVacancyId(id,PageRequest.of(page,size));
     }
 

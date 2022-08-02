@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public interface ApplicationRepository extends JpaRepository<Application,Integer> {
-    @Query( value = "SELECT a FROM Application a INNER JOIN FETCH a.vacancy v WHERE v.id = :id")
-    List<Application> getApplicationByVacancyId(@Param("id")Integer id, Pageable pageable);
+    @Query( value = "SELECT a FROM Application a INNER JOIN FETCH a.vacancy v WHERE v.id = :id",
+    countQuery ="SELECT count(a) FROM Application a WHERE a.vacancy.id = :id")
+    Page<Application> getApplicationByVacancyId(@Param("id")Integer id, Pageable pageable);
 }
