@@ -41,7 +41,7 @@ export class QuestionComponent implements OnInit {
 
   }
   addQuestion() {
-    this.questionRepository.add(this.questionForm.value).subscribe(() => { this.getAllQuestions()})
+    this.questionRepository.add(this.questionForm.value).subscribe(() => { this.getAllQuestions();this.changeVisibility();})
   }
   getAllQuestions(): void {
     this.questionRepository.getList({

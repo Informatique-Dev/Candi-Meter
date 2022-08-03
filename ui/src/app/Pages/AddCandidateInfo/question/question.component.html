@@ -72,7 +72,7 @@
                         <button type="button" [disabled]="!questionForm.valid" (click)="SaveData()" class="add-btn" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40">{{questionForm.controls['id'].value ? 'Update Question':'Add Question'}}</button>
                     <div *ngIf="isRestButtonAppear;">
                       <button (click)='resetTheForm()' type="button" mat-raised-button color="primary" class="rest-Icon"
-                        fxFlex.lt-lg="2%" fxFlex="2" [disabled]="submit">
+                        fxFlex.lt-lg="2%" fxFlex="2">
                         <mat-icon>restart_alt</mat-icon>
                       </button>
                     </div>
