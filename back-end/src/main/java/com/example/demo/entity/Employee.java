@@ -16,7 +16,7 @@ public class Employee extends JPAEntity {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "COMPANY_ID")
     private Company company;
 
