@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { Configuration, Environment } from "../../models/configuration.model";
 import { SettingsService } from "./settings.service";
 import { mergeMap } from 'rxjs/operators';
+import { environment } from "src/environments/environment";
 
 
 @Injectable()
@@ -40,6 +41,8 @@ export class ConfigService {
   }
 
   loadEnvironment(): Observable<Environment> {
+    if (environment.production)
+    this.envUrl='envProd';
     return this.loadFile<Environment>(this.envUrl, this.configUrl);
   }
 
