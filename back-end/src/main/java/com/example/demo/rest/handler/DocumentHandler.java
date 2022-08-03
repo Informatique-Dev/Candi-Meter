@@ -50,15 +50,8 @@ public class DocumentHandler {
 
    }
     public ResponseEntity<?> downloadDocument(Integer id, HttpServletResponse response){
-        Optional<Document> result= documentService.getById(id);
-        Document document =new Document();
-        try {
-            if (result.isPresent()) {
-                 document = result.get();
-            }
-        }catch (Exception e){
-           e.getMessage();
-        }
+        Document document = documentService.getById(id).
+                orElseThrow(() -> new ResourceNotFoundException(Document.class.getSimpleName(), id));
         response.setContentType("application/octet-stream");
 
         String headerKey = "Content-Disposition";
