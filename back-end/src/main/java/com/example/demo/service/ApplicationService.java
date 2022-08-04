@@ -3,19 +3,25 @@ package com.example.demo.service;
 import com.example.demo.entity.Application;
 import com.example.demo.repository.ApplicationRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class ApplicationService {
+    @Autowired
     private ApplicationRepository applicationRepository;
 
     public Page<Application> getAll (Integer page , Integer size){
         return applicationRepository.findAll(PageRequest.of(page,size));
+    }
+    public Page<Application> getAllByVacancyId ( Integer page , Integer size ,Integer id){
+        return applicationRepository.getApplicationByVacancyId(id,PageRequest.of(page,size));
     }
 
     public Application getReferenceById(Integer id){

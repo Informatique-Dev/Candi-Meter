@@ -6,6 +6,7 @@ import com.example.demo.rest.handler.ApplicationHandler;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @Tag(name = "application", description = "REST API for application")
 public class ApplicationController {
-   private ApplicationHandler applicationHandler;
+    @Autowired
+    private ApplicationHandler applicationHandler;
 
 
     @GetMapping
@@ -28,6 +30,14 @@ public class ApplicationController {
     @Operation(summary = "Get application By Id")
     public ResponseEntity<?> getById(@PathVariable(value = "id") Integer id) {
         return applicationHandler.getById(id);
+    }
+    @GetMapping("/{vacancyId}/result")
+    @Operation(summary = "Get All Applications By Vacancy Id")
+    public ResponseEntity getByVacancyId(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                         @RequestParam(value = "size", defaultValue = "10") Integer size,
+                                         @PathVariable(value = "vacancyId") Integer vacancyId) {
+        return applicationHandler.getAllApplicationsByVacancyId(page,size,vacancyId);
+      //  return applicationHandler.getAllApplicationByVacancyId(vacancyId);
     }
 
     @PostMapping

@@ -25,7 +25,9 @@ import java.util.List;
 public class ApplicationHandler {
     @Autowired
     private ApplicationService applicationService;
+    @Autowired
     private ApplicationMapper applicationMapper;
+    @Autowired
     private PaginationMapper paginationMapper;
 
     public ResponseEntity<?> getAll(Integer page, Integer size) {
@@ -36,7 +38,14 @@ public class ApplicationHandler {
         paginatedResult.setPagination(paginationMapper.toPaginationDto(applicationPage));
         return ResponseEntity.ok(paginatedResult);
     }
-
+    public ResponseEntity<?> getAllApplicationsByVacancyId(Integer page,Integer size,Integer id){
+        Page<Application> applicationPage = applicationService.getAllByVacancyId(page, size,id);
+        List<ApplicationDto> applicationDtoList = applicationMapper.toDto(applicationPage.getContent());
+        PaginatedResultDto<ApplicationDto> paginatedResult = new PaginatedResultDto<>();
+        paginatedResult.setData(applicationDtoList);
+        paginatedResult.setPagination(paginationMapper.toPaginationDto(applicationPage));
+        return ResponseEntity.ok(paginatedResult);
+    }
     public ResponseEntity<?> save(ApplicationDto dto) {
         Application application = applicationMapper.toEntity(dto);
         applicationService.save(application);
