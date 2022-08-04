@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="1659015975841-1" author="ashrakat">
+        <addColumn tableName="document">
+            <column name="size" type="BIGINT"/>
+            <column name="content" type="bytea"/>
+        </addColumn>
+        <addColumn tableName="document">
+            <column name="contentType" type="VARCHAR(255)"/>
+        </addColumn>
+        <addColumn tableName="document" >
+            <column name="documentName" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

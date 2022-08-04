@@ -14,7 +14,17 @@ public class Document extends JPAEntity {
     @Enumerated(EnumType.STRING)
     private DocumentType documentType;
 
-    @Lob
+    @Column
+    private String documentName;
+
+    @Column
+    private String contentType;
+
+    @Column
+    private Long size;
+
+    @Column
     private byte[] content;
+
 
 }

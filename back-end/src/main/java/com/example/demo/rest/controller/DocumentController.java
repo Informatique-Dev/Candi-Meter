@@ -6,6 +6,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/document")
@@ -16,9 +19,9 @@ public class DocumentController {
     private DocumentHandler documentHandler;
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get party By Id")
-    public ResponseEntity<?> getById(@PathVariable(value = "id") Integer id) {
-        return documentHandler.getById(id);
+    @Operation(summary = "Get Document By Id")
+    public ResponseEntity<?> downloadById(@PathVariable(value = "id") Integer id , HttpServletResponse response) {
+        return documentHandler.downloadDocument(id,response);
     }
 
     @DeleteMapping("/{id}")
@@ -26,5 +29,9 @@ public class DocumentController {
     public ResponseEntity delete(@PathVariable Integer id) {
         return documentHandler.delete(id);
     }
-
+    @PostMapping
+    @Operation(summary = "Add New Document")
+    public ResponseEntity save (@RequestParam("file")MultipartFile file ) {
+        return documentHandler.uploadDocument(file);
+    }
 }
