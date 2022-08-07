@@ -6,10 +6,12 @@ import com.example.demo.rest.dto.common.PaginatedResultDto;
 import com.example.demo.rest.entitymapper.CandidateMapper;
 import com.example.demo.rest.entitymapper.common.PaginationMapper;
 import com.example.demo.rest.exception.ResourceNotFoundException;
+import com.example.demo.rest.validation.InputValidation;
 import com.example.demo.service.CandidateService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +25,7 @@ public class CandidateHandler {
     private CandidateService candidateService;
     private CandidateMapper candidateMapper;
     private PaginationMapper paginationMapper;
+    private InputValidation inputValidation;
 
     public ResponseEntity<?> getAll(Integer page, Integer size) {
         Page<Candidate> candidatePage = candidateService.getAll(page, size);
@@ -34,6 +37,12 @@ public class CandidateHandler {
     }
 
     public ResponseEntity<?> save(CandidateDto dto) {
+        if(!inputValidation.phoneNumberIsValid(dto.getPhone())){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid phone number");
+        }
+        if(!inputValidation.emailIsValid(dto.getEmail())){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid Email ");
+        }
         Candidate candidate = candidateMapper.toEntity(dto);
         candidateService.save(candidate);
         CandidateDto candidateDto = candidateMapper.toDto(candidate);
@@ -43,6 +52,12 @@ public class CandidateHandler {
     public ResponseEntity<?> update(Integer id, CandidateDto dto){
         Candidate candidate = candidateService.getById(id).
                 orElseThrow(() -> new ResourceNotFoundException(Candidate.class.getSimpleName(), id));
+        if(!inputValidation.phoneNumberIsValid(dto.getPhone())){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid phone number");
+        }
+        if(!inputValidation.emailIsValid(dto.getEmail())){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid Email ");
+        }
         candidateMapper.updateEntityFromDto(dto, candidate);
         candidateService.update(candidate);
         return ResponseEntity.ok().build();
