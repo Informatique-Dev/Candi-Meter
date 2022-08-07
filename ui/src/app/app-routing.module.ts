@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './Pages/home-page/home-page.component';
 import { MainComponent } from './core/components/main/main.component';
+import { HomePageComponent } from './Pages/home-page/home-page.component';
 import { PageNotFoundComponent } from './Pages/page-not-found/page-not-found.component';
 
 const routes: Routes = [
+  { path: "",component: HomePageComponent },
 
-    { path:"main", component:MainComponent, children:[
-    {path:"home", component: HomePageComponent},
-    { path: '',loadChildren: () => import('./Pages/pages.module').then(m => m.PagesModule)},
+  {
+    path: "main", component: MainComponent, children: [
+      { path: '', loadChildren: () => import('./Pages/pages.module').then(m => m.PagesModule) },
+    ],
+  },
+  { path: '', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
 
-
-  ] ,
-},
-    { path: '',loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
-
-{path:"**",component:PageNotFoundComponent },
+  { path: "**", component: PageNotFoundComponent },
 
 ];
 

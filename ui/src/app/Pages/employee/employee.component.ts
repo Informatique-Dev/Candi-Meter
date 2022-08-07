@@ -17,7 +17,7 @@ export class EmployeeComponent implements OnInit {
     this.employeeForm=this.formBuilder.group({
       id:[''],
       name:['', [Validators.required]],
-      company_id:['', [Validators.required]]
+      companyId:['', [Validators.required]]
     })
   }
   onSubmit(){

@@ -41,7 +41,7 @@ export class CompanyComponent implements OnInit {
 
   }
   addCompany() {
-    this.companyRepository.add(this.companyForm.value).subscribe(() => { this.getAllCompanies(); })
+    this.companyRepository.add(this.companyForm.value).subscribe(() => { this.getAllCompanies();this.changeVisibility();})
   }
   getAllCompanies(): void {
     this.companyRepository.getList({
