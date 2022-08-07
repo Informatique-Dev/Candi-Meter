@@ -15,8 +15,8 @@ public class Position extends JPAEntity {
 
     @Column(name = "name")
     private String name;
-    @Column(name = "describtion")
-    private String describtion;
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "company_id")
