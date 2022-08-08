@@ -19,7 +19,7 @@ public class CandidateService {
         return candidateRepository.findAll(PageRequest.of(page, size));
     }
     public Page<Candidate> getAllByPositionId (Integer page , Integer size , Integer id){
-        return candidateRepository.getCandidateByPositionId(id,PageRequest.of(page,size));
+        return candidateRepository.getByPositionId(id,PageRequest.of(page,size));
     }
     public Candidate getReferenceById(Integer id) {
         return candidateRepository.getById(id);

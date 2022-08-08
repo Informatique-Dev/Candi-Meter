@@ -32,7 +32,7 @@ public class CandidateController {
     public ResponseEntity getByPositionId(@RequestParam(value = "page", defaultValue = "0") Integer page,
                                          @RequestParam(value = "size", defaultValue = "20") Integer size,
                                          @PathVariable(value = "positionId") Integer positionId) {
-        return candidateHandler.getAllCandidatesByPositionId(page,size,positionId);
+        return candidateHandler.getAllByPositionId(page,size,positionId);
     }
     @PostMapping
     @Operation(summary = "Add New candidate")
