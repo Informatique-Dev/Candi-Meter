@@ -2,10 +2,13 @@ package com.example.demo.rest.controller;
 
 import com.example.demo.rest.dto.CandidateDto;
 import com.example.demo.rest.handler.CandidateHandler;
+import com.example.demo.rest.validation.InsertValidation;
+import com.example.demo.rest.validation.UpdateValidation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,13 +33,14 @@ public class CandidateController {
 
     @PostMapping
     @Operation(summary = "Add New candidate")
-    public ResponseEntity save(@RequestBody CandidateDto dto) {
+    public ResponseEntity save(@Validated(InsertValidation.class) @RequestBody CandidateDto dto) {
         return candidateHandler.save(dto);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update A candidate")
-    public ResponseEntity update(@PathVariable Integer id, @RequestBody CandidateDto dto) {
+    public ResponseEntity update(@PathVariable Integer id,
+                                 @Validated(UpdateValidation.class) @RequestBody CandidateDto dto) {
         return candidateHandler.update(id, dto);
     }
 
