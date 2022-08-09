@@ -43,8 +43,8 @@ public class CandidateHandler {
         return ResponseEntity.ok(paginatedResult);
     }
     public ResponseEntity<?> save(CandidateDto dto) {
-        Candidate candidateByPhone = candidateService.getCandidateByPhone(dto.getPhone());
-        if (candidateByPhone != null) {
+        Optional<Candidate> candidateByPhone = candidateService.getByPhone(dto.getPhone());
+        if (candidateByPhone.isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
         Candidate candidate = candidateMapper.toEntity(dto);
