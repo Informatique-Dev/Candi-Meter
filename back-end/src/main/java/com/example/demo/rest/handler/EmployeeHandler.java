@@ -1,20 +1,24 @@
 package com.example.demo.rest.handler;
 
+import com.example.demo.entity.Company;
 import com.example.demo.entity.Employee;
 import com.example.demo.rest.dto.EmployeeDto;
 import com.example.demo.rest.dto.common.PaginatedResultDto;
 import com.example.demo.rest.entitymapper.EmployeeMapper;
 import com.example.demo.rest.entitymapper.common.PaginationMapper;
 import com.example.demo.rest.exception.ResourceNotFoundException;
+import com.example.demo.service.CompanyService;
 import com.example.demo.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -23,6 +27,7 @@ public class EmployeeHandler {
     private EmployeeService employeeService;
     private EmployeeMapper employeeMapper;
     private PaginationMapper paginationMapper;
+    private CompanyService companyService;
 
     public ResponseEntity<?> getAll (Integer page,Integer size){
         Page<Employee> employeePage = employeeService.getAll(page,size);
@@ -34,7 +39,12 @@ public class EmployeeHandler {
     }
 
     public ResponseEntity<?> save(EmployeeDto dto){
+        Optional<Company> existingCompany = companyService.getById(dto.getCompany().getId());
+        if(!existingCompany.isPresent()){
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
         Employee employee = employeeMapper.toEntity(dto);
+        employee.setCompany(existingCompany.get());
         employeeService.save(employee);
         EmployeeDto employeeDto = employeeMapper.toDto(employee);
         return ResponseEntity.created(URI.create("/employee/" + employee.getId())).body(employeeDto);
