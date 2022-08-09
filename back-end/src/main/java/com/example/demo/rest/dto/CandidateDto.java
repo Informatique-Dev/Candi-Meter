@@ -23,4 +23,7 @@ public class CandidateDto extends RestDto {
             , groups = {InsertValidation.class, UpdateValidation.class})
     private String email;
 
-    private Integer documentId;}
+    private Integer documentId;
+
+    private PositionDto position;
+}

@@ -21,7 +21,7 @@ public class CandidateController {
     @GetMapping
     @Operation(summary = "get All candidate ")
     public ResponseEntity getAll(@RequestParam(value = "page", defaultValue = "0") Integer page,
-                                 @RequestParam(value = "size", defaultValue = "10") Integer size) {
+                                 @RequestParam(value = "size", defaultValue = "20") Integer size) {
         return candidateHandler.getAll(page, size);
     }
 
@@ -30,7 +30,13 @@ public class CandidateController {
     public ResponseEntity<?> getById(@PathVariable(value = "id") Integer id) {
         return candidateHandler.getById(id);
     }
-
+    @GetMapping("/{positionId}/position")
+    @Operation(summary = "Get All Candidates By Position Id")
+    public ResponseEntity getByPositionId(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                         @RequestParam(value = "size", defaultValue = "20") Integer size,
+                                         @PathVariable(value = "positionId") Integer positionId) {
+        return candidateHandler.getAllByPositionId(page,size,positionId);
+    }
     @PostMapping
     @Operation(summary = "Add New candidate")
     public ResponseEntity save(@Validated(InsertValidation.class) @RequestBody CandidateDto dto) {

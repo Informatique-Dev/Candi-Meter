@@ -34,7 +34,14 @@ public class CandidateHandler {
         paginatedResult.setPagination(paginationMapper.toPaginationDto(candidatePage));
         return ResponseEntity.ok(paginatedResult);
     }
-
+    public ResponseEntity<?> getAllByPositionId(Integer page,Integer size,Integer id){
+        Page<Candidate> candidatePage = candidateService.getAllByPositionId(page, size,id);
+        List<CandidateDto> candidateDtoList = candidateMapper.toDto(candidatePage.getContent());
+        PaginatedResultDto<CandidateDto> paginatedResult = new PaginatedResultDto<>();
+        paginatedResult.setData(candidateDtoList);
+        paginatedResult.setPagination(paginationMapper.toPaginationDto(candidatePage));
+        return ResponseEntity.ok(paginatedResult);
+    }
     public ResponseEntity<?> save(CandidateDto dto) {
         Candidate candidateByPhone = candidateService.getCandidateByPhone(dto.getPhone());
         if (candidateByPhone != null) {
