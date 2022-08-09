@@ -15,4 +15,7 @@ public class CandidateDto extends RestDto {
 
     private String email;
 
-    private Integer documentId;}
+    private Integer documentId;
+
+    private PositionDto position;
+}

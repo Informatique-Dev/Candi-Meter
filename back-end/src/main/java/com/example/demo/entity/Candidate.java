@@ -26,6 +26,10 @@ public class Candidate extends JPAEntity {
     @Column
     private Integer documentId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "position_id")
+    private Position position;
+
 
 
 }
