@@ -8,9 +8,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
+
+    @Query(value = "SELECT c FROM Candidate c WHERE c.phone= :phone")
+    Optional<Candidate> findByPhone(@Param("phone") String phone);
+
+
     @Query( value = "SELECT c FROM Candidate c INNER JOIN FETCH c.position p WHERE p.id = :id",
             countQuery ="SELECT count(c) FROM Candidate c WHERE c.position.id = :id")
     Page<Candidate> getByPositionId(@Param("id")Integer id, Pageable pageable);
+
 }

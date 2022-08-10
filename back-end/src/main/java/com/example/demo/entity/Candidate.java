@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
-
 @Data
 @Entity
 @EqualsAndHashCode(of = "id", callSuper = false)

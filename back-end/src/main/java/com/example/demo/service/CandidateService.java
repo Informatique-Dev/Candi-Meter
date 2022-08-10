@@ -40,5 +40,7 @@ public class CandidateService {
     public Optional<Candidate> getById(Integer id) {
         return candidateRepository.findById(id);
     }
+    public Optional<Candidate> getByPhone(String phone) {
+        return candidateRepository.findByPhone(phone);}
 
 }

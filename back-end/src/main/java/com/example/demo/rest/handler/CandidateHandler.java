@@ -10,11 +10,13 @@ import com.example.demo.service.CandidateService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -41,6 +43,10 @@ public class CandidateHandler {
         return ResponseEntity.ok(paginatedResult);
     }
     public ResponseEntity<?> save(CandidateDto dto) {
+        Optional<Candidate> candidateByPhone = candidateService.getByPhone(dto.getPhone());
+        if (candidateByPhone.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
         Candidate candidate = candidateMapper.toEntity(dto);
         candidateService.save(candidate);
         CandidateDto candidateDto = candidateMapper.toDto(candidate);
@@ -50,6 +56,10 @@ public class CandidateHandler {
     public ResponseEntity<?> update(Integer id, CandidateDto dto){
         Candidate candidate = candidateService.getById(id).
                 orElseThrow(() -> new ResourceNotFoundException(Candidate.class.getSimpleName(), id));
+        Optional<Candidate> existingCandidate=candidateService.getByPhone(dto.getPhone());
+        if(existingCandidate.isPresent() && !existingCandidate.get().getId().equals(id)){
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
         candidateMapper.updateEntityFromDto(dto, candidate);
         candidateService.update(candidate);
         return ResponseEntity.ok().build();
