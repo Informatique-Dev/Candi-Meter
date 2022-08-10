@@ -13,6 +13,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 
 
 const routes: Routes = [
+  { path: "", redirectTo:'home' },
   { path: "contact", component: ContactUsComponent },
   { path: "home", component: HomePageComponent },
   { path: "question", component: QuestionComponent },

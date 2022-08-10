@@ -47,8 +47,8 @@ export class CandidatesComponent implements OnInit {
     this.candidateForm = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['',Validators.compose([Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)])],
+      phone: ['',[ Validators.required,Validators.pattern('[0-9]{10,10}')]],
+      email: ['',[Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)]],
       documentId: [''],
       picture: [''],
     });

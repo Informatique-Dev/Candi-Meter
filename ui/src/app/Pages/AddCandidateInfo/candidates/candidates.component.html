@@ -85,8 +85,8 @@
               <mat-label>Phone Number</mat-label>
               <input formControlName="phone" type="number" matInput placeholder="enter your phone" />
               <mat-error
-                *ngIf="candidateForm.controls['phone'].hasError('phone') &&!candidateForm.controls['phone'].hasError('required')">
-                Please enter a valid phone Number
+                *ngIf="candidateForm.controls['phone'].hasError('pattern') &&!candidateForm.controls['phone'].hasError('required')">
+                Please  phone Number must  11 number
               </mat-error>
               <mat-error *ngIf="candidateForm.controls['phone'].hasError('required')">
                 phone Number is <strong>required</strong>
