@@ -47,8 +47,8 @@ export class CandidatesComponent implements OnInit {
     this.candidateForm = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', Validators.required],
+      phone: ['',[ Validators.required,Validators.pattern('[0-9]{10,10}')]],
+      email: ['',[Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)]],
       documentId: [''],
       picture: [''],
     });
@@ -56,7 +56,10 @@ export class CandidatesComponent implements OnInit {
   addCandidate() {
     this.candidateRepository
       .add(this.candidateForm.value)
-      .subscribe(_ =>{});
+      .subscribe(() =>{
+        this.getAllCandidates();
+        this.changeVisibility();
+      });
   }
   onSubmit() {
     if (this.candidateForm.valid) {
@@ -111,7 +114,6 @@ export class CandidatesComponent implements OnInit {
 
   UpdateCandidate() {
     this.candidateRepository.update(this.candidateForm.value).subscribe(() => {
-      this.resetTheForm();
       this.getAllCandidates();
       this.changeVisibility();
     });

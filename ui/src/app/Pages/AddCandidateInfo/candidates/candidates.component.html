@@ -83,10 +83,10 @@
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
               <mat-label>Phone Number</mat-label>
-              <input formControlName="phone" type="tel" matInput placeholder="enter your phone" />
+              <input formControlName="phone" type="number" matInput placeholder="enter your phone" />
               <mat-error
-                *ngIf="candidateForm.controls['phone'].hasError('phone') &&!candidateForm.controls['phone'].hasError('required')">
-                Please enter a valid phone Number
+                *ngIf="candidateForm.controls['phone'].hasError('pattern') &&!candidateForm.controls['phone'].hasError('required')">
+                Please  phone Number must  11 number
               </mat-error>
               <mat-error *ngIf="candidateForm.controls['phone'].hasError('required')">
                 phone Number is <strong>required</strong>
@@ -99,9 +99,10 @@
               <mat-label>Email</mat-label>
               <input formControlName="email" type="email" matInput placeholder="Ex. p@Informatique.com" />
               <mat-error
-                *ngIf="candidateForm.controls['email'].hasError('email') &&!candidateForm.controls['email'].hasError('required')">
-                Please enter a valid email address
+                *ngIf="candidateForm.controls['email'].hasError('pattern') &&!candidateForm.controls['email'].hasError('required')">
+                Please enter a valid email address (example@gmail.com)
               </mat-error>
+
               <mat-error *ngIf="candidateForm.controls['email'].hasError('required')">
                 Email is <strong>required</strong>
               </mat-error>
@@ -109,7 +110,7 @@
           </div>
 
           <div fxLayoutAlign="center center">
-            <input type="file" (change)="uploadFileEvt($event)" hidden id="upload" formArrayName="picture" />
+            <input type="file" (change)="uploadFileEvt($event)" hidden id="upload"/>
           </div>
           <div class="upload-file">
             <label for="upload">
