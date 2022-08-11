@@ -14,11 +14,13 @@ import com.example.demo.service.PositionService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -38,6 +40,10 @@ public class PositionHandler {
     }
 
     public ResponseEntity<?> save(PositionDto dto) {
+        Optional<Position> positionByName = positionService.getByName(dto.getName());
+        if (positionByName.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
         Position position = positionMapper.toEntity(dto);
         positionService.save(position);
         PositionDto positionDto = positionMapper.toDto(position);
