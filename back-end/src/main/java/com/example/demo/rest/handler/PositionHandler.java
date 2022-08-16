@@ -53,6 +53,10 @@ public class PositionHandler {
     public ResponseEntity<?> update(Integer id, PositionDto dto){
         Position position = positionService.getById(id).
                 orElseThrow(() -> new ResourceNotFoundException(Position.class.getSimpleName(), id));
+        Optional<Position> positionByName = positionService.getByName(dto.getName());
+        if (positionByName.isPresent() && positionByName.get().getId().equals(id)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
         positionMapper.updateEntityFromDto(dto, position);
         positionService.update(position);
         return ResponseEntity.ok().build();
