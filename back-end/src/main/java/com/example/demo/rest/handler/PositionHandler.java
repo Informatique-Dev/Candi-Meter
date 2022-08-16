@@ -40,8 +40,8 @@ public class PositionHandler {
     }
 
     public ResponseEntity<?> save(PositionDto dto) {
-        Optional<Position> positionByName = positionService.getByName(dto.getName());
-        if (positionByName.isPresent()) {
+        Optional<Position> existingPositionName = positionService.getByName(dto.getName());
+        if (existingPositionName.isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
         Position position = positionMapper.toEntity(dto);
@@ -53,8 +53,8 @@ public class PositionHandler {
     public ResponseEntity<?> update(Integer id, PositionDto dto){
         Position position = positionService.getById(id).
                 orElseThrow(() -> new ResourceNotFoundException(Position.class.getSimpleName(), id));
-        Optional<Position> positionByName = positionService.getByName(dto.getName());
-        if (positionByName.isPresent() && positionByName.get().getId().equals(id)) {
+        Optional<Position> existingPositionName = positionService.getByName(dto.getName());
+        if (existingPositionName.isPresent() && existingPositionName.get().getId().equals(id)) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
         positionMapper.updateEntityFromDto(dto, position);
