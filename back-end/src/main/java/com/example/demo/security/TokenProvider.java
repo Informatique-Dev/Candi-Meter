@@ -24,14 +24,7 @@ public class TokenProvider {
 
     public String generateToken(String subject,TokenType tokenType) {
 
-        Long expireTime = null;
-        switch (tokenType){
-            case ACCESS_TOKEN:
-                expireTime=tokenExpirationMillis;
-                break;
-            case REFRESH_TOKEN:
-                expireTime=refreshTokenExpirationMillis;
-        }
+        Long expireTime =(tokenType == TokenType.ACCESS_TOKEN) ? tokenExpirationMillis : refreshTokenExpirationMillis;
 
 
         Date now = new Date();
