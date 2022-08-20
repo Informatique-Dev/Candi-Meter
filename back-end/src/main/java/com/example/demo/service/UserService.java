@@ -21,10 +21,11 @@ public class UserService {
     {
        return userRepository.findAll(PageRequest.of(page,size));
     }
-    public User getByIdLazy(Integer id) {
+    public User getReferenceById(Integer id) {
         return userRepository.getById(id);
     }
     public User save(User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
     public Optional<User> getById(Integer id) {
