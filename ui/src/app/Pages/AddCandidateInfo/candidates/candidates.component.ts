@@ -5,6 +5,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
+import { MessageService } from 'src/app/core/services/config/message.service';
 import { CandidateRepository } from 'src/app/domain/candidate/candidate.repository';
 import { Candidate } from 'src/app/domain/candidate/models/candidate';
 
@@ -37,7 +38,8 @@ export class CandidatesComponent implements OnInit {
   submitted: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
-    private candidateRepository: CandidateRepository
+    private candidateRepository: CandidateRepository,
+    private message: MessageService,
   ) { }
   ngOnInit(): void {
     this.candidForm();
@@ -129,9 +131,14 @@ export class CandidatesComponent implements OnInit {
     });
   }
   deleteCandidate(candidate: Candidate) {
-    this.candidateRepository.delete(candidate.id).subscribe(_ =>
-      this.getAllCandidates()
-    );
+    this.message
+      .deleteConfirmation('', 'Are you sure you want to delete this candidate')
+      .subscribe(res => {
+        if (res.success)
+          this.candidateRepository.delete(candidate.id).subscribe(_ =>
+            this.getAllCandidates()
+          );
+      })
   }
   appearRest() {
     this.isAppear = true;

@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { ConfigService } from './core/services/config/config.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ToastNotificationConfigModule ,NgxAwesomePopupModule} from '@costlydeveloper/ngx-awesome-popup';
+import { ToastNotificationConfigModule ,NgxAwesomePopupModule, ConfirmBoxConfigModule} from '@costlydeveloper/ngx-awesome-popup';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { ErrorInterceptorService } from './core/services/config/error-interceptor.service';
 
@@ -46,6 +46,17 @@ export function configServiceFactory(config: ConfigService): () => Promise<boole
         customTwo: '#bd47fa'
       },
 
+    }),
+    ConfirmBoxConfigModule.forRoot({
+      confirmBoxCoreConfig: {
+        customStyles: {
+          titleCSS: 'color: ##454545; background: #FFFFFF; font-size: 20px; padding: 10px; ',
+          buttonSectionCSS: 'background: #FFFFFF',
+          buttonCSS: 'font-size: 20px;',
+          textCSS: 'color: #454545; font-size: 25px; background: #FFFFFF; font-weight: bold;',
+          wrapperCSS: 'background: #FFFFFF;'
+        }
+      }
     }),
   ],
   providers: [
