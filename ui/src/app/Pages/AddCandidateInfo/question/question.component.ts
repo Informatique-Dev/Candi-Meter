@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
+import { MessageService } from 'src/app/core/services/config/message.service';
 import { Question } from 'src/app/domain/Question/models/question';
 import { QuestionRepository } from 'src/app/domain/Question/question.repository';
 
@@ -21,7 +22,8 @@ export class QuestionComponent implements OnInit {
   totalItems:number=0;
 
 
-  constructor(private formBuilder: FormBuilder, private questionRepository:QuestionRepository) { }
+
+    constructor(private formBuilder: FormBuilder, private questionRepository:QuestionRepository,private message: MessageService) { }
 
   ngOnInit(): void {
     this.questForm();
@@ -73,9 +75,15 @@ export class QuestionComponent implements OnInit {
     });
   }
   deleteQuestion(questionData: Question) {
+    this.message
+    .deleteConfirmation('', 'Are you sure you want to delete this question?')
+    .subscribe(res => {
+      if (res.success)
     this.questionRepository.delete(questionData.id).subscribe(() => {
       this.getAllQuestions();
     })
+  })
+
   }
   changeVisibility(){
     this.isVisible = !this.isVisible

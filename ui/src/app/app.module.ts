@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { ConfigService } from './core/services/config/config.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptorService } from './core/services/config/error-interceptor.service';
 
 
 export function configServiceFactory(config: ConfigService): () => Promise<boolean> {
@@ -19,7 +21,8 @@ export function configServiceFactory(config: ConfigService): () => Promise<boole
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
   ],
   providers: [
     ConfigService,
@@ -27,6 +30,11 @@ export function configServiceFactory(config: ConfigService): () => Promise<boole
       provide: APP_INITIALIZER,
       useFactory: configServiceFactory,
       deps: [ConfigService],
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
       multi: true
     }
   ],

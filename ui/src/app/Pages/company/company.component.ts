@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { MessageService } from 'src/app/core/services/config/message.service';
 
 import { Company } from 'src/app/domain/company/models/company';
 import { CompanyRepository } from '../../domain/company/company.repository';
@@ -20,7 +21,8 @@ export class CompanyComponent implements OnInit {
   size: number = 10;
   page: number = 0;
   totalItems: number = 0;
-  constructor(private formBuilder: FormBuilder, private companyRepository: CompanyRepository) { }
+
+    constructor(private formBuilder: FormBuilder, private companyRepository: CompanyRepository,private message: MessageService) { }
 
   ngOnInit(): void {
     this.compForm();
@@ -74,9 +76,15 @@ export class CompanyComponent implements OnInit {
     });
   }
   deleteCompany(companyData: Company) {
+    this.message
+    .deleteConfirmation('', 'Are you sure you want to delete this company?')
+    .subscribe(res => {
+      if (res.success)
     this.companyRepository.delete(companyData.id).subscribe(() => {
       this.getAllCompanies();
     })
+  })
+
   }
   changeVisibility() {
     this.isVisible = !this.isVisible
