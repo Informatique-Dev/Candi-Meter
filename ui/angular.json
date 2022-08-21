@@ -45,8 +45,6 @@
                         ],
                         "styles": [
                             "src/styles.sass",
-                            "node_modules/@costlydeveloper/ngx-awesome-popup/styles/theme.css"
-
                         ],
                         "scripts": []
                     },
