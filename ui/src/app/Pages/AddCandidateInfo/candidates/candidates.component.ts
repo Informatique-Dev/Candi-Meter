@@ -39,7 +39,7 @@ export class CandidatesComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private candidateRepository: CandidateRepository,
-    private message: MessageService,
+    private message: MessageService
   ) { }
   ngOnInit(): void {
     this.candidForm();
@@ -132,7 +132,7 @@ export class CandidatesComponent implements OnInit {
   }
   deleteCandidate(candidate: Candidate) {
     this.message
-      .deleteConfirmation('', 'Are you sure you want to delete this candidate')
+      .deleteConfirmation('', 'Are you sure you want to delete this candidate?')
       .subscribe(res => {
         if (res.success)
           this.candidateRepository.delete(candidate.id).subscribe(_ =>

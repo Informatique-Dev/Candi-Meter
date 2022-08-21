@@ -22,7 +22,7 @@ export class CompanyComponent implements OnInit {
   page: number = 0;
   totalItems: number = 0;
 
-    constructor(private formBuilder: FormBuilder, private companyRepository: CompanyRepository,private message: MessageService,) { }
+    constructor(private formBuilder: FormBuilder, private companyRepository: CompanyRepository,private message: MessageService) { }
 
   ngOnInit(): void {
     this.compForm();
@@ -77,7 +77,7 @@ export class CompanyComponent implements OnInit {
   }
   deleteCompany(companyData: Company) {
     this.message
-    .deleteConfirmation('', 'Are you sure you want to delete this company')
+    .deleteConfirmation('', 'Are you sure you want to delete this company?')
     .subscribe(res => {
       if (res.success)
     this.companyRepository.delete(companyData.id).subscribe(() => {
