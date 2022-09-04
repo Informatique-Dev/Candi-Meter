@@ -39,4 +39,8 @@ public class PositionService {
     public Optional<Position> getById(Integer id) {
         return positionRepository.findById(id);
     }
+
+    public Optional<Position> getByName(String name) {
+       return positionRepository.findByName(name);
+    }
 }
