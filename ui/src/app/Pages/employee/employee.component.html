@@ -1,78 +1,122 @@
 <div class="candidate-Laytout">
-    <fieldset>
+  <fieldset>
+    <h1 fxLayoutAlign="center center">All Employees</h1>
+    <div fxLayoutAlign="center center">
+      <table
+        mat-table
+        class="mat-elevation-z8 table"
+        [dataSource]="allEmployees"
+      >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+        </ng-container>
 
-        <h1 fxLayoutAlign="center center">All Employees
-        </h1>
-        <div fxLayoutAlign="center center">
-            <table mat-table class="mat-elevation-z8 table">
-                <ng-container matColumnDef="Question">
-                    <th mat-header-cell *matHeaderCellDef> No. </th>
-                    <td mat-cell></td>
-                </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="update">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            class="update-icon"
+            (click)="fetchData(element)"
+          >
+            <mat-icon>edit</mat-icon>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            class="delete-icon"
+            (click)="deleteEmployee(element)"
+          >
+            <mat-icon>person_remove</mat-icon>
+          </td>
+        </ng-container>
 
-                <ng-container matColumnDef="description">
-                    <th mat-header-cell *matHeaderCellDef> Name </th>
-                    <td mat-cell></td>
-                </ng-container>
-
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-        </div>
-        <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="show-btn">
-            <button type="submit" mat-raised-button color="primary" fxFlex="50"><mat-icon>add</mat-icon></button>
-        </div>
-    </fieldset>
-    <br />
-    <br /><br />
-
-    <div *ngIf="isVisible;">
-        <br>
-        <hr />
-        <br>
-        <br>
-        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-            <fieldset>
-                <legend>Employee Info</legend>
-                <div class="all-Inpt">
-                    <div fxLayoutAlign="center center">
-                        <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-                            <mat-label>Employee Name</mat-label>
-                            <input formControlName="name" type="text" matInput placeholder="enter your Employee Name">
-                            <mat-error *ngIf="employeeForm.controls['name'].hasError('name') && !employeeForm.controls['name'].hasError('required')">
-                                Please enter a Employee Name
-                            </mat-error>
-                            <mat-error *ngIf="employeeForm.controls['name'].hasError('required')">
-                                Employee Name is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-
-
-
-                    <div fxLayoutAlign="center center">
-                        <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-                            <mat-label>Choose Company</mat-label>
-                            <mat-select #mode value="side" formControlName="companyId">
-                                <mat-option value="side">Side</mat-option>
-                                <mat-option value="over">Over</mat-option>
-                                <mat-option value="push">Push</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-                    </div>
-
-
-
-                    <div fxLayoutAlign="center center">
-                        <button type="submit" class="addbtn" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40" class="addbtn">Add Employee</button>
-                    </div>
-                </div>
-
-            </fieldset>
-
-        </form>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
     </div>
+    <div
+      fxLayoutAlign.lt-sm="start start"
+      (click)="changeVisibility()"
+      class="show-btn"
+    >
+      <button type="submit" mat-raised-button color="primary" fxFlex="50">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </fieldset>
+  <br />
+  <br /><br />
 
+  <div *ngIf="isVisible">
+    <br />
+    <hr />
+    <br />
+    <br />
+    <!-- (ngSubmit)="onSubmit()" -->
+    <form [formGroup]="employeeForm" >
+      <fieldset>
+        <legend>Employee Info</legend>
+        <div class="all-Inpt">
+          <div fxLayoutAlign="center center">
+            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60"  (click)="appearRest()">
+              <mat-label>Employee Name</mat-label>
+              <input
+                formControlName="name"
+                type="text"
+                matInput
+                placeholder="enter your Employee Name"
+              />
+              <mat-error
+                *ngIf="
+                  employeeForm.controls['name'].hasError('name') &&
+                  !employeeForm.controls['name'].hasError('required')
+                "
+              >
+                Please enter a Employee Name
+              </mat-error>
+              <mat-error
+                *ngIf="employeeForm.controls['name'].hasError('required')"
+              >
+                Employee Name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayoutAlign="center center">
+            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
+              <mat-label>Choose Company</mat-label>
+              <mat-select #mode value="side" formControlName="companyId">
+                <mat-option value="side">Side</mat-option>
+                <mat-option value="over">Over</mat-option>
+                <mat-option value="push">Push</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div fxLayoutAlign="center center">
+            <button
+              type="button"
+              (click)="SaveData()"
+              [disabled]="!employeeForm.valid"
+              class="addbtn"
+              mat-raised-button
+              color="primary"
+              fxFlex.lt-lg="80%"
+              fxFlex="40">{{employeeForm.controls['id'].value?'update Employee':'add Employee'}}
+
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
 </div>

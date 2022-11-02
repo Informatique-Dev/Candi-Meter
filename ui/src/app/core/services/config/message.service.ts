@@ -8,6 +8,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MessageService {
+  delete(id: number) {
+    throw new Error('Method not implemented.');
+  }
   errorMessage = (errorText: string): void => {
     this.toast.error(errorText)
   };
