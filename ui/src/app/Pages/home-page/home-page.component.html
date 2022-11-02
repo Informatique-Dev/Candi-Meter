@@ -1,42 +1,74 @@
 <div class="about">
-    <p @side class="text-about" fxFlex="50" fxFlex.lt-md="100">
-        Informatique is an Egyptian shareholding company with main premises in Cairo and a branch in Kuwait to manage the Gulf operations. The Company has been established on 2000.
-    </p>
+  <p @side class="text-about" fxFlex="75" fxFlex.lt-md="100">
+    Informatique is an Egyptian shareholding company with main premises in Cairo
+    and a branch in Kuwait to manage the Gulf operations, The Company has been
+    established on 2000.
+  </p>
 </div>
 
 <div>
-    <h1 class="title-field">Our Fields</h1>
-    <div fxLayout="row wrap" @card-came-left fxLayoutAlign="center center" >
-        <div fxFlex="40" fxFlex.lt-md="90" class="card-field" *ngFor="let topic of allTopics">
-            <div fxLayout="row" fxLayout.lt-md="column" >
-                <div fxFlex="30" fxFlex.lt-md="100">
-                    <img src="assets/frontend.png" width="100%" height="auto" alt="error image front">
-                </div>
-                <div fxLayout="column" fxFlex="90" class="card-content">
-                    <h3 class="no-margin">{{topic.name}}</h3>
-                    <p class="no-margin">{{topic.description}}</p><br>
-                    <button mat-raised-button color="primary" routerLink="/main/interview" class="card-button">interviews</button>
-                </div>
-            </div>
+  <h1 class="title-field">Our Fields</h1>
+  <div fxLayout="row wrap" @card-came-left fxLayoutAlign="center center">
+    <div
+      fxFlex="40"
+      fxFlex.lt-md="90"
+      class="card-field"
+      *ngFor="let topic of allTopics"
+    >
+      <div fxLayout="row" fxLayout.lt-md="column">
+        <div fxFlex="30" fxFlex.lt-md="100">
+          <img
+            src="assets/card-image.jpg"
+            width="100%"
+            height="100%"
+            alt="error image front"
+          />
+        </div>
+        <div fxLayout="column" fxFlex="90" class="card-content">
+          <h3 class="no-margin card-header">{{ topic.name }}</h3>
+          <p class="no-margin">{{ topic.description }}</p>
+          <br />
+          <button routerLink="/main/interview" class="card-button">
+            interviews
+          </button>
         </div>
       </div>
-
+    </div>
+  </div>
 </div>
 
 <div fxLayout="row" fxLayoutAlign="space-around center" class="footer">
-    <div fxFlexAlign="baseline">
-        <h3 class="footer-titles">fields</h3>
-        <p class="footer-data" *ngFor="let topic of allTopics">{{topic.name}}</p>
+  <div fxFlexAlign="baseline" class="footer-part">
+    <h3 class="footer-titles">About Us</h3>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut tempora
+      adipisci, natus eaque vitae nulla eligendi eos doloremque id, autem
+      placeat est laboriosam! Doloribus soluta officia quasi, corporis laborum
+      odio!
+    </p>
+  </div>
+  <div fxFlexAlign="baseline" class="footer-part">
+    <h3 class="footer-titles">Why we are special ?</h3>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut tempora
+      adipisci, natus eaque vitae nulla eligendi eos doloremque id, autem
+      placeat est laboriosam! Doloribus soluta officia quasi, corporis laborum
+      odio!
+    </p>
+  </div>
+  <div fxFlexAlign="baseline">
+    <h3 class="footer-titles">fields</h3>
+    <p class="footer-data" *ngFor="let topic of allTopics">{{ topic.name }}</p>
+  </div>
+  <div fxFlexAlign="baseline">
+    <h3 class="footer-titles">Branches</h3>
+    <div class="footer-data">
+      <p>Cairo</p>
+      <p>Assuit</p>
     </div>
-    <div fxFlexAlign="baseline">
-        <h3 class="footer-titles">Branches</h3>
-        <div class="footer-data">
-            <p>Cairo</p>
-            <p>Assuit</p>
-        </div>
-    </div>
-</div>
+  </div>
 
-<span class="material-icons icon-contact" routerLink="/main/contact">
-  contact_mail
-</span>
+  <span class="material-icons icon-contact" routerLink="/main/contact">
+    <mat-icon> contact_mail</mat-icon></span
+  >
+</div>

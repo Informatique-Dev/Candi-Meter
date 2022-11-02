@@ -1,14 +1,18 @@
 <div class="header">
-
-    <mat-toolbar color="primary" fxLayout="row wrap" style="height: auto; padding: 3px;">
-      <button mat-icon-button (click)="clickMenu()">
-        <mat-icon>menu</mat-icon>
-      </button>
-        <a mat-button routerLink="/main/home" class="company-name">
-            <img src="assets/logo.png" class="img-logo" alt="error logo">
-            <span> Informatique </span>
-        </a>
-        <a mat-button routerLink="/login" routerLinkActive="active" class="icon-login"><mat-icon>login</mat-icon></a>
-
-    </mat-toolbar>
+  <mat-toolbar fxLayout="row wrap">
+    <button mat-icon-button (click)="clickMenu()">
+      <mat-icon class="mat-icon">menu</mat-icon>
+    </button>
+    <a mat-button routerLink="/main/home" class="company-name">
+      <img src="assets/logo.png" class="img-logo" />
+      <span> Informatique </span>
+    </a>
+    <a
+      mat-button
+      routerLink="/login"
+      routerLinkActive="active"
+      class="icon-login"
+      ><mat-icon>login</mat-icon></a
+    >
+  </mat-toolbar>
 </div>
