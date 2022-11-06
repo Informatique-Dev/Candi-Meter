@@ -4,7 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject, switchMap } from 'rxjs';
 import { MessageService } from 'src/app/core/services/config/message.service';
 import { EmployeeRepository } from 'src/app/domain/employee/employee.repository';
-import { Emplyee } from 'src/app/domain/employee/model/Emplyee';
+import { emplyee } from 'src/app/domain/employee/model/emplyee';
 
 @Component({
   selector: 'app-employee',
@@ -17,7 +17,7 @@ export class EmployeeComponent implements OnInit {
   page: number = 0;
   size: number = 10;
   totalItems: number = 0;
-  allEmployees: Emplyee[] = [];
+  allEmployees: emplyee[] = [];
   isRestButtonAppear: boolean;
 
   constructor(
@@ -56,10 +56,9 @@ export class EmployeeComponent implements OnInit {
       .subscribe((result) => {
         this.allEmployees = result.data;
         this.totalItems = result.pagination.itemCount;
-        console.log(result)
       });
   }
-  fetchData(employeeData:Emplyee):void{
+  fetchData(employeeData:emplyee):void{
   this.employeeForm.reset();
   this.isVisible=true;
   
@@ -76,7 +75,7 @@ export class EmployeeComponent implements OnInit {
       this.changeVisibility();
     })
   }
-  deleteEmployee(employeeData:Emplyee){
+  deleteEmployee(employeeData:emplyee){
     this.message.deleteConfirmation('','Are you sure want to delete this employee ? ').subscribe(res =>{
       if(res.success)
       this._EmployeeRepository.delete(employeeData.id).subscribe(()=>{
@@ -84,11 +83,8 @@ export class EmployeeComponent implements OnInit {
       })
     })
   }
-  onSubmit() {}
   changeVisibility() {
     this.isVisible = !this.isVisible;
   }
-  appearRest() {
-    this.isRestButtonAppear = true;
-  }
+
 }

@@ -1,6 +1,6 @@
-export interface Emplyee{
+export interface emplyee{
     id:number;
     name:string;
-    description:string;
+  
   }
   

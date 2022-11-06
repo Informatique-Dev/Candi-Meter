@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ResourceService } from "src/app/core/services/config/resource.service";
-import { Emplyee } from "./model/Emplyee";
+import { Emplyee } from "./model/emplyee";
 @Injectable({
     providedIn: 'root'
   })
