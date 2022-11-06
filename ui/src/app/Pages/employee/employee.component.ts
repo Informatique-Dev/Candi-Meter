@@ -22,7 +22,7 @@ export class EmployeeComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private _EmployeeRepository: EmployeeRepository,
+    private employeeRepository: EmployeeRepository,
     private message: MessageService
   ) {}
   ngOnInit(): void {
@@ -43,12 +43,12 @@ export class EmployeeComponent implements OnInit {
   }
   }
   addEmployee(){
-    this._EmployeeRepository.update(this.employeeForm.value).subscribe(()=>{
+    this.employeeRepository.add(this.employeeForm.value).subscribe(()=>{
       this.getAllEmplyees();this.changeVisibility();
     })
   }
   getAllEmplyees(): void {
-    this._EmployeeRepository
+    this.employeeRepository
       .getList({
         page: this.page,
         size: this.size,
@@ -70,7 +70,7 @@ export class EmployeeComponent implements OnInit {
 
   }
   updateEmployee(){
-    this._EmployeeRepository.update(this.employeeForm.value).subscribe(()=>{
+    this.employeeRepository.update(this.employeeForm.value).subscribe(()=>{
       this.getAllEmplyees();
       this.changeVisibility();
     })
@@ -78,7 +78,7 @@ export class EmployeeComponent implements OnInit {
   deleteEmployee(employeeData:emplyee){
     this.message.deleteConfirmation('','Are you sure want to delete this employee ? ').subscribe(res =>{
       if(res.success)
-      this._EmployeeRepository.delete(employeeData.id).subscribe(()=>{
+      this.employeeRepository.delete(employeeData.id).subscribe(()=>{
         this.getAllEmplyees();
       })
     })
