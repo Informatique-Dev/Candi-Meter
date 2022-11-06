@@ -1,49 +1,79 @@
 <div fxLayoutAlign="center center" class="loginPage">
-    <div fxFlex="95" fxFlex.lt-md="100" fxFlexFill fxLayout="row" class="contentLoginPage">
-        <div fxLayout="row wrap">
-            <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
-                <div fxLayout="column" fxLayoutAlign="center">
-                    <img class="responsiveImg" src="assets/login.jpg" />
-                </div>
-            </div>
-
-            <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column" class="mat-app-background" @handelTransition>
-                <div fxLayout="column" fxLayoutAlign="center">
-                    <div fxLayout="row" fxLayoutAlign="center">
-                        <h1 class="titleLogin">Welcome To Candi Meter</h1>
-                    </div>
-                </div>
-                <div fxLayout="column" fxLayoutAlign="center">
-                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                        <div fxLayoutAlign="center">
-                            <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
-                                <mat-label>Email</mat-label>
-                                <input formControlName="email" type="email" matInput>
-                                <mat-error *ngIf="loginForm.controls['email'].hasError('required')">email is required
-                                </mat-error>
-                                <mat-error *ngIf="loginForm.controls['email'].hasError('pattern') && !loginForm.controls['email'].hasError('required')">
-                                    Please enter a valid email (example@gmail.com)
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div fxLayoutAlign="center">
-                            <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
-                                <mat-label>Password</mat-label>
-                                <input formControlName="password" [type]="hidePassword ? 'password' : 'text'" matInput>
-                                <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}
-                                </mat-icon>
-                                <mat-error *ngIf="loginForm.controls['password'].invalid">Password is required</mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div fxLayoutAlign="center">
-                            <div fxLayout="column">
-                                <button type="submit" mat-raised-button type="submit" color="primary" class="btnLogin">Login</button>
-                                <p class="createAccount" fxLayoutAlign="center">Don't have an account? &nbsp;<a routerLink="/register">Create Account</a></p>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  <div
+    fxFlex="50"
+    fxFlex.lt-md="100"
+    fxFlexFill
+    fxLayout="row"
+    class="contentLoginPage"
+  >
+    <div
+      fxFlex="100"
+      fxFlex.lt-md="100"
+      fxLayout="column"
+      class="mat-app-background"
+      @handelTransition
+    >
+      <div fxLayout="column" fxLayoutAlign="center">
+        <div fxLayout="row" fxLayoutAlign="center">
+          <h1 class="titleLogin">Welcome To Candi Meter</h1>
         </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div fxLayoutAlign="center">
+            <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input formControlName="email" type="email" matInput />
+              <mat-error
+                *ngIf="loginForm.controls['email'].hasError('required')"
+                >email is required
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  loginForm.controls['email'].hasError('pattern') &&
+                  !loginForm.controls['email'].hasError('required')
+                "
+              >
+                Please enter a valid email (example@gmail.com)
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                formControlName="password"
+                [type]="hidePassword ? 'password' : 'text'"
+                matInput
+              />
+              <mat-icon matSuffix (click)="hidePassword = !hidePassword"
+                >{{ hidePassword ? "visibility_off" : "visibility" }}
+              </mat-icon>
+              <mat-error *ngIf="loginForm.controls['password'].invalid"
+                >Password is required</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center">
+            <div fxLayout="column">
+              <button
+                type="submit"
+                mat-raised-button
+                type="submit"
+                color="primary"
+                class="btnLogin"
+              >
+                Login
+              </button>
+              <p class="createAccount" fxLayoutAlign="center">
+                Don't have an account? &nbsp;<a routerLink="/register"
+                  >Create Account</a
+                >
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

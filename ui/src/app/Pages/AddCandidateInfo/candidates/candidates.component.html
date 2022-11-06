@@ -2,10 +2,15 @@
   <fieldset>
     <h1 fxLayoutAlign="center center">All Candidate</h1>
     <div fxLayoutAlign="center center">
-      <table mat-table class="mat-elevation-z8 table" fxFlex.lt-sm="80%" [dataSource]="allCandidates">
+      <table
+        mat-table
+        class="mat-elevation-z8 table"
+        fxFlex.lt-sm="80%"
+        [dataSource]="allCandidates"
+      >
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef>No.</th>
-          <td mat-cell *matCellDef="let i=index">{{ i+1}}</td>
+          <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
         </ng-container>
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -25,14 +30,24 @@
 
         <ng-container matColumnDef="update">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element" class="update-icon" (click)="openInputField();fetchData(element)">
+          <td
+            mat-cell
+            *matCellDef="let element"
+            class="update-icon"
+            (click)="openInputField(); fetchData(element)"
+          >
             <mat-icon>edit</mat-icon>
           </td>
         </ng-container>
 
         <ng-container matColumnDef="delete">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element" class="delete-icon" (click)="deleteCandidate(element)">
+          <td
+            mat-cell
+            *matCellDef="let element"
+            class="delete-icon"
+            (click)="deleteCandidate(element)"
+          >
             <mat-icon>person_remove</mat-icon>
           </td>
         </ng-container>
@@ -42,13 +57,29 @@
       </table>
     </div>
     <div>
-      <mat-paginator class="paginator" fxFlex.lt-lg="90%" showFirstLastButtons [length]="totalRows" [pageSize]="10"
-        [pageIndex]="page" (page)="pageChanged($event)">
+      <mat-paginator
+        class="paginator"
+        fxFlex.lt-lg="90%"
+        showFirstLastButtons
+        [length]="totalRows"
+        [pageSize]="10"
+        [pageIndex]="page"
+        (page)="pageChanged($event)"
+      >
       </mat-paginator>
     </div>
 
-    <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="show-btn">
-      <button type="submit" mat-raised-button color="primary" fxFlex="50">
+    <div
+      fxLayoutAlign.lt-sm="start start"
+      (click)="changeVisibility()"
+      class="show-btn"
+    >
+      <button
+        type="submit"
+        mat-raised-button
+        class="open-form-button"
+        fxFlex="50"
+      >
         <mat-icon>add</mat-icon>
       </button>
     </div>
@@ -56,10 +87,8 @@
   <br />
   <br /><br />
 
-
-  <div *ngIf="isVisible;">
+  <div *ngIf="isVisible">
     <br />
-    <hr />
     <br />
     <br />
     <form [formGroup]="candidateForm">
@@ -67,14 +96,31 @@
         <legend>Candidate info</legend>
         <div class="all-Inpt">
           <div fxLayoutAlign="center center">
-            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="70" (click)="appearRest()">
+            <mat-form-field
+              appearance="outline"
+              fxFlex.lt-lg="80%"
+              fxFlex="70"
+              (click)="appearRest()"
+            >
               <mat-label>Name</mat-label>
-              <input formControlName="name" type="text" matInput placeholder="enter your name" fxFlex="60" />
+              <input
+                formControlName="name"
+                type="text"
+                matInput
+                placeholder="enter your name"
+                fxFlex="60"
+              />
               <mat-error
-                *ngIf="candidateForm.controls['name'].hasError('name') && !candidateForm.controls['name'].hasError('required')">
+                *ngIf="
+                  candidateForm.controls['name'].hasError('name') &&
+                  !candidateForm.controls['name'].hasError('required')
+                "
+              >
                 Please enter a name
               </mat-error>
-              <mat-error *ngIf="candidateForm.controls['name'].hasError('required')">
+              <mat-error
+                *ngIf="candidateForm.controls['name'].hasError('required')"
+              >
                 name is <strong>required</strong>
               </mat-error>
             </mat-form-field>
@@ -83,12 +129,23 @@
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
               <mat-label>Phone Number</mat-label>
-              <input formControlName="phone" type="number" matInput placeholder="enter your phone" />
+              <input
+                formControlName="phone"
+                type="number"
+                matInput
+                placeholder="enter your phone"
+              />
               <mat-error
-                *ngIf="candidateForm.controls['phone'].hasError('pattern') &&!candidateForm.controls['phone'].hasError('required')">
-                Please  phone Number must  11 number
+                *ngIf="
+                  candidateForm.controls['phone'].hasError('pattern') &&
+                  !candidateForm.controls['phone'].hasError('required')
+                "
+              >
+                Please phone Number must 11 number
               </mat-error>
-              <mat-error *ngIf="candidateForm.controls['phone'].hasError('required')">
+              <mat-error
+                *ngIf="candidateForm.controls['phone'].hasError('required')"
+              >
                 phone Number is <strong>required</strong>
               </mat-error>
             </mat-form-field>
@@ -97,49 +154,78 @@
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
               <mat-label>Email</mat-label>
-              <input formControlName="email" type="email" matInput placeholder="Ex. p@Informatique.com" />
+              <input
+                formControlName="email"
+                type="email"
+                matInput
+                placeholder="Ex. p@Informatique.com"
+              />
               <mat-error
-                *ngIf="candidateForm.controls['email'].hasError('pattern') &&!candidateForm.controls['email'].hasError('required')">
+                *ngIf="
+                  candidateForm.controls['email'].hasError('pattern') &&
+                  !candidateForm.controls['email'].hasError('required')
+                "
+              >
                 Please enter a valid email address (example@gmail.com)
               </mat-error>
 
-              <mat-error *ngIf="candidateForm.controls['email'].hasError('required')">
+              <mat-error
+                *ngIf="candidateForm.controls['email'].hasError('required')"
+              >
                 Email is <strong>required</strong>
               </mat-error>
             </mat-form-field>
           </div>
 
           <div fxLayoutAlign="center center">
-            <input type="file" (change)="uploadFileEvt($event)" hidden id="upload"/>
+            <input
+              type="file"
+              (change)="uploadFileEvt($event)"
+              hidden
+              id="upload"
+            />
           </div>
           <div class="upload-file">
             <label for="upload">
-              <h1>
-                <mat-icon mat-mini-fab color="primary">attach_file</mat-icon>choose
-                file
-              </h1>
+              <h2><mat-icon mat-mini-fab>attach_file</mat-icon>choose file</h2>
             </label>
             <div>
               <div><img [src]="dataimage" width="300px" /></div>
             </div>
           </div>
           <div fxLayoutAlign="center center">
-            <button type="submit" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="30" (click)="onSubmit()"
-              [disabled]="!candidateForm.valid">
-              {{candidateForm.controls['id'].value ? 'Update Candidate':'Add Candidate'}}
+            <button
+              type="submit"
+              mat-raised-button
+              fxFlex.lt-lg="80%"
+              fxFlex="30"
+              class="add-btn"
+              (click)="onSubmit()"
+              [disabled]="!candidateForm.valid"
+            >
+              {{
+                candidateForm.controls["id"].value
+                  ? "Update Candidate"
+                  : "Add Candidate"
+              }}
             </button>
 
-            <div *ngIf="isAppear;">
-              <button (click)='resetTheForm()' mat-raised-button type="submit" color="primary" class="rest-Icon"
-                fxFlex.lt-lg="2%" fxFlex="2" [disabled]="submit">
+            <div *ngIf="isAppear">
+              <button
+                (click)="resetTheForm()"
+                mat-raised-button
+                type="submit"
+                class="rest-Icon"
+                fxFlex.lt-lg="2%"
+                fxFlex="2"
+                [disabled]="submit"
+              >
                 <mat-icon>restart_alt</mat-icon>
               </button>
             </div>
-
           </div>
         </div>
       </fieldset>
     </form>
   </div>
-
 </div>
