@@ -1,12 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ResourceService } from "src/app/core/services/config/resource.service";
-import { Emplyee } from "./model/emplyee";
+import { emplyee } from "./model/emplyee";
 @Injectable({
     providedIn: 'root'
   })
 
-export class EmployeeRepository extends ResourceService<Emplyee>{
+export class EmployeeRepository extends ResourceService<emplyee>{
     constructor(httpClient: HttpClient) {
       super(httpClient);
     }
