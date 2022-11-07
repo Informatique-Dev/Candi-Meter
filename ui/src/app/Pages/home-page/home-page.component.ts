@@ -16,8 +16,8 @@ import { TopicRepository } from 'src/app/domain/Topics/topic.repository';
     ]),
     trigger('card-came-left', [
       transition(':enter', [
-        style({ transform: 'translateX(300px)' }),
-        animate(600),
+        style({ transform: 'translateY(200px)' }),
+        animate(2000),
       ]),
     ]),
   ],

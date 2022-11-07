@@ -10,13 +10,13 @@
   <h1 class="title-field">Our Fields</h1>
   <div fxLayout="row wrap" @card-came-left fxLayoutAlign="center center">
     <div
-      fxFlex="40"
+      fxFlex="30"
       fxFlex.lt-md="90"
       class="card-field"
       *ngFor="let topic of allTopics"
     >
       <div fxLayout="row" fxLayout.lt-md="column">
-        <div fxFlex="30" fxFlex.lt-md="100">
+        <div fxFlex="50" fxFlex.lt-md="100">
           <img
             src="assets/card-image.jpg"
             width="100%"
@@ -24,7 +24,7 @@
             alt="error image front"
           />
         </div>
-        <div fxLayout="column" fxFlex="90" class="card-content">
+        <div fxLayout="column" fxFlex="50" class="card-content">
           <h3 class="no-margin card-header">{{ topic.name }}</h3>
           <p class="no-margin">{{ topic.description }}</p>
           <br />

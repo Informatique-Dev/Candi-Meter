@@ -1,9 +1,120 @@
 <div class="candidate-Laytout">
   <fieldset>
+    <div (click)="changeVisibility()" class="show-btn">
+      <button
+        type="submit"
+        mat-raised-button
+        class="open-form-button"
+        fxFlex.lt-lg="50"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="isVisible">
+      <form [formGroup]="companyForm">
+        <fieldset>
+          <legend>Company Info</legend>
+          <div class="all-Inpt">
+            <div fxLayoutAlign="center center">
+              <mat-form-field
+                appearance="outline"
+                fxFlex.lt-lg="80%"
+                fxFlex="60"
+                (click)="appearRest()"
+              >
+                <mat-label>Company Name</mat-label>
+                <input
+                  formControlName="name"
+                  type="text"
+                  matInput
+                  placeholder="enter your Company Name"
+                />
+                <mat-error
+                  *ngIf="
+                    companyForm.controls['name'].hasError('name') &&
+                    !companyForm.controls['name'].hasError('required')
+                  "
+                >
+                  Please enter a Company Name
+                </mat-error>
+                <mat-error
+                  *ngIf="companyForm.controls['name'].hasError('required')"
+                >
+                  Company Name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayoutAlign="center center">
+              <mat-form-field
+                appearance="outline"
+                fxFlex.lt-lg="80%"
+                fxFlex="60"
+              >
+                <mat-label>Company description</mat-label>
+                <textarea
+                  formControlName="description"
+                  type="text"
+                  matInput
+                  placeholder="enter your Question"
+                ></textarea>
+                <mat-error
+                  *ngIf="
+                    companyForm.controls['description'].hasError(
+                      'description'
+                    ) &&
+                    !companyForm.controls['description'].hasError('required')
+                  "
+                >
+                  Please enter a description of company
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    companyForm.controls['description'].hasError('required')
+                  "
+                >
+                  description of company is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayoutAlign="center center">
+              <button
+                type="button"
+                (click)="SaveData()"
+                [disabled]="!companyForm.valid"
+                class="add-btn"
+                mat-raised-button
+                fxFlex.lt-lg="80%"
+                fxFlex="40"
+              >
+                {{
+                  companyForm.controls["id"].value
+                    ? "Update Company"
+                    : "Add Company"
+                }}
+              </button>
+
+              <div *ngIf="isRestButtonAppear">
+                <button
+                  (click)="resetTheForm()"
+                  type="button"
+                  mat-raised-button
+                  class="rest-Icon"
+                  fxFlex.lt-lg="2%"
+                  fxFlex="2"
+                  [disabled]="submit"
+                >
+                  <mat-icon>restart_alt</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
     <h1 fxLayoutAlign="center center">All Companies</h1>
     <div fxLayoutAlign="center center">
       <table
-        fxFlex.lt-lg="100%"
         mat-table
         class="mat-elevation-z8 table"
         [dataSource]="allCompanies"
@@ -56,117 +167,5 @@
       [pageSize]="size"
       [pageIndex]="page"
     ></mat-paginator>
-
-    <div (click)="changeVisibility()" class="show-btn">
-      <button
-        type="submit"
-        mat-raised-button
-        class="open-form-button"
-        fxFlex="50"
-      >
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
   </fieldset>
-  <br />
-  <br />
-  <br />
-
-  <div *ngIf="isVisible">
-    <br />
-    <br />
-    <br />
-    <form [formGroup]="companyForm">
-      <fieldset>
-        <legend>Company Info</legend>
-        <div class="all-Inpt">
-          <div fxLayoutAlign="center center">
-            <mat-form-field
-              appearance="outline"
-              fxFlex.lt-lg="80%"
-              fxFlex="60"
-              (click)="appearRest()"
-            >
-              <mat-label>Company Name</mat-label>
-              <input
-                formControlName="name"
-                type="text"
-                matInput
-                placeholder="enter your Company Name"
-              />
-              <mat-error
-                *ngIf="
-                  companyForm.controls['name'].hasError('name') &&
-                  !companyForm.controls['name'].hasError('required')
-                "
-              >
-                Please enter a Company Name
-              </mat-error>
-              <mat-error
-                *ngIf="companyForm.controls['name'].hasError('required')"
-              >
-                Company Name is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div fxLayoutAlign="center center">
-            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-              <mat-label>Company description</mat-label>
-              <textarea
-                formControlName="description"
-                type="text"
-                matInput
-                placeholder="enter your Question"
-              ></textarea>
-              <mat-error
-                *ngIf="
-                  companyForm.controls['description'].hasError('description') &&
-                  !companyForm.controls['description'].hasError('required')
-                "
-              >
-                Please enter a description of company
-              </mat-error>
-              <mat-error
-                *ngIf="companyForm.controls['description'].hasError('required')"
-              >
-                description of company is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayoutAlign="center center">
-            <button
-              type="button"
-              (click)="SaveData()"
-              [disabled]="!companyForm.valid"
-              class="add-btn"
-              mat-raised-button
-              fxFlex.lt-lg="80%"
-              fxFlex="40"
-            >
-              {{
-                companyForm.controls["id"].value
-                  ? "Update Company"
-                  : "Add Company"
-              }}
-            </button>
-
-            <div *ngIf="isRestButtonAppear">
-              <button
-                (click)="resetTheForm()"
-                type="button"
-                mat-raised-button
-                class="rest-Icon"
-                fxFlex.lt-lg="2%"
-                fxFlex="2"
-                [disabled]="submit"
-              >
-                <mat-icon>restart_alt</mat-icon>
-              </button>
-            </div>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  </div>
 </div>
