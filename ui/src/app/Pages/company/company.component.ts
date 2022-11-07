@@ -22,14 +22,14 @@ export class CompanyComponent implements OnInit {
   page: number = 0;
   totalItems: number = 0;
 
-    constructor(private FormBuilder: FormBuilder, private companyRepository: CompanyRepository,private message: MessageService) { }
+    constructor(private formBuilder: FormBuilder, private companyRepository: CompanyRepository,private message: MessageService) { }
 
   ngOnInit(): void {
     this.compForm();
     this.getAllCompanies();
   }
   compForm() {
-    this.companyForm = this.FormBuilder.group({
+    this.companyForm = this.formBuilder.group({
       id: [''],
       name: ['', [Validators.required]],
       description: ['', [Validators.required]]

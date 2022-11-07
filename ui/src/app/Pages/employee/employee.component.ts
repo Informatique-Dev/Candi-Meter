@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PageEvent } from '@angular/material/paginator';
-import { BehaviorSubject, switchMap } from 'rxjs';
 import { MessageService } from 'src/app/core/services/config/message.service';
+import { Company } from 'src/app/domain/company/models/company';
 import { EmployeeRepository } from 'src/app/domain/employee/employee.repository';
-import { emplyee } from 'src/app/domain/employee/model/emplyee';
+import { emplyee } from 'src/app/domain/employee/models/emplyee';
+import { CompanyRepository } from 'src/app/domain/company/company.repository';
 
 @Component({
   selector: 'app-employee',
@@ -18,22 +18,24 @@ export class EmployeeComponent implements OnInit {
   size: number = 10;
   totalItems: number = 0;
   allEmployees: emplyee[] = [];
-  isRestButtonAppear: boolean;
+  company:Company[]=[];
+  
 
   constructor(
     private formBuilder: FormBuilder,
     private employeeRepository: EmployeeRepository,
-    private message: MessageService
-  ) {}
+    private message: MessageService ,
+    private companyRepositiory:CompanyRepository ) {}
   ngOnInit(): void {
     this.employForm();
     this.getAllEmplyees();
+    this.getCompany();
   }
   employForm() {
     this.employeeForm = this.formBuilder.group({
       id: [''],
       name: ['', [Validators.required]],
-      companyId: ['', [Validators.required]],
+      company: ['', [Validators.required]],
     });
   }
   SaveData(){
@@ -43,8 +45,10 @@ export class EmployeeComponent implements OnInit {
   }
   }
   addEmployee(){
+
     this.employeeRepository.add(this.employeeForm.value).subscribe(()=>{
       this.getAllEmplyees();this.changeVisibility();
+     
     })
   }
   getAllEmplyees(): void {
@@ -57,6 +61,15 @@ export class EmployeeComponent implements OnInit {
         this.allEmployees = result.data;
         this.totalItems = result.pagination.itemCount;
       });
+  }
+  getCompany(): void {
+    this.companyRepositiory
+      .getList()
+      .subscribe((result) => {
+        this.company = result.data;
+       
+        console.log(this.company)
+      }); 
   }
   fetchData(employeeData:emplyee):void{
   this.employeeForm.reset();

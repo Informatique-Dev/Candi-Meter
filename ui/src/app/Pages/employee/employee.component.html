@@ -67,7 +67,7 @@
         <legend>Employee Info</legend>
         <div class="all-Inpt">
           <div fxLayoutAlign="center center">
-            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60"  (click)="appearRest()">
+            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
               <mat-label>Employee Name</mat-label>
               <input
                 formControlName="name"
@@ -94,9 +94,10 @@
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
               <mat-label>Choose Company</mat-label>
-              <mat-select #mode value="side" formControlName="companyId">
-                <mat-option value="Education">Education</mat-option>
-                <mat-option value="Government">Government</mat-option>
+              <mat-select #mode value="side" formControlName="company">
+                <mat-option [value]="''"></mat-option>
+                <mat-option [value]="companyData.id" *ngFor="let companyData  of company">{{companyData.name}}</mat-option>
+            
               </mat-select>
             </mat-form-field>
           </div>
