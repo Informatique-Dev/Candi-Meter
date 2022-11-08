@@ -67,7 +67,7 @@
         <legend>Employee Info</legend>
         <div class="all-Inpt">
           <div fxLayoutAlign="center center">
-            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
+            <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60"(click)="appearRest()" >
               <mat-label>Employee Name</mat-label>
               <input
                 formControlName="name"
@@ -96,7 +96,7 @@
               <mat-label>Choose Company</mat-label>
               <mat-select #mode value="side" formControlName="company">
                 <mat-option [value]="''"></mat-option>
-                <mat-option [value]="companyData.id" *ngFor="let companyData  of company">{{companyData.name}}</mat-option>
+                <mat-option [value]="companyData" *ngFor="let companyData  of company">{{companyData.name}}</mat-option>
             
               </mat-select>
             </mat-form-field>
@@ -112,8 +112,13 @@
               color="primary"
               fxFlex.lt-lg="80%"
               fxFlex="40">{{employeeForm.controls['id'].value?'update Employee':'add Employee'}}
-
             </button>
+            <div *ngIf="isRestButtonAppear;">
+              <button (click)='resetTheForm()' type="button" mat-raised-button color="primary" class="rest-Icon"
+                fxFlex.lt-lg="2%" fxFlex="2" [disabled]="submit">
+                <mat-icon>restart_alt</mat-icon>
+              </button>
+            </div>
           </div>
         </div>
       </fieldset>

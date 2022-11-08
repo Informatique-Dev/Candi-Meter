@@ -19,6 +19,7 @@ export class EmployeeComponent implements OnInit {
   totalItems: number = 0;
   allEmployees: emplyee[] = [];
   company:Company[]=[];
+  isRestButtonAppear: boolean;
   
 
   constructor(
@@ -98,6 +99,12 @@ export class EmployeeComponent implements OnInit {
   }
   changeVisibility() {
     this.isVisible = !this.isVisible;
+  }
+  appearRest() {
+    this.isRestButtonAppear = true;
+  }
+  resetTheForm(){
+    this.employeeForm.reset();
   }
 
 }
