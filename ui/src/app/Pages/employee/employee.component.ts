@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'src/app/core/services/config/message.service';
 import { Company } from 'src/app/domain/company/models/company';
 import { EmployeeRepository } from 'src/app/domain/employee/employee.repository';
-import { emplyee } from 'src/app/domain/employee/models/emplyee';
+import { Emplyee } from 'src/app/domain/employee/models/emplyee';
 import { CompanyRepository } from 'src/app/domain/company/company.repository';
 
 @Component({
@@ -17,7 +17,7 @@ export class EmployeeComponent implements OnInit {
   page: number = 0;
   size: number = 10;
   totalItems: number = 0;
-  allEmployees: emplyee[] = [];
+  allEmployees: Emplyee[] = [];
   company:Company[]=[];
   isRestButtonAppear: boolean;
   
@@ -72,7 +72,7 @@ export class EmployeeComponent implements OnInit {
         console.log(this.company)
       }); 
   }
-  fetchData(employeeData:emplyee):void{
+  fetchData(employeeData:Emplyee):void{
   this.employeeForm.reset();
   this.isVisible=true;
   
@@ -89,7 +89,7 @@ export class EmployeeComponent implements OnInit {
       this.changeVisibility();
     })
   }
-  deleteEmployee(employeeData:emplyee){
+  deleteEmployee(employeeData:Emplyee){
     this.message.deleteConfirmation('','Are you sure want to delete this employee ? ').subscribe(res =>{
       if(res.success)
       this.employeeRepository.delete(employeeData.id).subscribe(()=>{
