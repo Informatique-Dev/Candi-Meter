@@ -1,15 +1,15 @@
 <div class="candidate-Laytout">
   <fieldset>
-    <h1 fxLayoutAlign="center center">All Employees</h1>
+    <h1 fxLayoutAlign="center center">{{ "employee" | translate }}</h1>
     <div fxLayoutAlign="center center">
       <table mat-table class="mat-elevation-z8 table">
         <ng-container matColumnDef="Question">
-          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <th mat-header-cell *matHeaderCellDef>{{ "no" | translate }}</th>
           <td mat-cell></td>
         </ng-container>
 
         <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <th mat-header-cell *matHeaderCellDef>{{ "name" | translate }}</th>
           <td mat-cell></td>
         </ng-container>
 
@@ -37,16 +37,16 @@
     <br />
     <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
       <fieldset>
-        <legend>Employee Info</legend>
+        <legend>{{ "employee-info" | translate }}</legend>
         <div class="all-Inpt">
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-              <mat-label>Employee Name</mat-label>
+              <mat-label>{{ "employee-name" | translate }}</mat-label>
               <input
                 formControlName="name"
                 type="text"
                 matInput
-                placeholder="enter your Employee Name"
+                placeholder="{{ 'employee-validation' | translate }}"
               />
               <mat-error
                 *ngIf="
@@ -54,19 +54,20 @@
                   !employeeForm.controls['name'].hasError('required')
                 "
               >
-                Please enter a Employee Name
+                {{ "employee-validation" | translate }}
               </mat-error>
               <mat-error
                 *ngIf="employeeForm.controls['name'].hasError('required')"
               >
-                Employee Name is <strong>required</strong>
+                {{ "employee-name" | translate }}
+                <strong>{{ "required" | translate }}</strong>
               </mat-error>
             </mat-form-field>
           </div>
 
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-              <mat-label>Choose Company</mat-label>
+              <mat-label>{{ "choose-company" | translate }}</mat-label>
               <mat-select #mode value="side" formControlName="companyId">
                 <mat-option value="side">Side</mat-option>
                 <mat-option value="over">Over</mat-option>
@@ -85,7 +86,7 @@
               fxFlex="40"
               class="addbtn"
             >
-              Add Employee
+              {{ "add" | translate }}
             </button>
           </div>
         </div>

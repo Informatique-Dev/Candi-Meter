@@ -7,8 +7,13 @@ import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { SideBarListComponent } from './components/side-bar-list/side-bar-list.component';
 import { HomePageComponent } from '../Pages/home-page/home-page.component';
-import { ConfirmBoxConfigModule, NgxAwesomePopupModule, ToastNotificationConfigModule } from '@costlydeveloper/ngx-awesome-popup';
+import {
+  ConfirmBoxConfigModule,
+  NgxAwesomePopupModule,
+  ToastNotificationConfigModule,
+} from '@costlydeveloper/ngx-awesome-popup';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -16,23 +21,23 @@ import { HotToastModule } from '@ngneat/hot-toast';
     MainComponent,
     SideBarListComponent,
     HomePageComponent,
-    ],
+  ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
+    TranslateModule,
     ToastNotificationConfigModule.forRoot(),
-    HotToastModule.forRoot( {
-      style:{
-        border:'1px solid #713200',
-        padding:'10px',
-        margin:'170px',
-        color:'#713200',
-        'font-size':'25px',
-        'width':'500px',
+    HotToastModule.forRoot({
+      style: {
+        border: '1px solid #713200',
+        padding: '10px',
+        margin: '170px',
+        color: '#713200',
+        'font-size': '25px',
+        width: '500px',
       },
-    }
-    ),
+    }),
     NgxAwesomePopupModule.forRoot({
       colorList: {
         success: '#3caea3',
@@ -40,29 +45,26 @@ import { HotToastModule } from '@ngneat/hot-toast';
         warning: '#ffc107',
         danger: '#e46464',
         customOne: '#3ebb1a',
-        customTwo: '#bd47fa'
+        customTwo: '#bd47fa',
       },
-
     }),
     ConfirmBoxConfigModule.forRoot({
       confirmBoxCoreConfig: {
         customStyles: {
-          textCSS: 'color: #454545; font-size: 25px; background: #FFFFFF; font-weight: bold;',
-        }
-      }
+          textCSS:
+            'color: #454545; font-size: 25px; background: #FFFFFF; font-weight: bold;',
+        },
+      },
     }),
- ],
-  providers: [
-
-  ]
+  ],
+  providers: [],
 })
 export class CoreModule {
-
-  constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
       throw new Error(
-        'CoreModule is already loaded. Import it in the AppModule only');
+        'CoreModule is already loaded. Import it in the AppModule only'
+      );
     }
   }
-
- }
+}

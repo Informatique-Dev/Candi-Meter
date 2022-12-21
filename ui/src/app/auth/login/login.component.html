@@ -15,18 +15,19 @@
     >
       <div fxLayout="column" fxLayoutAlign="center">
         <div fxLayout="row" fxLayoutAlign="center">
-          <h1 class="titleLogin">Welcome To Candi Meter</h1>
+          <h1 class="titleLogin">{{ "welcome" | translate }}</h1>
         </div>
       </div>
       <div fxLayout="column" fxLayoutAlign="center">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div fxLayoutAlign="center">
             <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
-              <mat-label>Email</mat-label>
+              <mat-label>{{ "mail" | translate }}</mat-label>
               <input formControlName="email" type="email" matInput />
               <mat-error
                 *ngIf="loginForm.controls['email'].hasError('required')"
-                >email is required
+                >{{ "mail" | translate }}
+                <strong>{{ "required" | translate }}</strong>
               </mat-error>
               <mat-error
                 *ngIf="
@@ -34,13 +35,13 @@
                   !loginForm.controls['email'].hasError('required')
                 "
               >
-                Please enter a valid email (example@gmail.com)
+                {{ "mail-validation" | translate }}
               </mat-error>
             </mat-form-field>
           </div>
           <div fxLayoutAlign="center">
             <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
-              <mat-label>Password</mat-label>
+              <mat-label>{{ "password" | translate }}</mat-label>
               <input
                 formControlName="password"
                 [type]="hidePassword ? 'password' : 'text'"
@@ -50,7 +51,8 @@
                 >{{ hidePassword ? "visibility_off" : "visibility" }}
               </mat-icon>
               <mat-error *ngIf="loginForm.controls['password'].invalid"
-                >Password is required</mat-error
+                >{{ "password" | translate }}
+                <strong>{{ "required" | translate }}</strong></mat-error
               >
             </mat-form-field>
           </div>
@@ -63,12 +65,13 @@
                 color="primary"
                 class="btnLogin"
               >
-                Login
+                {{ "login" | translate }}
               </button>
               <p class="createAccount" fxLayoutAlign="center">
-                Don't have an account? &nbsp;<a routerLink="/register"
-                  >Create Account</a
-                >
+                {{ "account-login-question" | translate }} &nbsp;<a
+                  routerLink="/register"
+                  >{{ "create-account" | translate }}
+                </a>
               </p>
             </div>
           </div>

@@ -16,7 +16,7 @@
   <div *ngIf="isVisible">
     <form [formGroup]="questionForm">
       <fieldset>
-        <legend>Candidate Question</legend>
+        <legend>{{ "candidate-question" | translate }}</legend>
         <div class="all-Inpt">
           <div fxLayoutAlign="center center">
             <mat-form-field
@@ -25,12 +25,12 @@
               fxFlex="60"
               (click)="appearRest()"
             >
-              <mat-label>Question</mat-label>
+              <mat-label>{{ "question" | translate }}</mat-label>
               <textarea
                 formControlName="description"
                 type="text"
                 matInput
-                placeholder="enter your Question"
+                placeholder="{{ 'question-validation' | translate }}"
               ></textarea>
               <mat-error
                 *ngIf="
@@ -40,14 +40,14 @@
                   !questionForm.controls['description'].hasError('required')
                 "
               >
-                Please enter a Question
+                {{ "question-validation" | translate }}
               </mat-error>
               <mat-error
                 *ngIf="
                   questionForm.controls['description'].hasError('required')
                 "
               >
-                Question is <strong>required</strong>
+                {{ "question-required" | translate }}
               </mat-error>
             </mat-form-field>
           </div>
@@ -64,8 +64,8 @@
             >
               {{
                 questionForm.controls["id"].value
-                  ? "Update Question"
-                  : "Add Question"
+                  ? ("update" | translate)
+                  : ("add" | translate)
               }}
             </button>
             <div *ngIf="isRestButtonAppear">
@@ -85,16 +85,18 @@
       </fieldset>
     </form>
   </div>
-  <h1 fxLayoutAlign="center center">All Questions</h1>
+  <h1 fxLayoutAlign="center center">{{ "question" | translate }}</h1>
   <div fxLayoutAlign="center center">
     <table mat-table class="mat-elevation-z8 table" [dataSource]="allQuestions">
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <th mat-header-cell *matHeaderCellDef>{{ "no" | translate }}</th>
         <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
       </ng-container>
 
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "description" | translate }}
+        </th>
         <td mat-cell *matCellDef="let element">{{ element.description }}</td>
       </ng-container>
 

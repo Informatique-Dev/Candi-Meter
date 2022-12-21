@@ -16,16 +16,16 @@
   <div *ngIf="isVisible">
     <form [formGroup]="InterviewForm" (ngSubmit)="onSubmit()">
       <fieldset>
-        <legend>Interviews</legend>
+        <legend>{{ "interview" | translate }}</legend>
         <div class="all-Inpt">
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-              <mat-label>Evaluation</mat-label>
+              <mat-label>{{ "evaluation" | translate }}</mat-label>
               <textarea
                 formControlName="evaluation"
                 type="text"
                 matInput
-                placeholder="enter your evaluation"
+                placeholder="{{ 'evaluation-validation' | translate }}"
               ></textarea>
               <mat-error
                 *ngIf="
@@ -33,21 +33,22 @@
                   !InterviewForm.controls['evaluation'].hasError('required')
                 "
               >
-                Please enter a description
+                {{ "evaluation-validation" | translate }}
               </mat-error>
               <mat-error
                 *ngIf="
                   InterviewForm.controls['evaluation'].hasError('required')
                 "
               >
-                evaluation is <strong>required</strong>
+                {{ "evaluation" | translate }}
+                <strong>{{ "required" | translate }}</strong>
               </mat-error>
             </mat-form-field>
           </div>
 
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-              <mat-label>Choose employee</mat-label>
+              <mat-label>{{ "choose-employee" | translate }}</mat-label>
               <mat-select #mode value="side" formControlName="employeeId">
                 <mat-option value="side">Side</mat-option>
                 <mat-option value="over">Over</mat-option>
@@ -63,23 +64,23 @@
               fxFlex.lt-lg="80%"
               fxFlex="40"
             >
-              Add Interview
+              {{ "add" | translate }}
             </button>
           </div>
         </div>
       </fieldset>
     </form>
   </div>
-  <h1 fxLayoutAlign="center center">All Interviews</h1>
+  <h1 fxLayoutAlign="center center">{{ "interview" | translate }}</h1>
   <div fxLayoutAlign="center center">
     <table mat-table class="mat-elevation-z8 table">
       <ng-container matColumnDef="evaluation">
-        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <th mat-header-cell *matHeaderCellDef>{{ "no" | translate }}</th>
         <td mat-cell></td>
       </ng-container>
 
       <ng-container matColumnDef="employee">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <th mat-header-cell *matHeaderCellDef>{{ "name" | translate }}</th>
         <td mat-cell></td>
       </ng-container>
 

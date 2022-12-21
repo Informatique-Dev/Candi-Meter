@@ -1,76 +1,169 @@
-<div fxLayoutAlign="center center" class="registerPage" [@registerScreenAnimation]="registerScreenAnimation"
-  (@registerScreenAnimation.done)="setBackToUnchecked()">
-
-  <div fxFlex="95" fxFlex.lt-md="100" fxFlexFill fxLayout="row" class="contentregisterPage">
+<div
+  fxLayoutAlign="center center"
+  class="registerPage"
+  [@registerScreenAnimation]="registerScreenAnimation"
+  (@registerScreenAnimation.done)="setBackToUnchecked()"
+>
+  <div
+    fxFlex="95"
+    fxFlex.lt-md="100"
+    fxFlexFill
+    fxLayout="row"
+    class="contentregisterPage"
+  >
     <div fxLayout="row wrap">
-      <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column" fxFlexAlign="stretch">
+      <div
+        fxFlex="50"
+        fxFlex.lt-md="100"
+        fxLayout="column"
+        fxFlexAlign="stretch"
+      >
         <div fxLayout="column" fxFlexAlign="stretch">
           <img class="responsiveImg" src="assets/login.jpg" />
         </div>
       </div>
 
-      <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column" class="mat-app-background" @handelTransition>
+      <div
+        fxFlex="50"
+        fxFlex.lt-md="100"
+        fxLayout="column"
+        class="mat-app-background"
+        @handelTransition
+      >
         <div fxLayout="column" fxLayoutAlign="center">
           <div fxLayout="row" fxLayoutAlign="center">
-            <h1 class="title">Welcome To Candi Meter</h1>
+            <h1 class="title">{{ "welcome" | translate }}</h1>
           </div>
         </div>
         <div fxLayout="column" fxLayoutAlign="center">
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div fxLayoutAlign="center">
-              <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
-                <mat-label>Email</mat-label>
-                <input formControlName="email" type="email" matInput autofocus>
-                <mat-error *ngIf="registerForm.controls['email'].hasError('required')">email is required
+              <mat-form-field
+                fxFlex="60"
+                fxFlex.lt-md="90"
+                appearance="outline"
+              >
+                <mat-label>{{ "mail" | translate }}</mat-label>
+                <input
+                  formControlName="email"
+                  type="email"
+                  matInput
+                  autofocus
+                />
+                <mat-error
+                  *ngIf="registerForm.controls['email'].hasError('required')"
+                  >{{ "mail" | translate }}
+                  <strong>{{ "required" | translate }}</strong>
                 </mat-error>
                 <mat-error
-                  *ngIf="registerForm.controls['email'].hasError('pattern') && !registerForm.controls['email'].hasError('required')">
-                  Please enter a valid email (example@gmail.com)
+                  *ngIf="
+                    registerForm.controls['email'].hasError('pattern') &&
+                    !registerForm.controls['email'].hasError('required')
+                  "
+                >
+                  {{ "mail-validation" | translate }}
                 </mat-error>
               </mat-form-field>
             </div>
             <div fxLayoutAlign="center">
-              <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
-                <mat-label>Password</mat-label>
-                <input formControlName="password" [type]="hidePassword ? 'password' : 'text'" matInput>
-                <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' :
-                  'visibility'}}</mat-icon>
+              <mat-form-field
+                fxFlex="60"
+                fxFlex.lt-md="90"
+                appearance="outline"
+              >
+                <mat-label>{{ "password" | translate }}</mat-label>
+                <input
+                  formControlName="password"
+                  [type]="hidePassword ? 'password' : 'text'"
+                  matInput
+                />
+                <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{
+                  hidePassword ? "visibility_off" : "visibility"
+                }}</mat-icon>
                 <mat-hint *ngIf="!registerForm.controls['password'].value">
-                  * Minimum eight characters <br>
-                  * Minimum one uppercase letter<br>
-                  * Minimum one lowercase letter<br>
-                  * Minimum one number</mat-hint>
-                <mat-error *ngIf="registerForm.controls['password'].hasError('required')">password is
-                  required
+                  {{ "password-characters" | translate }} <br />
+                  {{ "password-uppercase" | translate }}<br />
+                  {{ "password-lowercase" | translate }}<br />
+                  {{ "password-number" | translate }}</mat-hint
+                >
+                <mat-error
+                  *ngIf="registerForm.controls['password'].hasError('required')"
+                  >{{ "password" | translate }}
+                  <strong>{{ "required" | translate }}</strong>
                 </mat-error>
                 <mat-error
-                  *ngIf="registerForm.controls['password'].hasError('pattern') && !registerForm.controls['password'].hasError('required')">
-                  Please enter a vaild password (Abcd1234)
+                  *ngIf="
+                    registerForm.controls['password'].hasError('pattern') &&
+                    !registerForm.controls['password'].hasError('required')
+                  "
+                >
+                  {{ "valid-password" | translate }}
                 </mat-error>
               </mat-form-field>
-            </div> <br><br>
+            </div>
+            <br /><br />
             <div fxLayoutAlign="center">
-              <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
-                <mat-label>Confirm Password</mat-label>
-                <input formControlName="confirmPassword" matInput [type]="hideConfirmPassword ? 'password' : 'text'">
+              <mat-form-field
+                fxFlex="60"
+                fxFlex.lt-md="90"
+                appearance="outline"
+              >
+                <mat-label>{{ "confirm-password" | translate }}</mat-label>
+                <input
+                  formControlName="confirmPassword"
+                  matInput
+                  [type]="hideConfirmPassword ? 'password' : 'text'"
+                />
 
-                <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{hideConfirmPassword ?
-                  'visibility_off' : 'visibility'}}</mat-icon>
-                <mat-error *ngIf="registerForm.controls['confirmPassword'].hasError('required')">confirm password is
-                  required
+                <mat-icon
+                  matSuffix
+                  (click)="hideConfirmPassword = !hideConfirmPassword"
+                  >{{
+                    hideConfirmPassword ? "visibility_off" : "visibility"
+                  }}</mat-icon
+                >
+                <mat-error
+                  *ngIf="
+                    registerForm.controls['confirmPassword'].hasError(
+                      'required'
+                    )
+                  "
+                  >{{ "confirm-password" | translate }}
+                  <strong>{{ "required" | translate }}</strong>
                 </mat-error>
                 <mat-error
-                  *ngIf="registerForm.controls['confirmPassword'].hasError('MustMatch')&& !registerForm.controls['confirmPassword'].hasError('required')">
-                  Password and confirm password not match
+                  *ngIf="
+                    registerForm.controls['confirmPassword'].hasError(
+                      'MustMatch'
+                    ) &&
+                    !registerForm.controls['confirmPassword'].hasError(
+                      'required'
+                    )
+                  "
+                >
+                  {{ "password-match" | translate }}
                 </mat-error>
               </mat-form-field>
             </div>
             <div fxLayoutAlign="center">
               <div fxLayout="column">
-                <button type="submit" mat-raised-button type="submit" color="primary" class="btnRegister"
-                  (click)="toggle()">Register</button>
-                <p class="Login" fxLayoutAlign="center">have an account? &nbsp;<a routerLink="/login"
-                    (click)="toggle()">Login</a></p>
+                <button
+                  type="submit"
+                  mat-raised-button
+                  type="submit"
+                  color="primary"
+                  class="btnRegister"
+                  (click)="toggle()"
+                >
+                  {{ "register" | translate }}
+                </button>
+                <p class="Login" fxLayoutAlign="center">
+                  {{ "account-register-question" | translate }} &nbsp;<a
+                    routerLink="/login"
+                    (click)="toggle()"
+                    >{{ "login" | translate }}</a
+                  >
+                </p>
               </div>
             </div>
           </form>

@@ -1,13 +1,11 @@
 <div class="about">
   <p @side class="text-about" fxFlex="75" fxFlex.lt-md="100">
-    Informatique is an Egyptian shareholding company with main premises in Cairo
-    and a branch in Kuwait to manage the Gulf operations, The Company has been
-    established on 2000.
+    {{ "about" | translate }}
   </p>
 </div>
 
 <div>
-  <h1 class="title-field">Our Fields</h1>
+  <h1 class="title-field">{{ "our-fields" | translate }}</h1>
   <div fxLayout="row wrap" @card-came-left fxLayoutAlign="center center">
     <div
       fxFlex="30"
@@ -29,7 +27,7 @@
           <p class="no-margin">{{ topic.description }}</p>
           <br />
           <button routerLink="/main/interview" class="card-button">
-            interviews
+            {{ "interview" | translate }}
           </button>
         </div>
       </div>
@@ -39,7 +37,7 @@
 
 <div fxLayout="row" fxLayoutAlign="space-around center" class="footer">
   <div fxFlexAlign="baseline" class="footer-part">
-    <h3 class="footer-titles">About Us</h3>
+    <h3 class="footer-titles">{{ "about-us" | translate }}</h3>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut tempora
       adipisci, natus eaque vitae nulla eligendi eos doloremque id, autem
@@ -48,7 +46,7 @@
     </p>
   </div>
   <div fxFlexAlign="baseline" class="footer-part">
-    <h3 class="footer-titles">Why we are special ?</h3>
+    <h3 class="footer-titles">{{ "special" | translate }}</h3>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut tempora
       adipisci, natus eaque vitae nulla eligendi eos doloremque id, autem
@@ -57,14 +55,14 @@
     </p>
   </div>
   <div fxFlexAlign="baseline">
-    <h3 class="footer-titles">fields</h3>
+    <h3 class="footer-titles">{{ "our-fields" | translate }}</h3>
     <p class="footer-data" *ngFor="let topic of allTopics">{{ topic.name }}</p>
   </div>
   <div fxFlexAlign="baseline">
-    <h3 class="footer-titles">Branches</h3>
+    <h3 class="footer-titles">{{ "branches" | translate }}</h3>
     <div class="footer-data">
-      <p>Cairo</p>
-      <p>Assuit</p>
+      <p>{{ "cairo" | translate }}</p>
+      <p>{{ "assuit" | translate }}</p>
     </div>
   </div>
 
