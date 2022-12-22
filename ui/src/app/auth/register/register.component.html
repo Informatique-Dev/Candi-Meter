@@ -3,6 +3,7 @@
   class="registerPage"
   [@registerScreenAnimation]="registerScreenAnimation"
   (@registerScreenAnimation.done)="setBackToUnchecked()"
+  [dir]="'direction' | translate"
 >
   <div
     fxFlex="95"

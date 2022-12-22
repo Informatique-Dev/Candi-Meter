@@ -1,12 +1,14 @@
-<mat-sidenav-container class="container">
-    <mat-sidenav #sidenav mode="side" position="start" class="side-nav">
-        <app-side-bar-list></app-side-bar-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <app-header [sideNavItem]="sidenav" ></app-header>
-        <router-outlet></router-outlet>
-        <div class="footer">
-            <app-footer></app-footer>
-        </div>
-    </mat-sidenav-content>
+<mat-sidenav-container class="container" [dir]="'direction' | translate">
+  <mat-sidenav #sidenav mode="side" position="start" class="side-nav">
+    <app-side-bar-list></app-side-bar-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header [sideNavItem]="sidenav"></app-header>
+    <div [dir]="'direction' | translate">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="footer">
+      <app-footer></app-footer>
+    </div>
+  </mat-sidenav-content>
 </mat-sidenav-container>

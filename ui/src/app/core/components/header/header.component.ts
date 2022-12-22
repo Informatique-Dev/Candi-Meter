@@ -9,13 +9,23 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent {
   @Input() sideNavItem: MatSidenav;
-  constructor(private translate: TranslateService) {}
+  lang: string = 'en';
+
+  constructor(private translate: TranslateService) {
+    this.lang = this.translate.currentLang;
+  }
 
   clickMenu() {
     this.sideNavItem.toggle();
   }
 
-  selectTranslate(event: any) {
-    this.translate.use(event.target.value);
+  selectTranslate() {
+    // this.translate.use(event.target.value);
+    if (this.lang == 'en') {
+      localStorage.setItem('lang', 'ar');
+    } else {
+      localStorage.setItem('lang', 'en');
+    }
+    window.location.reload();
   }
 }

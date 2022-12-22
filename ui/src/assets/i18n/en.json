@@ -58,5 +58,6 @@
   "account-register-question": "have an account?",
   "register": "Register",
   "en-options": "English-EN",
-  "ar-options": "Arabic-AR"
+  "ar-options": "Arabic-AR",
+  "direction": "ltr"
 }

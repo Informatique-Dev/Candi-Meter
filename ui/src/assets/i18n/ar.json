@@ -58,5 +58,6 @@
   "account-register-question": "لديك حساب ؟",
   "register": "تسجيل",
   "en-options": "الانجليزية-EN",
-  "ar-options": "العربية-AR"
+  "ar-options": "العربية-AR",
+  "direction": "rtl"
 }
