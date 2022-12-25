@@ -33,7 +33,7 @@
       >
         <div fxLayout="column" fxLayoutAlign="center">
           <div fxLayout="row" fxLayoutAlign="center">
-            <h1 class="title">{{ "welcome" | translate }}</h1>
+            <h1 class="title">{{ "register-page.welcome" | translate }}</h1>
           </div>
         </div>
         <div fxLayout="column" fxLayoutAlign="center">
@@ -44,7 +44,7 @@
                 fxFlex.lt-md="90"
                 appearance="outline"
               >
-                <mat-label>{{ "mail" | translate }}</mat-label>
+                <mat-label>{{ "register-page.mail" | translate }}</mat-label>
                 <input
                   formControlName="email"
                   type="email"
@@ -53,8 +53,8 @@
                 />
                 <mat-error
                   *ngIf="registerForm.controls['email'].hasError('required')"
-                  >{{ "mail" | translate }}
-                  <strong>{{ "required" | translate }}</strong>
+                  >{{ "register-page.mail" | translate }}
+                  <strong>{{ "register-page.required" | translate }}</strong>
                 </mat-error>
                 <mat-error
                   *ngIf="
@@ -62,7 +62,7 @@
                     !registerForm.controls['email'].hasError('required')
                   "
                 >
-                  {{ "mail-validation" | translate }}
+                  {{ "register-page.mail-validation" | translate }}
                 </mat-error>
               </mat-form-field>
             </div>
@@ -72,7 +72,9 @@
                 fxFlex.lt-md="90"
                 appearance="outline"
               >
-                <mat-label>{{ "password" | translate }}</mat-label>
+                <mat-label>{{
+                  "register-page.password" | translate
+                }}</mat-label>
                 <input
                   formControlName="password"
                   [type]="hidePassword ? 'password' : 'text'"
@@ -82,15 +84,15 @@
                   hidePassword ? "visibility_off" : "visibility"
                 }}</mat-icon>
                 <mat-hint *ngIf="!registerForm.controls['password'].value">
-                  {{ "password-characters" | translate }} <br />
-                  {{ "password-uppercase" | translate }}<br />
-                  {{ "password-lowercase" | translate }}<br />
-                  {{ "password-number" | translate }}</mat-hint
+                  {{ "register-page.password-characters" | translate }} <br />
+                  {{ "register-page.password-uppercase" | translate }}<br />
+                  {{ "register-page.password-lowercase" | translate }}<br />
+                  {{ "register-page.password-number" | translate }}</mat-hint
                 >
                 <mat-error
                   *ngIf="registerForm.controls['password'].hasError('required')"
-                  >{{ "password" | translate }}
-                  <strong>{{ "required" | translate }}</strong>
+                  >{{ "register-page.password" | translate }}
+                  <strong>{{ "register-page.required" | translate }}</strong>
                 </mat-error>
                 <mat-error
                   *ngIf="
@@ -98,7 +100,7 @@
                     !registerForm.controls['password'].hasError('required')
                   "
                 >
-                  {{ "valid-password" | translate }}
+                  {{ "register-page.valid-password" | translate }}
                 </mat-error>
               </mat-form-field>
             </div>
@@ -109,7 +111,9 @@
                 fxFlex.lt-md="90"
                 appearance="outline"
               >
-                <mat-label>{{ "confirm-password" | translate }}</mat-label>
+                <mat-label>{{
+                  "register-page.confirm-password" | translate
+                }}</mat-label>
                 <input
                   formControlName="confirmPassword"
                   matInput
@@ -129,8 +133,8 @@
                       'required'
                     )
                   "
-                  >{{ "confirm-password" | translate }}
-                  <strong>{{ "required" | translate }}</strong>
+                  >{{ "register-page.confirm-password" | translate }}
+                  <strong>{{ "register-page.required" | translate }}</strong>
                 </mat-error>
                 <mat-error
                   *ngIf="
@@ -142,7 +146,7 @@
                     )
                   "
                 >
-                  {{ "password-match" | translate }}
+                  {{ "register-page.password-match" | translate }}
                 </mat-error>
               </mat-form-field>
             </div>
@@ -156,14 +160,13 @@
                   class="btnRegister"
                   (click)="toggle()"
                 >
-                  {{ "register" | translate }}
+                  {{ "register-page.register" | translate }}
                 </button>
                 <p class="Login" fxLayoutAlign="center">
-                  {{ "account-register-question" | translate }} &nbsp;<a
-                    routerLink="/login"
-                    (click)="toggle()"
-                    >{{ "login" | translate }}</a
-                  >
+                  {{ "register-page.account-register-question" | translate }}
+                  &nbsp;<a routerLink="/login" (click)="toggle()">{{
+                    "register-page.login" | translate
+                  }}</a>
                 </p>
               </div>
             </div>

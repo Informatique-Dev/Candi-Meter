@@ -1,5 +1,5 @@
 <div fxLayoutAlign="center center" fxLayout="column">
-  <h1>Contact Us</h1>
+  <h1>{{ "contact-us-page.contact-us" | translate }}</h1>
   <div class="contact">
     <div
       div
@@ -16,13 +16,13 @@
         >
           <div class="material-icons icons-contact">location_on</div>
           <div>
-            <h4>Address</h4>
+            <h4>{{ "contact-us-page.address" | translate }}</h4>
             <ul>
               <li>
-                <p>3 Ismail Qabany st., off Tayaran st. Nasr City, Cairo.</p>
+                <p>{{ "contact-us-page.address-one" | translate }}</p>
               </li>
               <li>
-                <p>Mahmod Rashoan st., Assuit.</p>
+                <p>{{ "contact-us-page.address-two" | translate }}</p>
               </li>
             </ul>
           </div>
@@ -35,8 +35,8 @@
         >
           <div class="material-icons icons-contact">email</div>
           <div>
-            <h4>Email</h4>
-            <p>&nbsp;&nbsp; Info@Informatique-edu.com</p>
+            <h4>{{ "contact-us-page.mail" | translate }}</h4>
+            <p>&nbsp;&nbsp; {{ "contact-us-page.company-mail" | translate }}</p>
           </div>
         </div>
         <div
@@ -47,7 +47,7 @@
         >
           <div class="material-icons icons-contact">call</div>
           <div>
-            <h4>Phone</h4>
+            <h4>{{ "contact-us-page.phone" | translate }}</h4>
             <p>&nbsp;&nbsp; (202)24027637</p>
           </div>
         </div>
@@ -59,37 +59,45 @@
           method="POST"
         >
           <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
-            <mat-label class="input-contact">Name</mat-label>
+            <mat-label class="input-contact">{{
+              "contact-us-page.name" | translate
+            }}</mat-label>
             <input
               type="text"
               name="name"
-              placeholder="Your Name"
+              placeholder="{{ 'contact-us-page.name-placeholder' | translate }}"
               matInput
               required
             />
           </mat-form-field>
           <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
-            <mat-label class="input-contact">Email</mat-label>
+            <mat-label class="input-contact">{{
+              "contact-us-page.mail" | translate
+            }}</mat-label>
             <input
               type="email"
               name="email"
-              placeholder="Your Email"
+              placeholder="{{ 'contact-us-page.mail-placeholder' | translate }}"
               matInput
               required
             />
           </mat-form-field>
           <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
-            <mat-label class="input-contact">Message</mat-label>
+            <mat-label class="input-contact">{{
+              "contact-us-page.message" | translate
+            }}</mat-label>
             <textarea
               type="text"
               name="message"
-              placeholder="Your Message"
+              placeholder="{{
+                'contact-us-page.message-placeholder' | translate
+              }}"
               matInput
               required
             ></textarea>
           </mat-form-field>
           <button type="submit" mat-raised-button class="send">
-            Send Message
+            {{ "contact-us-page.send-message" | translate }}
           </button>
         </form>
       </div>

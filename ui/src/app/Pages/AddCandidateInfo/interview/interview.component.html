@@ -16,16 +16,20 @@
   <div *ngIf="isVisible">
     <form [formGroup]="InterviewForm" (ngSubmit)="onSubmit()">
       <fieldset>
-        <legend>{{ "interview" | translate }}</legend>
+        <legend>{{ "interview-page.interview" | translate }}</legend>
         <div class="all-Inpt">
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-              <mat-label>{{ "evaluation" | translate }}</mat-label>
+              <mat-label>{{
+                "interview-page.evaluation" | translate
+              }}</mat-label>
               <textarea
                 formControlName="evaluation"
                 type="text"
                 matInput
-                placeholder="{{ 'evaluation-validation' | translate }}"
+                placeholder="{{
+                  'interview-page.evaluation-validation' | translate
+                }}"
               ></textarea>
               <mat-error
                 *ngIf="
@@ -33,22 +37,24 @@
                   !InterviewForm.controls['evaluation'].hasError('required')
                 "
               >
-                {{ "evaluation-validation" | translate }}
+                {{ "interview-page.evaluation-validation" | translate }}
               </mat-error>
               <mat-error
                 *ngIf="
                   InterviewForm.controls['evaluation'].hasError('required')
                 "
               >
-                {{ "evaluation" | translate }}
-                <strong>{{ "required" | translate }}</strong>
+                {{ "interview-page.evaluation" | translate }}
+                <strong>{{ "interview-page.required" | translate }}</strong>
               </mat-error>
             </mat-form-field>
           </div>
 
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-              <mat-label>{{ "choose-employee" | translate }}</mat-label>
+              <mat-label>{{
+                "interview-page.choose-employee" | translate
+              }}</mat-label>
               <mat-select #mode value="side" formControlName="employeeId">
                 <mat-option value="side">Side</mat-option>
                 <mat-option value="over">Over</mat-option>
@@ -64,23 +70,29 @@
               fxFlex.lt-lg="80%"
               fxFlex="40"
             >
-              {{ "add" | translate }}
+              {{ "interview-page.add" | translate }}
             </button>
           </div>
         </div>
       </fieldset>
     </form>
   </div>
-  <h1 fxLayoutAlign="center center">{{ "interview" | translate }}</h1>
+  <h1 fxLayoutAlign="center center">
+    {{ "interview-page.interview" | translate }}
+  </h1>
   <div fxLayoutAlign="center center">
     <table mat-table class="mat-elevation-z8 table">
       <ng-container matColumnDef="evaluation">
-        <th mat-header-cell *matHeaderCellDef>{{ "no" | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "interview-page.no" | translate }}
+        </th>
         <td mat-cell></td>
       </ng-container>
 
       <ng-container matColumnDef="employee">
-        <th mat-header-cell *matHeaderCellDef>{{ "name" | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "interview-page.name" | translate }}
+        </th>
         <td mat-cell></td>
       </ng-container>
 

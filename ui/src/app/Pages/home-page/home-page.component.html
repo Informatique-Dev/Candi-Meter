@@ -1,12 +1,12 @@
 <div class="about">
   <p @side class="text-about" fxFlex="75" fxFlex.lt-md="100">
-    {{ "about" | translate }}
+    {{ "home-page.about" | translate }}
   </p>
 </div>
 
 <div>
   <h1 class="title-field" fxLayoutAlign="center center">
-    {{ "our-fields" | translate }}
+    {{ "home-page.our-fields" | translate }}
   </h1>
   <div fxLayout="row wrap" @card-came-left fxLayoutAlign="center center">
     <div
@@ -29,7 +29,7 @@
           <p class="no-margin">{{ topic.description }}</p>
           <br />
           <button routerLink="/main/interview" class="card-button">
-            {{ "interview" | translate }}
+            {{ "home-page.interview" | translate }}
           </button>
         </div>
       </div>
@@ -39,7 +39,7 @@
 
 <div fxLayout="row" fxLayoutAlign="space-around center" class="footer">
   <div fxFlexAlign="baseline" class="footer-part">
-    <h3 class="footer-titles">{{ "about-us" | translate }}</h3>
+    <h3 class="footer-titles">{{ "home-page.about-us" | translate }}</h3>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut tempora
       adipisci, natus eaque vitae nulla eligendi eos doloremque id, autem
@@ -48,7 +48,7 @@
     </p>
   </div>
   <div fxFlexAlign="baseline" class="footer-part">
-    <h3 class="footer-titles">{{ "special" | translate }}</h3>
+    <h3 class="footer-titles">{{ "home-page.special" | translate }}</h3>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut tempora
       adipisci, natus eaque vitae nulla eligendi eos doloremque id, autem
@@ -57,14 +57,14 @@
     </p>
   </div>
   <div fxFlexAlign="baseline">
-    <h3 class="footer-titles">{{ "our-fields" | translate }}</h3>
+    <h3 class="footer-titles">{{ "home-page.our-fields" | translate }}</h3>
     <p class="footer-data" *ngFor="let topic of allTopics">{{ topic.name }}</p>
   </div>
   <div fxFlexAlign="baseline">
-    <h3 class="footer-titles">{{ "branches" | translate }}</h3>
+    <h3 class="footer-titles">{{ "home-page.branches" | translate }}</h3>
     <div class="footer-data">
-      <p>{{ "cairo" | translate }}</p>
-      <p>{{ "assuit" | translate }}</p>
+      <p>{{ "home-page.cairo" | translate }}</p>
+      <p>{{ "home-page.assuit" | translate }}</p>
     </div>
   </div>
 

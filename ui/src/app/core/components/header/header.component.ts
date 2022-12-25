@@ -20,7 +20,6 @@ export class HeaderComponent {
   }
 
   selectTranslate() {
-    // this.translate.use(event.target.value);
     if (this.lang == 'en') {
       localStorage.setItem('lang', 'ar');
     } else {

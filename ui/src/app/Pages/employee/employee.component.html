@@ -1,15 +1,21 @@
 <div class="candidate-Laytout">
   <fieldset>
-    <h1 fxLayoutAlign="center center">{{ "employee" | translate }}</h1>
+    <h1 fxLayoutAlign="center center">
+      {{ "employee-page.employee" | translate }}
+    </h1>
     <div fxLayoutAlign="center center">
       <table mat-table class="mat-elevation-z8 table">
         <ng-container matColumnDef="Question">
-          <th mat-header-cell *matHeaderCellDef>{{ "no" | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "employee-page.no" | translate }}
+          </th>
           <td mat-cell></td>
         </ng-container>
 
         <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>{{ "name" | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "employee-page.name" | translate }}
+          </th>
           <td mat-cell></td>
         </ng-container>
 
@@ -37,16 +43,20 @@
     <br />
     <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
       <fieldset>
-        <legend>{{ "employee-info" | translate }}</legend>
+        <legend>{{ "employee-page.employee-info" | translate }}</legend>
         <div class="all-Inpt">
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-              <mat-label>{{ "employee-name" | translate }}</mat-label>
+              <mat-label>{{
+                "employee-page.employee-name" | translate
+              }}</mat-label>
               <input
                 formControlName="name"
                 type="text"
                 matInput
-                placeholder="{{ 'employee-validation' | translate }}"
+                placeholder="{{
+                  'employee-page.employee-validation' | translate
+                }}"
               />
               <mat-error
                 *ngIf="
@@ -54,20 +64,22 @@
                   !employeeForm.controls['name'].hasError('required')
                 "
               >
-                {{ "employee-validation" | translate }}
+                {{ "employee-page.employee-validation" | translate }}
               </mat-error>
               <mat-error
                 *ngIf="employeeForm.controls['name'].hasError('required')"
               >
-                {{ "employee-name" | translate }}
-                <strong>{{ "required" | translate }}</strong>
+                {{ "employee-page.employee-name" | translate }}
+                <strong>{{ "employee-page.required" | translate }}</strong>
               </mat-error>
             </mat-form-field>
           </div>
 
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60">
-              <mat-label>{{ "choose-company" | translate }}</mat-label>
+              <mat-label>{{
+                "employee-page.choose-company" | translate
+              }}</mat-label>
               <mat-select #mode value="side" formControlName="companyId">
                 <mat-option value="side">Side</mat-option>
                 <mat-option value="over">Over</mat-option>
@@ -86,7 +98,7 @@
               fxFlex="40"
               class="addbtn"
             >
-              {{ "add" | translate }}
+              {{ "employee-page.add" | translate }}
             </button>
           </div>
         </div>

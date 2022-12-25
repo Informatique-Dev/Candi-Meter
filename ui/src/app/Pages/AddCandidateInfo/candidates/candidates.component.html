@@ -17,7 +17,7 @@
   <div *ngIf="isVisible">
     <form [formGroup]="candidateForm">
       <fieldset>
-        <legend>{{ "candidate-info" | translate }}</legend>
+        <legend>{{ "candidate-page.info" | translate }}</legend>
         <div class="all-Inpt">
           <div fxLayoutAlign="center center">
             <mat-form-field
@@ -26,12 +26,12 @@
               fxFlex="70"
               (click)="appearRest()"
             >
-              <mat-label>{{ "name" | translate }}</mat-label>
+              <mat-label>{{ "candidate-page.name" | translate }}</mat-label>
               <input
                 formControlName="name"
                 type="text"
                 matInput
-                placeholder="{{ 'name-verified' | translate }}"
+                placeholder="{{ 'candidate-page.name-verified' | translate }}"
                 fxFlex="60"
               />
               <mat-error
@@ -40,25 +40,27 @@
                   !candidateForm.controls['name'].hasError('required')
                 "
               >
-                {{ "name-verified" | translate }}
+                {{ "candidate-page.name-verified" | translate }}
               </mat-error>
               <mat-error
                 *ngIf="candidateForm.controls['name'].hasError('required')"
               >
-                {{ "name-is" | translate }}
-                <strong>{{ "required" | translate }}</strong>
+                {{ "candidate-page.name-is" | translate }}
+                <strong>{{ "candidate-page.required" | translate }}</strong>
               </mat-error>
             </mat-form-field>
           </div>
 
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
-              <mat-label>{{ "phone" | translate }}</mat-label>
+              <mat-label>{{ "candidate-page.phone" | translate }}</mat-label>
               <input
                 formControlName="phone"
                 type="number"
                 matInput
-                placeholder="{{ 'phone-validation' | translate }}"
+                placeholder="{{
+                  'candidate-page.phone-validation' | translate
+                }}"
               />
               <mat-error
                 *ngIf="
@@ -66,25 +68,25 @@
                   !candidateForm.controls['phone'].hasError('required')
                 "
               >
-                {{ "phone-validation" | translate }}
+                {{ "candidate-page.phone-validation" | translate }}
               </mat-error>
               <mat-error
                 *ngIf="candidateForm.controls['phone'].hasError('required')"
               >
-                {{ "phone" | translate }}
-                <strong>{{ "required" | translate }}</strong>
+                {{ "candidate-page.phone" | translate }}
+                <strong>{{ "candidate-page.required" | translate }}</strong>
               </mat-error>
             </mat-form-field>
           </div>
 
           <div fxLayoutAlign="center center">
             <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
-              <mat-label>{{ "mail" | translate }}</mat-label>
+              <mat-label>{{ "candidate-page.mail" | translate }}</mat-label>
               <input
                 formControlName="email"
                 type="email"
                 matInput
-                placeholder="{{ 'mail-validation' | translate }}"
+                placeholder="{{ 'candidate-page.mail-validation' | translate }}"
               />
               <mat-error
                 *ngIf="
@@ -92,14 +94,14 @@
                   !candidateForm.controls['email'].hasError('required')
                 "
               >
-                {{ "mail-validation" | translate }}
+                {{ "candidate-page.mail-validation" | translate }}
               </mat-error>
 
               <mat-error
                 *ngIf="candidateForm.controls['email'].hasError('required')"
               >
-                {{ "mail" | translate }}
-                <strong>{{ "required" | translate }}</strong>
+                {{ "candidate-page.mail" | translate }}
+                <strong>{{ "candidate-page.required" | translate }}</strong>
               </mat-error>
             </mat-form-field>
           </div>
@@ -116,7 +118,7 @@
             <label for="upload">
               <h2>
                 <mat-icon mat-mini-fab>attach_file</mat-icon
-                >{{ "choose-file" | translate }}
+                >{{ "candidate-page.choose-file" | translate }}
               </h2>
             </label>
             <div>
@@ -135,8 +137,8 @@
             >
               {{
                 candidateForm.controls["id"].value
-                  ? ("update" | translate)
-                  : ("add" | translate)
+                  ? ("candidate-page.update" | translate)
+                  : ("candidate-page.add" | translate)
               }}
             </button>
 
@@ -159,7 +161,9 @@
     </form>
   </div>
 
-  <h1 fxLayoutAlign="center center">{{ "candidate" | translate }}</h1>
+  <h1 fxLayoutAlign="center center">
+    {{ "candidate-page.candidate" | translate }}
+  </h1>
   <div fxLayoutAlign="center center">
     <table
       mat-table
@@ -167,22 +171,30 @@
       [dataSource]="allCandidates"
     >
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>{{ "no" | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "candidate-page.no" | translate }}
+        </th>
         <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
       </ng-container>
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>{{ "name" | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "candidate-page.name" | translate }}
+        </th>
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>{{ "mail" | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "candidate-page.mail" | translate }}
+        </th>
         <td mat-cell *matCellDef="let allCandidates">
           {{ allCandidates.email }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef>{{ "phone" | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "candidate-page.phone" | translate }}
+        </th>
         <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
       </ng-container>
 
