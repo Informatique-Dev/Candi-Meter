@@ -4,84 +4,104 @@
   [dir]="'direction' | translate"
 >
   <div
-    fxFlex="50"
+    fxFlex="95"
     fxFlex.lt-md="100"
     fxFlexFill
     fxLayout="row"
     class="contentLoginPage"
   >
-    <div
-      fxFlex="100"
-      fxFlex.lt-md="100"
-      fxLayout="column"
-      class="mat-app-background"
-      @handelTransition
-    >
-      <div fxLayout="column" fxLayoutAlign="center">
-        <div fxLayout="row" fxLayoutAlign="center">
-          <h1 class="titleLogin">{{ "login-page.welcome" | translate }}</h1>
+    <div fxLayout="row wrap">
+      <div
+        fxFlex="50"
+        fxFlex.lt-md="100"
+        fxLayout="column"
+        fxFlexAlign="stretch"
+      >
+        <div fxLayout="column" fxFlexAlign="stretch">
+          <img class="responsiveImg" src="assets/login.jpg" />
         </div>
       </div>
-      <div fxLayout="column" fxLayoutAlign="center">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <div fxLayoutAlign="center">
-            <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
-              <mat-label>{{ "login-page.mail" | translate }}</mat-label>
-              <input formControlName="email" type="email" matInput />
-              <mat-error
-                *ngIf="loginForm.controls['email'].hasError('required')"
-                >{{ "login-page.mail" | translate }}
-                <strong>{{ "login-page.required" | translate }}</strong>
-              </mat-error>
-              <mat-error
-                *ngIf="
-                  loginForm.controls['email'].hasError('pattern') &&
-                  !loginForm.controls['email'].hasError('required')
-                "
-              >
-                {{ "login-page.mail-validation" | translate }}
-              </mat-error>
-            </mat-form-field>
+      <div
+        fxFlex="50"
+        fxFlex.lt-md="100"
+        fxLayout="column"
+        class="mat-app-background"
+        @handelTransition
+      >
+        <div fxLayout="column" fxLayoutAlign="center">
+          <div fxLayout="row" fxLayoutAlign="center">
+            <h1 class="titleLogin">{{ "login-page.welcome" | translate }}</h1>
           </div>
-          <div fxLayoutAlign="center">
-            <mat-form-field fxFlex="60" fxFlex.lt-md="90" appearance="outline">
-              <mat-label>{{ "login-page.password" | translate }}</mat-label>
-              <input
-                formControlName="password"
-                [type]="hidePassword ? 'password' : 'text'"
-                matInput
-              />
-              <mat-icon matSuffix (click)="hidePassword = !hidePassword"
-                >{{ hidePassword ? "visibility_off" : "visibility" }}
-              </mat-icon>
-              <mat-error *ngIf="loginForm.controls['password'].invalid"
-                >{{ "login-page.password" | translate }}
-                <strong>{{
-                  "login-page.required" | translate
-                }}</strong></mat-error
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div fxLayoutAlign="center">
+              <mat-form-field
+                fxFlex="60"
+                fxFlex.lt-md="90"
+                appearance="outline"
               >
-            </mat-form-field>
-          </div>
-          <div fxLayoutAlign="center">
-            <div fxLayout="column">
-              <button
-                type="submit"
-                mat-raised-button
-                type="submit"
-                color="primary"
-                class="btnLogin"
-              >
-                {{ "login-page.login" | translate }}
-              </button>
-              <p class="createAccount" fxLayoutAlign="center">
-                {{ "login-page.account-login-question" | translate }} &nbsp;<a
-                  routerLink="/register"
-                  >{{ "login-page.create-account" | translate }}
-                </a>
-              </p>
+                <mat-label>{{ "login-page.mail" | translate }}</mat-label>
+                <input formControlName="email" type="email" matInput />
+                <mat-error
+                  *ngIf="loginForm.controls['email'].hasError('required')"
+                  >{{ "login-page.mail" | translate }}
+                  <strong>{{ "login-page.required" | translate }}</strong>
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    loginForm.controls['email'].hasError('pattern') &&
+                    !loginForm.controls['email'].hasError('required')
+                  "
+                >
+                  {{ "login-page.mail-validation" | translate }}
+                </mat-error>
+              </mat-form-field>
             </div>
-          </div>
-        </form>
+            <div fxLayoutAlign="center">
+              <mat-form-field
+                fxFlex="60"
+                fxFlex.lt-md="90"
+                appearance="outline"
+              >
+                <mat-label>{{ "login-page.password" | translate }}</mat-label>
+                <input
+                  formControlName="password"
+                  [type]="hidePassword ? 'password' : 'text'"
+                  matInput
+                />
+                <mat-icon matSuffix (click)="hidePassword = !hidePassword"
+                  >{{ hidePassword ? "visibility_off" : "visibility" }}
+                </mat-icon>
+                <mat-error *ngIf="loginForm.controls['password'].invalid"
+                  >{{ "login-page.password" | translate }}
+                  <strong>{{
+                    "login-page.required" | translate
+                  }}</strong></mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div fxLayoutAlign="center">
+              <div fxLayout="column">
+                <button
+                  type="submit"
+                  mat-raised-button
+                  type="submit"
+                  color="primary"
+                  class="btnLogin"
+                >
+                  {{ "login-page.login" | translate }}
+                </button>
+                <p class="createAccount" fxLayoutAlign="center">
+                  {{ "login-page.account-login-question" | translate }} &nbsp;<a
+                    routerLink="/register"
+                    >{{ "login-page.create-account" | translate }}
+                  </a>
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>

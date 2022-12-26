@@ -4,11 +4,14 @@
   "direction": "rtl",
 
   "informatique": "إنفورماتيك",
-  "candidate": "المرشحون",
-  "question": "الاسئلة",
-  "interview": "المقابلات",
-  "company": "الشركة",
-  "employee": "الموظفين",
+
+  "side-nav-page": {
+    "candidate": "المرشحون",
+    "question": "الاسئلة",
+    "interview": "المقابلات",
+    "company": "الشركة",
+    "employee": "الموظفين"
+  },
 
   "home-page": {
     "our-fields": "مجالاتنا",

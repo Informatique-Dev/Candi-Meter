@@ -4,11 +4,14 @@
   "direction": "ltr",
 
   "informatique": "Informatique",
-  "candidate": "Candidate",
-  "question": "Question",
-  "interview": "Interview",
-  "company": "Company",
-  "employee": "Employee",
+
+  "side-nav-page": {
+    "candidate": "Candidate",
+    "question": "Question",
+    "interview": "Interview",
+    "company": "Company",
+    "employee": "Employee"
+  },
 
   "home-page": {
     "our-fields": "Our Fields",
