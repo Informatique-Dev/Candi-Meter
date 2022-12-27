@@ -5,22 +5,21 @@ import { LoginComponent } from './login/login.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { TranslateModule } from '@ngx-translate/core';
 
-const routes:Routes = [
-  { path:"login", component:LoginComponent },
-  { path:"register", component:RegisterComponent },
-]
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+];
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    RegisterComponent
-  ],
+  declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
-  ]
+    RouterModule.forChild(routes),
+    TranslateModule,
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}

@@ -1,14 +1,23 @@
-<div fxLayout="column" fxFlex="80">
+<div fxLayout="column">
   <a mat-button routerLink="/main/home" class="company-name">
     <img src="assets/logo.png" class="img-logo" alt="error logo" />
   </a>
 
   <mat-divider></mat-divider>
 
-  <a mat-button routerLink="/main/candidate" routerLinkActive="active">Candidate</a>
-  <a mat-button routerLink="/main/question" routerLinkActive="active">Question</a>
-  <a mat-button routerLink="/main/interview" routerLinkActive="active">Interview</a>
-  <a mat-button routerLink="/main/company" routerLinkActive="active">Company</a>
-  <a mat-button routerLink="/main/employee" routerLinkActive="active">Employee</a>
-
+  <a mat-button routerLink="/main/candidate" routerLinkActive="active">{{
+    "side-nav-page.candidate" | translate
+  }}</a>
+  <a mat-button routerLink="/main/question" routerLinkActive="active">{{
+    "side-nav-page.question" | translate
+  }}</a>
+  <a mat-button routerLink="/main/interview" routerLinkActive="active">{{
+    "side-nav-page.interview" | translate
+  }}</a>
+  <a mat-button routerLink="/main/company" routerLinkActive="active">{{
+    "side-nav-page.company" | translate
+  }}</a>
+  <a mat-button routerLink="/main/employee" routerLinkActive="active">{{
+    "side-nav-page.employee" | translate
+  }}</a>
 </div>

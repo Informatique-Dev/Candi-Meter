@@ -10,28 +10,27 @@ import { TopicRepository } from 'src/app/domain/Topics/topic.repository';
   animations: [
     trigger('side', [
       transition(':enter', [
-        style({transform: "translateY(-20px)"}),
-        animate(1000)
-      ])
+        style({ transform: 'translateY(-200px)' }),
+        animate(2000),
+      ]),
     ]),
     trigger('card-came-left', [
       transition(':enter', [
-        style({transform: "translateX(300px)"}),
-        animate(600)
-      ])
-    ])
-  ]
+        style({ transform: 'translateY(200px)' }),
+        animate(2000),
+      ]),
+    ]),
+  ],
 })
-export class HomePageComponent implements OnInit{
-  allTopics:Topic[]=[];
-  constructor(private topicRepository:TopicRepository) { }
+export class HomePageComponent implements OnInit {
+  allTopics: Topic[] = [];
+  constructor(private topicRepository: TopicRepository) {}
   ngOnInit(): void {
     this.getAllCompanies();
   }
   getAllCompanies(): void {
-    this.topicRepository.getList({
-    }).subscribe(result => {
+    this.topicRepository.getList({}).subscribe((result) => {
       this.allTopics = result.data;
-    })
+    });
   }
 }

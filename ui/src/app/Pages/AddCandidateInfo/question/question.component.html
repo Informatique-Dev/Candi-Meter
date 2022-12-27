@@ -1,89 +1,147 @@
 <div class="candidate-Laytout">
+  <div
+    fxLayoutAlign.lt-sm="start start"
+    (click)="changeVisibility()"
+    class="show-btn"
+  >
+    <button
+      type="submit"
+      mat-raised-button
+      class="open-form-button"
+      fxFlex="50"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="isVisible">
+    <form [formGroup]="questionForm">
+      <fieldset>
+        <legend>
+          {{ "candidate-question-page.candidate-question" | translate }}
+        </legend>
+        <div class="all-Inpt">
+          <div fxLayoutAlign="center center">
+            <mat-form-field
+              appearance="outline"
+              fxFlex.lt-lg="80%"
+              fxFlex="60"
+              (click)="appearRest()"
+            >
+              <mat-label>{{
+                "candidate-question-page.question" | translate
+              }}</mat-label>
+              <textarea
+                formControlName="description"
+                type="text"
+                matInput
+                placeholder="{{
+                  'candidate-question-page.question-validation' | translate
+                }}"
+              ></textarea>
+              <mat-error
+                *ngIf="
+                  questionForm.controls['description'].hasError(
+                    'description'
+                  ) &&
+                  !questionForm.controls['description'].hasError('required')
+                "
+              >
+                {{ "candidate-question-page.question-validation" | translate }}
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  questionForm.controls['description'].hasError('required')
+                "
+              >
+                {{ "candidate-question-page.question-required" | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-
-    <fieldset>
-
-        <h1 fxLayoutAlign="center center">All Questions
-        </h1>
-        <div fxLayoutAlign="center center">
-            <table mat-table class="mat-elevation-z8 table" [dataSource]="allQuestions">
-                <ng-container matColumnDef="id">
-                    <th mat-header-cell *matHeaderCellDef> No. </th>
-                    <td mat-cell *matCellDef="let i = index">{{i+1}}</td>
-                </ng-container>
-
-                <ng-container matColumnDef="description">
-                    <th mat-header-cell *matHeaderCellDef> Description </th>
-                    <td mat-cell *matCellDef="let element" >{{element.description}}</td>
-                </ng-container>
-
-                <ng-container matColumnDef="update">
-                  <th mat-header-cell *matHeaderCellDef></th>
-                  <td mat-cell *matCellDef="let element" class="update-icon" (click)="fetchData(element)">
-                    <mat-icon>edit</mat-icon>
-                  </td>
-                </ng-container>
-                <ng-container matColumnDef="delete">
-                  <th mat-header-cell *matHeaderCellDef></th>
-                  <td mat-cell *matCellDef="let element" class="delete-icon" (click)="deleteQuestion(element)">
-                    <mat-icon>person_remove</mat-icon>
-                  </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+          <div fxLayoutAlign="center center">
+            <button
+              type="button"
+              [disabled]="!questionForm.valid"
+              (click)="SaveData()"
+              class="add-btn"
+              mat-raised-button
+              fxFlex.lt-lg="80%"
+              fxFlex="40"
+            >
+              {{
+                questionForm.controls["id"].value
+                  ? ("candidate-question-page.update" | translate)
+                  : ("candidate-question-page.add" | translate)
+              }}
+            </button>
+            <div *ngIf="isRestButtonAppear">
+              <button
+                (click)="resetTheForm()"
+                type="button"
+                mat-raised-button
+                class="rest-Icon"
+                fxFlex.lt-lg="2%"
+                fxFlex="2"
+              >
+                <mat-icon>restart_alt</mat-icon>
+              </button>
+            </div>
+          </div>
         </div>
-        <mat-paginator class="paginator"(page)="pageChange($event)" [length]="totalItems" [pageSize]="size" [pageIndex]="page"></mat-paginator>
+      </fieldset>
+    </form>
+  </div>
+  <h1 fxLayoutAlign="center center">
+    {{ "candidate-question-page.question" | translate }}
+  </h1>
+  <div fxLayoutAlign="center center">
+    <table mat-table class="mat-elevation-z8 table" [dataSource]="allQuestions">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "candidate-question-page.no" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+      </ng-container>
 
-        <div fxLayoutAlign.lt-sm="start start" (click)="changeVisibility()" class="show-btn">
-            <button type="submit" mat-raised-button color="primary" fxFlex="50"><mat-icon>add</mat-icon></button>
-        </div>
-    </fieldset>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "candidate-question-page.description" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+      </ng-container>
 
-    <br>
-    <br>
-    <br>
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="update-icon"
+          (click)="fetchData(element)"
+        >
+          <mat-icon>edit</mat-icon>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="delete-icon"
+          (click)="deleteQuestion(element)"
+        >
+          <mat-icon>person_remove</mat-icon>
+        </td>
+      </ng-container>
 
-    <div *ngIf="isVisible">
-        <br>
-        <hr />
-        <br>
-        <br>
-        <form [formGroup]="questionForm">
-            <fieldset>
-                <legend>Candidate Question</legend>
-                <div class="all-Inpt">
-                    <div fxLayoutAlign="center center">
-                        <mat-form-field appearance="outline" fxFlex.lt-lg="80%" fxFlex="60" (click)="appearRest()">
-                            <mat-label>Question</mat-label>
-                            <textarea formControlName="description" type="text" matInput placeholder="enter your Question"></textarea>
-                            <mat-error *ngIf="questionForm.controls['description'].hasError('description') && !questionForm.controls['description'].hasError('required')">
-                                Please enter a Question
-                            </mat-error>
-                            <mat-error *ngIf="questionForm.controls['description'].hasError('required')">
-                                Question is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-
-
-                    <div fxLayoutAlign="center center">
-                        <button type="button" [disabled]="!questionForm.valid" (click)="SaveData()" class="add-btn" mat-raised-button color="primary" fxFlex.lt-lg="80%" fxFlex="40">{{questionForm.controls['id'].value ? 'Update Question':'Add Question'}}</button>
-                    <div *ngIf="isRestButtonAppear;">
-                      <button (click)='resetTheForm()' type="button" mat-raised-button color="primary" class="rest-Icon"
-                        fxFlex.lt-lg="2%" fxFlex="2">
-                        <mat-icon>restart_alt</mat-icon>
-                      </button>
-                    </div>
-                    </div>
-                </div>
-
-            </fieldset>
-
-        </form>
-    </div>
-
-
-
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <mat-paginator
+    class="paginator"
+    (page)="pageChange($event)"
+    [length]="totalItems"
+    [pageSize]="size"
+    [pageIndex]="page"
+  ></mat-paginator>
 </div>

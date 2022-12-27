@@ -1,17 +1,30 @@
 import { Component, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.sass']
+  styleUrls: ['./header.component.sass'],
 })
 export class HeaderComponent {
-
   @Input() sideNavItem: MatSidenav;
-  constructor() { }
+  lang: string = 'en';
+
+  constructor(private translate: TranslateService) {
+    this.lang = this.translate.currentLang;
+  }
 
   clickMenu() {
     this.sideNavItem.toggle();
+  }
+
+  selectTranslate() {
+    if (this.lang == 'en') {
+      localStorage.setItem('lang', 'ar');
+    } else {
+      localStorage.setItem('lang', 'en');
+    }
+    window.location.reload();
   }
 }

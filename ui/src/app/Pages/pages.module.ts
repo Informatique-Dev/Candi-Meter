@@ -10,19 +10,18 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CandidatesComponent } from './AddCandidateInfo/candidates/candidates.component';
 import { InterviewComponent } from './AddCandidateInfo/interview/interview.component';
 import { HomePageComponent } from './home-page/home-page.component';
-
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
-  { path: "", redirectTo:'home' },
-  { path: "contact", component: ContactUsComponent },
-  { path: "home", component: HomePageComponent },
-  { path: "question", component: QuestionComponent },
-  { path: "company", component: CompanyComponent },
-  { path: "employee", component: EmployeeComponent },
-  { path: "candidate", component: CandidatesComponent },
-  { path: "interview", component: InterviewComponent },
-
-]
+  { path: '', redirectTo: 'home' },
+  { path: 'contact', component: ContactUsComponent },
+  { path: 'home', component: HomePageComponent },
+  { path: 'question', component: QuestionComponent },
+  { path: 'company', component: CompanyComponent },
+  { path: 'employee', component: EmployeeComponent },
+  { path: 'candidate', component: CandidatesComponent },
+  { path: 'interview', component: InterviewComponent },
+];
 @NgModule({
   declarations: [
     ContactUsComponent,
@@ -33,9 +32,6 @@ const routes: Routes = [
     CandidatesComponent,
     InterviewComponent,
   ],
-  imports: [
-    RouterModule.forChild(routes),
-    SharedModule,
-  ]
+  imports: [RouterModule.forChild(routes), SharedModule, TranslateModule],
 })
-export class PagesModule { }
+export class PagesModule {}
