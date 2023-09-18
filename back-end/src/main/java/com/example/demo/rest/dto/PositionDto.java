@@ -10,4 +10,6 @@ public class PositionDto extends RestDto {
 
     private String name;
     private String description;
+    private CompanyDto company;
+
 }

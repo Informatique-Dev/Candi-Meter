@@ -58,6 +58,7 @@ public class TokenProvider {
         } catch (ExpiredJwtException ex) {
             log.error("JWT expired: {}", ex.getMessage());
         } catch (IllegalArgumentException ex) {
+
             log.error("Token is null, empty or only whitespace: {}", ex.getMessage());
         } catch (MalformedJwtException ex) {
             log.error("JWT is invalid: {}", ex.getMessage());

@@ -9,7 +9,7 @@ import org.mapstruct.*;
 import java.util.Base64;
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public abstract class DocumentMapper {
 
 //   @Mappings({@Mapping(source = "content", target = "content", ignore = true) })

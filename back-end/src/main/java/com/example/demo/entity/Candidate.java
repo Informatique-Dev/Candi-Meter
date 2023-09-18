@@ -25,7 +25,7 @@ public class Candidate extends JPAEntity {
     @Column
     private Integer documentId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "position_id")
     private Position position;
 

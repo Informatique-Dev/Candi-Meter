@@ -3,11 +3,15 @@ package com.example.demo.entity;
 import com.example.demo.entity.common.JPAEntity;
 import com.example.demo.support.DocumentType;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@EqualsAndHashCode(of = "id", callSuper = false)
+@ToString(of = "id", callSuper = false)
 public class Document extends JPAEntity {
 
     @Column

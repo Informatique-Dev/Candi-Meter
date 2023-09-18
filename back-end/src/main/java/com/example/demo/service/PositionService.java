@@ -4,6 +4,7 @@ package com.example.demo.service;
 import com.example.demo.entity.Position;
 
 import com.example.demo.repository.PositionRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class PositionService {
     @Autowired
     PositionRepository positionRepository;

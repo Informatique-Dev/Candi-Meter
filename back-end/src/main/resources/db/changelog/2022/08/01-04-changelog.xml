@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="1656851034029-1" author="yomna">
+        <createTable tableName="follow_up">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_followup"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="modified_date" type="DATETIME"/>
+            <column name="date" type="DATETIME"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="interview_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1657118508733-1" author="yomna">
+        <dropTable tableName="document"/>
+    </changeSet>
+    <changeSet id="1656851034026-6" author="DELL (generated)">
+        <createTable tableName="document">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_document"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="modified_date" type="DATETIME"/>
+            <column name="document_type" type="VARCHAR(255)"/>
+            <column name="document_name" type="VARCHAR(255)"/>
+            <column name="content_type" type="VARCHAR(255)"/>
+            <column name="size" type="java.lang.Long"/>
+            <column name="content" type="BLOB"/>
+
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>
