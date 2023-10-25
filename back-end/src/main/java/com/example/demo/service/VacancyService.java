@@ -38,4 +38,8 @@ public class VacancyService {
     public Optional<Vacancy> getById(Integer id) {
         return vacancyRepository.findById(id);
     }
+
+    public Page<Vacancy> getByUser(String userName, Integer page, Integer size) {
+        return vacancyRepository.getVacationsByUser(userName, PageRequest.of(page, size));
+    }
 }

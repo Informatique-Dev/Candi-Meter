@@ -1,0 +1,28 @@
+
+server:
+  port: 8085
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/Candi-Meter
+    username: postgres
+    password: 12345
+  liquibase:
+    change-log: classpath:db/root-changelog.xml
+
+
+app:
+  allowed-origins:
+    http://41.32.3.215:8085/,http://localhost:4200
+
+  jwt:
+    token:
+      expiration-in-ms: 86400000
+    refresh:
+      expiration-in-ms: 108000000
+    secret: my-very-secret-key
+

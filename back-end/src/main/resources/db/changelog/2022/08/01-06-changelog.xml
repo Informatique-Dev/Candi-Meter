@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <changeSet id="1687436577997-2" author="Yomna">
+        <dropColumn tableName="vacancy" columnName="vacancies"/>
+        <dropColumn tableName="vacancy" columnName="post_date"/>
+    </changeSet>
+
+    <changeSet id="1691499507954-3" author="Yomna">
+
+        <addColumn tableName="vacancy">
+            <column name="vacancies" type="VARCHAR(255)"/>
+        </addColumn>
+        <addColumn tableName="vacancy">
+            <column name="post_date" type="DATETIME"/>
+        </addColumn>
+
+    </changeSet>
+
+</databaseChangeLog>
