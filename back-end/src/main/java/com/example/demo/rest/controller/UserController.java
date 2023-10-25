@@ -1,7 +1,9 @@
 package com.example.demo.rest.controller;
 
+import com.example.demo.entity.Vacancy;
 import com.example.demo.rest.dto.UserDto;
 import com.example.demo.rest.handler.UserHandler;
+import com.example.demo.rest.handler.VacancyHandler;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "user", description = "REST API for user")
 public class UserController {
     private final UserHandler userHandler;
+    private VacancyHandler vacancyHandler;
 
     @GetMapping
     @Operation(summary = "Get All Users Paged")
@@ -44,5 +47,13 @@ public class UserController {
     @Operation(summary = "update User")
     public ResponseEntity<?> update(@PathVariable Integer id,@RequestBody UserDto usersDto) {
         return userHandler.update(id, usersDto);
+    }
+    //----------------------------------Vacancy----------------------------------------------------
+
+    @GetMapping("/current/vacancy")
+    @Operation(summary = "get all Vacancies that posted by user ", description = "this API to get all Vacancies that posted by user in pages")
+    public ResponseEntity<?> getAllByUserName(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                              @RequestParam(value = "size", defaultValue = "10") Integer size) {
+        return vacancyHandler.getAllByUser(page, size);
     }
 }

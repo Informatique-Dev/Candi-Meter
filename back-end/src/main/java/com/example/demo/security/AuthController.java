@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping("/auth")
 @AllArgsConstructor
@@ -18,21 +23,24 @@ import javax.validation.Valid;
 @Log4j2
 public class AuthController {
 
+    private AuthHandler authHandler;
 
-    private final AuthHandler authHandler;
-
-
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@Valid @RequestBody AuthRequest authRequest)
-    {
-        return authHandler.login(authRequest);
-    }
-
-    @PostMapping("/refresh")
-    public ResponseEntity<?> login(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest)
-    {
-        return authHandler.refresh(refreshTokenRequest.getRefreshToken());
+    @PostMapping(value = "/login")
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequestDto loginRequest) {
+        //TODO:add encryption/decryption
+        return authHandler.login(loginRequest);
     }
 
 
+    @PostMapping(value = "/refresh")
+    public ResponseEntity<?> refreshToken(@RequestBody RefreshTokenRequestDto refreshToken) {
+        return authHandler.refresh(refreshToken);
+    }
+
+    @GetMapping(value = "/user-info")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> getUserInfo(@AuthenticationPrincipal UserDetails userDetails) {
+        return authHandler.getUserInfo(userDetails);
+    }
 }
+

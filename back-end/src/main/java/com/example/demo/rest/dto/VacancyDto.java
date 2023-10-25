@@ -13,4 +13,12 @@ public class VacancyDto extends RestDto {
     private LocalDateTime expireDate;
 
     private PositionDto position;
+
+    private String vacancies;
+
+    private LocalDateTime postDate;
+
+    private UserDto postBy;
+
+
 }
